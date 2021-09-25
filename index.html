@@ -100,7 +100,7 @@
       </div>
     </header>
 
-
+     <a class="player" id="bgndVideo" data-property="{videoURL:'https://youtu.be/6wlAnGMzFG4',containment:'body', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, mute:true, quality:'default'}"></a>
 
     <!-- Start slider section-->
 
@@ -108,12 +108,17 @@
       <div id="preloader">
         <div id="status"></div>
       </div>
-      <div class="full-slider intro ">
-        <!-- Start slide-->
+
+    <div class="slider" id="top">
+ 
+
+    <div class="full-slider intro ">
+
         <div class="slide bg-white-section full-vh">
           <div class="container-slide vertical-align left small-text">
             <div class="container ">
               <div class="row">
+
                 <div class="col-md-5">
                   <div class="heading-title-big" style="background-color: rgba(0,0,0,0.5); padding-left: 15px; padding-right: -10px; padding-top: 5px;"><span style="color: #ff9933">Rock Artist</span><br>Eric Paul Levy</div>
                   <div class="description-slide" style="background-color: rgba(255,255,255,0.7); padding: 15px 15px 15px 15px; color: #000">What a journey life is. Crossroads come and go and then we always find ourselves in the here and now. Eric is a guitarist, singer/songwriter and sound healer passionate about creating powerful healing music and experiences that promote joy, balance and harmony. Whether on a stage in a rock venue or on the floor of a yoga studio, Eric connects with people to create unique, awesome and memorable times together.</div>
@@ -130,7 +135,7 @@
             </div>
           </div>
         </div>
-        <!-- Start slide-->
+
         <div class="slide bg-white-section full-vh">
           <div class="container-slide vertical-align left small-text">
             <div class="container">
@@ -138,23 +143,23 @@
                 <div class="col-md-6">
                 	<div class="video-iframe">
               			<iframe width="350" height="315" src="https://www.youtube.com/embed/Vu5K2hjsBVc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="healer_video"></iframe>
-            		</div>
-            	</div>
-                <div class="col-md-5 col-md-offset-1">
-                  <div class="heading-title-big" style="background-color: rgba(0,0,0,0.5); padding-left: 15px; padding-right: -10px; padding-top: 5px"><span style="color: #ffcc33">Sound Healer</span><br>Eric Paul Levy</div>
-                  <div class="description-slide" style="background-color: rgba(0,0,0,0.8); padding: 15px 15px 15px 15px;">When we add our intention to the sound, this is where true healing can occur.  We can use the sound and positive vibrations to become more in harmony with ourselves and therefore more harmonious with others and the world around us. Eric believes that if we all were in perfect harmony within ourselves, then that high and healthy vibration would resonate out to everything that exists around the world, creating peace, joy and love for all.
-					</div>
+            		  </div>
+            	   </div>
+              <div class="col-md-5 col-md-offset-1">
+                <div class="heading-title-big" style="background-color: rgba(0,0,0,0.5); padding-left: 15px; padding-right: -10px; padding-top: 5px"><span style="color: #ffcc33">Sound Healer</span><br>Eric Paul Levy</div>
+                <div class="description-slide" style="background-color: rgba(0,0,0,0.8); padding: 15px 15px 15px 15px;">When we add our intention to the sound, this is where true healing can occur.  We can use the sound and positive vibrations to become more in harmony with ourselves and therefore more harmonious with others and the world around us. Eric believes that if we all were in perfect harmony within ourselves, then that high and healthy vibration would resonate out to everything that exists around the world, creating peace, joy and love for all.
+				     </div>
                   <div class="buttons-section"><a class="btn accent-br-btn large-btn smooth-scroll" href="#offerings">More Info</a></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!--Contol slider-->
+      </div>
+    </div>
+  </div>
+
       <div class="dots-control-carousel" id="dots-control-full-slider" style="color: #ff9933"></div>
-      <!-- Strat Control carousel-->
+
       <div class="prev-next-block-rotate opacity-control" id="control-full-slider">
         <div class="wrap-prev">
           <div class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
@@ -165,25 +170,20 @@
       </div>
     </div>
 
+
     <!-- End slider section-->
         <!--Section trigger-->
     <section class="section-trigger bg-white-section white-60 background-image">
       <div class="container">
         <div class="row">
-          <!--<div class="col-md-12">-->
             <div class="heading-title center" style="padding: 10px 10px 10px 10px">
               <div class="small-desd" style="color: #424242; font-size: 25px">Merging a lifetime of learning and experience in the rock world,<br><span style="color: #6db4c6">with passion for planetary healing and oneness.</span></div>
             </div>
-          <!--</div>-->
         </div>
       </div>
     </section>
 
    <div>
- 	<video autoplay muted loop id="intro_video">
-      <source src="/videos/background_video_albumsbgmusic_short.mp4" type="video/mp4">
-	  Your browser does not support HTML5 video.
-	</video> 
 
    <!--Contact-->
     <!--<section class="section-how-we-work bg-white-section background-image" data-image="img/bg2.png" id="contact">-->
@@ -1346,16 +1346,14 @@
 	</script>
     
     
-    <!--button to top-->
     <div class="top icon-down toTopFromBottom" style="z-index:9999"><a class="smooth-scroll" href="#top"><i class="pe-7s-angle-up"></i></a></div>
+
     <script src="js/libs.js"></script>
-    <!--Use scripts-->
     <script src="js/common.js"></script>
     <script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="validator.js"></script>
     <script src="contact.js"></script>
-    <script src="js/libs.js"></script>
 
   </body>
 </html>
