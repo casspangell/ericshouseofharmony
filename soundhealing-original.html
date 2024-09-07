@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Eric's House of Harmony</title>
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Eric's House of Harmony" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://www.ericshouseofharmony.com/img/og_image_400.jpg" />
+  <meta property="og:url" content="https://www.ericshouseofharmony.com" />
+  <meta property="og:description" content="Guitarist, Signer/Songwriter, Sound Healer" />
+
+  <!--Favicon-->
+  <link rel="icon" href="img/favicon/favicon.ico">
+  <!--Libs css-->
+  <link rel="stylesheet" href="css/libs.css">
+  <!--Main css-->
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Comforter&family=Comforter+Brush&family=Permanent+Marker&family=Raleway:wght@100;700&family=Sedgwick+Ave&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #intro_video {
+      position: fixed;
+      z-index: -1;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    .playbutton {
+      position: fixed;
+      z-index: 25;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      color: #f1f1f1;
+      width: 100%;
+      padding: 20px;
+    }
+
+    #play_button {
+      width: 300px;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      background: #666666;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #play_button:hover {
+      background: #ddd;
+      color: black;
+    }
+  </style>
+
+</head>
+<body class="dark-load">
+<header class="top-nav page-header" id="top-nav" style="background-color: rgba(0,0,0,0.3);">
+  <div class="container">
+    <nav class="top-menu">
+      <ul class="sf-menu">
+        <!--Menu default-->
+        <li><a class="smooth-scroll" href="index.html">Home</a></li>
+        <li><a class="smooth-scroll" href="#about">About</a></li>
+        <li><a class="smooth-scroll" href="/soundhealing.html"/>Sound Healing</a></li>
+        <li><a class="smooth-scroll" href="/rockmusic.html"/>Rock Music</a></li>
+        <li><a class="smooth-scroll">Albums</a>
+          <ul>
+            <li><a class="smooth-scroll" href="/soundhealing.html#healing_album">Album - Good as Gold</a></li>
+            <li><a class="smooth-scroll" href="/rockmusic.html#rock_album">Album - All Over the Place</a></li>
+          </ul>
+        </li>
+        <li><a class="smooth-scroll" href="#connect">Connect</a>
+      </ul>
+      <!-- Start toggle menu--><a class="toggle-mnu" href="#"><span></span></a>
+    </nav>
+    <!-- Start mobile menu-->
+    <div id="mobile-menu">
+      <div class="inner-wrap">
+        <nav>
+          <ul class="nav_menu">
+            <li><a class="smooth-scroll" href="index.html">Home</a></li>
+            <li><a class="smooth-scroll" href="#about">About</a></li>
+            <li><a class="smooth-scroll" href="#offerings">Sound Healing</a></li>
+            <li><a class="smooth-scroll" href="#rock">Rock Music</a></li>
+            <li><a class="smooth-scroll">Albums</a>
+              <ul>
+                <li><a class="smooth-scroll" href="#rock_album">Album - All Over the Place</a></li>
+                <li><a class="smooth-scroll" href="#healing_album">Album - Good as Gold</a></li>
+              </ul>
+            </li>
+            <li><a class="smooth-scroll" href="#connect">Connect</a>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- End mobile menu-->
+  </div>
+</header>
+
+<!-- KILROY original video -->
+<a class="player" id="bgndVideo" data-property="{videoURL:'https://youtu.be/xLHVkY2UO4A',containment:'body', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, mute:true, quality:'default'}"></a>
+
+<!-- Start slider section-->
+
+<div class="slider" id="top">
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
+
+  <div class="slider" id="top">
+
+
+    <div class="full-slider intro ">
+
+      <div class="slide bg-white-section full-vh">
+        <div class="container-slide vertical-align left small-text">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="video-iframe">
+                  <iframe width="350" height="315" src="https://www.youtube.com/embed/Vu5K2hjsBVc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="healer_video"></iframe>
+                </div>
+              </div>
+              <div class="col-md-5 col-md-offset-1">
+                <div class="heading-title-big" style="background-color: rgba(0,197,215,0.85); padding-left: 15px; padding-right: -10px; padding-top: 5px"><span style="color: white; font-family: 'Amatic SC', cursive; text-transform:capitalize;">Sound Healer</span><br>Eric Paul Levy</div>
+                <div class="description-slide" style="background-color: rgba(0,0,0,0.8); padding: 15px 15px 15px 15px;">When we add our intention to the sound, this is where true healing can occur.  We can use the sound and positive vibrations to become more in harmony with ourselves and therefore more harmonious with others and the world around us. Eric believes that if we all were in perfect harmony within ourselves, then that high and healthy vibration would resonate out to everything that exists around the world, creating peace, joy and love for all.
+                </div>
+                <div class="buttons-section"><a class="btn accent-br-btn large-btn smooth-scroll" href="#offerings">More Info</a></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="dots-control-carousel" id="dots-control-full-slider" style="color: #ff9933"></div>
+
+    <div class="prev-next-block-rotate opacity-control" id="control-full-slider">
+      <div class="wrap-prev">
+        <div class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+      </div>
+      <div class="wrap-next">
+        <div class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!--Section trigger-->
+  <section class="section-trigger" style="padding-top: 25px; padding-bottom: 25px; background-color: rgba(0,197,215,0.75);" id="offerings">
+    <div class="row">
+      <!--<div class="col-md-12">-->
+      <div class="heading-title center" style="padding: 10px 10px 10px 10px">
+        <div class="small-desd" style="color: white; font-size: 38px; font-family: 'Amatic SC', cursive; text-transform:capitalize;">"The way in which man can find his own place<br>is to tune his instrument to the keynote of the chord of which he belongs."<br><span style="color: white;">- Hazrat Inyat Kahn</span></div>
+      </div>
+      <!--</div>-->
+    </div>
+</div>
+</section>
+
+
+<!--Section services-->
+<section class="services-section" style="padding-top: 0px; background-color: rgba(255,255,255,0.95);">
+  <div class="container">
+    <div class="row">
+      <div id="tabs-1">
+        <h1>Verified Effects<br>of Sound Energy Healing</h1>
+        <div class="col-md-6">
+          <div class="head-service small-head text-left">
+
+            <h2 style="color: #336666">Sound healing is a very powerful mode of healing. It seems so simple that many wonder how can it be so dramatically effective.</h2>
+
+            <p>"Our voice is the sound of the breath. Our breath is the sound of the soul." -Hazrat Inyat Khan (Sufi Master) Our breath is what keeps us alive, which is why it is so important to breathe deeply into our lungs and to avoid shallow breath.  We can breathe fresh oxygen into places in our bodies we didn’t even know were there.</p>
+
+            <p>Our thoughts are very powerful.  When we voice them (or rather sound them), they become even more powerful.  This is why it is encouraged for us all to speak kindly of others, as well as ourselves.  I find it’s true when they say “what we think is what we become”.  Since we do have the choice, why not choose to think only (or at least predominantly) positive, healing thoughts.  Since sound is the voice of the breath, we can use it to set our intentions (or positive thought) and send the sonic vibrations deep into ourselves as well as out into the entire universe.</p>
+
+            <p>When we add our intention to the sound, this is where true healing can occur.  We can use the sound and positive vibrations to become more in harmony with ourselves and therefore more harmonious with others and the world around us.</p>
+
+            <p>I believe that if we all were in perfect harmony within ourselves, then that high and healthy vibration would resonate out to everything that exists around the world, creating peace, joy and love for all.</p>
+          </div>
+        </div>
+
+        <div class="col-md-5 col-md-push-1">
+          <ul class="list">
+            <li>Reduced Blood Pressure</li>
+            <li>Reduced Heart and Respiration Rates</li>
+            <li>Reduced Depression</li>
+            <li>Reduced Migraines</li>
+            <li>Reduced Pain</li>
+            <li>Increased Oxygen Intake</li>
+            <li>Increased Weight Gain in Premature Babies</li>
+            <li>Increased Sleep for people suffering from Sleep Disorders</li>
+            <li>25% Decrease in Cortisol Levels (Stress Levels)</li>
+            <li>Increased Immune Cell Activity</li>
+            <li>Increased Brain Functioning through Spatial IQ testing</li>
+            <li>Higher Statistical Odds of Recovering from Illnesses and Diseases</li>
+          </ul>
+        </div>
+
+        <div><!--tabs1-->
+        </div><!--row-->
+      </div><!--container-->
+
+
+</section>
+
+
+<!--Section trigger-->
+<section class="section-trigger" style="background-color: rgba(0,197,215, 0.75);" id="healing">
+  <div class="container">
+    <div class="row">
+      <!--<div class="col-md-12">-->
+      <div class="heading-title center" style="padding: 10px 10px 10px 10px">
+        <div class="small-desd" style="color: white; font-size: 38px; font-family: 'Amatic SC', cursive; text-transform:capitalize;"><span style="color: white; font-family: 'Amatic SC', cursive; text-transform:capitalize;">"Our voice is the sound of the breath. Our breath is the sound of the soul."</span> -Hazrat Inyat Khan</span><br><br> It seems so simple yet it can be dramatically effective<br>in improving your health and well being.</div>
+      </div>
+      <!--</div>-->
+    </div>
+  </div>
+</section>
+
+
+<!--Section carousel trigger-->
+<!--  <section class="section-carousel-trigger" style="background-color: rgba(255,255,255,0.90);">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-push-2">
+          <div class="heading-title small-heading center">
+            <h2 style="color:black;">Offerings</h2>
+            <p style="color:black;">Bringing personalized sessions for reiki, sound healing and health coaching. Merging his lifetime of learning and experience in the rock world, with passion for planetary healing and oneness, he's created a new sound along with different workshops and events to help us all have the experience of being the music.</p><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="trigger-carousel">
+
+
+          <div class="col-md-6" style="background-color: rgba(16,121,152, 0.75); width:100px; height:inherit;">
+            <div class="item-triggel-carousel center">
+
+             <div class="icon"><img src="/img/eq_1.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+              <h2 style="color:white;">Sunday Morning Sonic Tune Up</h2>
+              <p style="color:white;">Sundays TBD<br>Join me every Sunday at 11 from the comfort of your own home and use the power of intention and your own voice to help bring your true inner desires into the world, whether it be more peace, love, compassion, prosperity gratitude and/or joy. Bring a blanket with an open heart and mind.<br></p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="item-triggel-carousel center">
+
+              <div class="icon"><img src="/img/eq_2_blk.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+              <h2 style="color:black;">60 Minute Sound Healing Session</h2>
+              <p style="color:black;">Everyone is different. We all have our own unique tone (our home note) as well as a particular rhythm. When we’re in balance, we become whole as we begin to resonate and harmonize to the key and the timing of our own song. In this session, you’ll receive a whole body sonic tune up using your own voice. I’ll also share some simple daily practices to do on your own to maintain this sweet and blissful state.<br><br>Click for Free Consultation</p>
+            </div>
+
+          </div>
+
+
+
+          <div class="col-md-6" style="background-color: rgba(16,121,152, 0.75)">
+            <div class="item-triggel-carousel center">
+
+              <div class="icon"><img src="/img/eq_3.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+              <h2 style="color:white;">Three Hour Workshop</h2>
+
+                <p style="color:white;">In this fun and interactive workshop, we will explore the many aspects of sound and music like tone, timbre, rhythm, harmony, entertainment, atmosphere, the humming effect and more to help bridge the gap in our collective understanding of what sound and music is, how it relates to our lives and the natural world around us as well as how we can use it for personal and planetary healing.<br><br></p>
+                <p style="color:white;">As a participant, you will learn and experience how musical notes and scales relate to all the systems in the body. We will also work with the breath and use our collective voices to vocal tone, chant sacred mantras and even create our own unique song.</p>
+
+            </div>
+          </div>
+
+        </div>
+              <div class="container">
+      <div class="row" style="padding-top: 30px;">
+          <div class="center" style="background-color: rgba(0,0,0,0.8); padding: 10px 10px 10px 10px">
+            <h2 style="color: white; text-transform: uppercase; size: 41px;"><span>Email <a href="mailto:booking@ericshouseofharmony.com">booking@ericshouseofharmony.com</a><span><br>to connect, book, or request a free consultation</a></h2>
+            <div class="small-desd" style="color: white"><span style="color: #ed9005"></span></div>
+          </div>
+
+      </div>
+      </div>
+      </div>
+    </div>
+  </section> -->
+
+<section style="background-color:white;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-push-2">
+        <div class="heading-title small-heading center">
+          <h2 style="color:black;">Offerings</h2>
+          <p style="color:black;">Bringing personalized sessions for reiki, sound healing and health coaching. Merging his lifetime of learning and experience in the rock world, with passion for planetary healing and oneness, he's created a new sound along with different workshops and events to help us all have the experience of being the music.</p><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="item-price">
+          <div class="head">
+            <div class="name-wrap">
+              <div class="icon"><img src="/img/eq_1.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+            </div>
+            <div class="price-wrap">
+              <p>Sunday Morning<br>Sonic Tune Up</p>
+            </div>
+          </div>
+          <div class="body">
+            <ul>
+              <li>Join me every Sunday at 11am from the comfort of your own home and use the power of intention and your own voice to help bring your true inner desires into the world, whether it be more peace, love, compassion, prosperity gratitude and/or joy.<br><br>Bring a blanket with an open heart and mind.</li>
+              <li>Sundays TBD</li>
+              <!--<li><a class="btn" href="#">Book Now</a></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="item-price">
+          <div class="head">
+            <div class="name-wrap">
+              <div class="icon"><img src="/img/eq_2.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+            </div>
+            <div class="price-wrap">
+              <p>60 or 90 Minute Sound Healing Session</p>
+            </div>
+          </div>
+          <div class="body">
+            <ul>
+              <li>Everyone is different. We all have our own unique tone (our home note) as well as a particular rhythm. When we’re in balance, we become whole as we begin to resonate and harmonize to the key and the timing of our own song. In this session, you’ll receive a whole body sonic tune up using your own voice. I’ll also share some simple daily practices to do on your own to maintain this sweet and blissful state.</li>
+              <li>Click for Free Consultation</li>
+              <li><a class="btn smooth-scroll" href="#connect">Book Now</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="item-price">
+          <div class="head">
+            <div class="name-wrap">
+              <div class="icon"><img src="/img/eq_3.png" style="width:25%; height:auto; display: block; margin-left: auto; margin-right: auto;"></div>
+            </div>
+            <div class="price-wrap">
+              <p>Three Hour Workshop</p>
+            </div>
+          </div>
+          <div class="body">
+            <ul>
+              <li>In this fun and interactive workshop, we will explore the many aspects of sound and music like tone, timbre, rhythm, harmony, entertainment, atmosphere, the humming effect and more to help bridge the gap in our collective understanding of what sound and music is, how it relates to our lives and the natural world around us as well as how we can use it for personal and planetary healing.<br><br>
+                As a participant, you will learn and experience how musical notes and scales relate to all the systems in the body. We will also work with the breath and use our collective voices to vocal tone, chant sacred mantras and even create our own unique song.</li>
+              <li><a class="btn smooth-scroll" href="#connect">Book Now</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <!--<div class="col-md-3">
+        <div class="item-price">
+          <div class="head">
+            <div class="name-wrap">
+              <h2>Premium package                 </h2>
+            </div>
+            <div class="price-wrap">
+              <p>$2499</p><span class="per-mn">per mounce</span>
+            </div>
+          </div>
+          <div class="body">
+            <ul>
+              <li>Responsive( Mobile Website)</li>
+              <li>Image slider (Animation)</li>
+              <li>1 Year Domain Free</li>
+              <li>1 Year Hosting Free</li>
+              <li>Form Submission</li>
+              <li>Google Map</li>
+              <li>24/7 Support</li>
+              <li><a class="btn" href="#">Start project</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>-->
+
+    </div>
+  </div>
+</section>
+
+
+<!--Section our skills -->
+<section class="section-our-skills" style="z-index:100;" id="healing_album">
+
+  <div class="container">
+    <div class="row" style="margin-left: 0px; margin-right: 0px;">
+      <!--  <div class="col-md-7"> -->
+      <div class="heading-title small-heading center left-text">
+        <div>
+
+          <div class="container">
+            <div style="background-color: rgba(250, 250, 250, 0.9); padding-left: 0px; padding-right: 0px;">
+              <div class="row" style="margin-left: 0px; padding-bottom:10px;"><h2 style="padding: 0px 10px 10px 10px">Album - Good As Gold</h2>
+                <div><a href="https://music.apple.com/us/album/good-as-gold/1581055861?uo=4&app=music&at=1001lry3&ct=dashboard"><img src="img/applemusic.png" style="width:15%; height:auto;"></a><a href="https://open.spotify.com/album/3EqDTK6P1RwrbA6vAWBPNU"><img src="img/spotify.png" style="width:15%; height:auto;"></a><a href="http://www.amazon.com/gp/product/B09CKG5YL5/?tag=distrokid06-20"><img src="img/amazonmusic.png" style="width:15%; height:auto;"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <img src="img/album_cover_goodasgold_outside.png" style="width:100%; height: auto;">
+      <img src="img/album_cover_goodasgold_inside.png" style="width:100%; height: auto;">
+    </div>
+
+    <!-- </div> -->
+  </div>
+
+  </div>
+
+  <!--Section testimonials-->
+  <section class="section-testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="testimonials-items">
+
+          <div class="col-md-4">
+            <div class="item-testimonials">
+              <p class="name">"Very tasteful, well-conceived, well-executed, metaphysical concept album! There is just enough diversity in the first half of the album to keep it interesting while still adhering to the overall feel of the project. Brilliant work of art!"</p><span class="name">- Lou L.</span><span class="person" style="color: rgba(0,0,0,0.8);">Sacramento, CA</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="item-testimonials">
+              <p class="name">"I can't stop listening! It's a multi-layered, sonic, chakra awakening sound healing experience. Be sure to check it out. You'll be singing your chakras awake with the songs and relaxing into a state of bliss with the mellow sound healing tracks. It's really two CDs in one. Good As Gold is the next best thing in sound healing music. Thanks Eric for sticking with this vision so that we may all benefit."</p><span class="name">- Debra K.</span><span class="person" style="color: rgba(0,0,0,0.8);">Pagosa Springs, CO</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="item-testimonials">
+              <p class="name">"This album marks a new era in music. The skillful combination of "New Age", Folk, Americana, and Meditational Inspiration is a fresh and entertaining twist that listeners of any genre will want in their collection. Eric has reached far into his depth of years of education, collaborations, and multi-instrumental talent and created a sound that ushers in the dawn of awakening."</p><span class="name">- George Moore</span><span class="person" style="color: rgba(0,0,0,0.8);">Wilmington, DE</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="item-testimonials">
+              <p class="name">“I loved it!  Very inspiring and serene with heartfelt energy.”</p><span class="name">- Digby</span><span class="person" style="color:rgba(0,0,0,0.8);">Winter park, FL</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="item-testimonials">
+              <p class="name">"I LOVE YOUR MUSIC! I have listened to the whole thing 5-6 times now and each time I get a new layer. There is something so ancient, the wisdom, conveyed in a modern and accessible way. There are tracks that remind me of being in a shamans circle, then others that invoke Pink Floyd. I love the sounds of the earth elements you have woven into your music. Thank you for sharing this with me."</p><span class="name">- Amber G</span><span class="person" style="color:rgba(0,0,0,0.8);"> Pueblo, CO</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- <div class="dots-control-carousel" id="dots-control-testimonials"></div>-->
+    </div>
+
+    <div class="prev-next-block-rotate" id="control-customers">
+      <div class="wrap-prev">
+        <div class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+      </div>
+      <div class="wrap-next">
+        <div class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="row" id="good_as_gold" style="padding-top:25px;">
+    <!-- <div class="col-md-6">
+           <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366106&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/good-as-gold-1" title="Good As Gold (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Good As Gold</a></div>
+
+
+
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366022&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/sacral-flow-1" title="Sacral Flow (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Sacral Flow</a></div>
+
+             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366025&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/power-of-will-1" title="Power of Will (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Power of Will</a></div>
+
+
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366031&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/love-the-inner-child-1" title="Love the Inner Child (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Love the Inner Child</a></div>
+
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366037&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/speak-to-me-1" title="Speak to Me (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Speak to Me</a></div>
+
+
+           <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366040&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/indigo-light-1" title="Indigo Light (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">Indigo Light</a></div>
+
+           <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366043&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/we-are-one-1" title="We Are One (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">We Are One</a></div>
+         </div>
+
+         <div class="col-md-6">
+             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366061&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/c-toning" title="C Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">C Toning - Root Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366067&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/d-toning" title="D Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">D Toning - Sacral Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366073&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/e-toning" title="E Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">E Toning - Solar Plexus Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366079&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/f-toning" title="F Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">F Toning - Heart Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366088&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/g-toning" title="G Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">G Toning - Throat Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366091&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/a-toning" title="A Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">A Toning - Third Eye Chakra</a></div>
+
+               <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1104366097&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/eric-paul-levy" title="Eric Paul Levy" target="_blank" style="color: #cccccc; text-decoration: none;">Eric Paul Levy</a> · <a href="https://soundcloud.com/eric-paul-levy/b-toning" title="B Toning (30 Sec)" target="_blank" style="color: #cccccc; text-decoration: none;">B Toning - Crown Chakra</a></div>
+             </div>
+           </div>
+         </div>
+       </div>-->
+  </div>
+
+</section>
+
+<section style="background-color: rgba(0,197,215, 0.8);" id="connect">
+  <div class="container">
+    <div class="row">
+      <div class="center" style="background-color: rgba(0,0,0,0.8); padding: 10px 10px 10px 10px">
+        <h2 style="color: white; text-transform: uppercase; size: 41px;"><span>Email <a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a><span><br>to connect, book, or request a free consultation</a></h2>
+        <div class="small-desd" style="color: white"><span style="color: #ed9005"></span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer style="padding-top:0px; padding-bottom: 80px;">
+  <div class="container">
+    <div class="down-footer">
+      <div class="container" style="position: relative;">
+        <div>
+          <p style="text-align: center;">© 2024 All Rights Reserved.  -   Eric's House of Harmony</p>
+        </div>
+      </div>
+
+    </div>
+</footer>
+
+<div class="playbutton">
+  <audio id="background_audio" src="audio/light_audio.mp3" preload="auto"></audio>
+  <button id="play_button" onclick="myFunction()">Background Audio Off</button>
+</div>
+
+<script>
+  var btn = document.getElementById("play_button");
+  var audio = document.getElementById("background_audio");
+  var isPlaying = false;
+
+  function myFunction() {
+
+    if (!isPlaying) {
+      audio.play();
+      btn.innerHTML = "Background Audio On";
+      isPlaying = true;
+    } else {
+      audio.pause();
+      btn.innerHTML = "Background Audio Off";
+      isPlaying = false;
+    }
+  }
+</script>
+
+
+<div class="top icon-down toTopFromBottom" style="z-index:9999"><a class="smooth-scroll" href="#top"><i class="pe-7s-angle-up"></i></a></div>
+
+<script src="js/libs.js"></script>
+<script src="js/common.js"></script>
+<script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="validator.js"></script>
+<script src="contact.js"></script>
+
+</body>
+</html>

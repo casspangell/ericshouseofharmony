@@ -47,28 +47,28 @@
 
 			// in animation settings
 			in: {
-			// set the effect name
-			effect: 'rollIn',
+				// set the effect name
+				effect: 'rollIn',
 
-			// set the delay factor applied to each consecutive character
-			delayScale: 0.4,
+				// set the delay factor applied to each consecutive character
+				delayScale: 0.4,
 
-			// set the delay between each character
-			delay: 50,
+				// set the delay between each character
+				delay: 50,
 
-			// set to true to animate all the characters at the same time
-			sync: false,
+				// set to true to animate all the characters at the same time
+				sync: false,
 
-			// randomize the character sequence
-			// (note that shuffle doesn't make sense with sync = true)
-			shuffle: false,
+				// randomize the character sequence
+				// (note that shuffle doesn't make sense with sync = true)
+				shuffle: false,
 
-			// reverse the character sequence
-			// (note that reverse doesn't make sense with sync = true)
-			reverse: false,
+				// reverse the character sequence
+				// (note that reverse doesn't make sense with sync = true)
+				reverse: false,
 
-			// callback that executes once the animation has finished
-			callback: function () {}
+				// callback that executes once the animation has finished
+				callback: function () {}
 			},
 
 			// out animation settings.
@@ -96,15 +96,15 @@
 	—-----------------------------------*/
 	if ($(window).width() < 1160) {
 		var headertp1 = $(".header-type-1");
-		headertp1.addClass("page-header");	
-		headertp1.attr('id', 'top-nav');	
+		headertp1.addClass("page-header");
+		headertp1.attr('id', 'top-nav');
 	}
 
 	/*-------------------------------------
 	 	matchHeight
 	 —-----------------------------------*/
-    $('.item').matchHeight({
-        property: 'height'
+	$('.item').matchHeight({
+		property: 'height'
 	});
 
 	/*-------------------------------------
@@ -125,8 +125,8 @@
 	/*-------------------------------------
 	Top nav
 	-------------------------------------*/
-	$(function(){	
-      // scroll is still position
+	$(function(){
+		// scroll is still position
 		var scroll = $(document).scrollTop(),
 			window_view = $(window),
 			headerHeight = $('.page-header').outerHeight();
@@ -139,8 +139,8 @@
 			var winTop = window_view.scrollTop(),
 				top_nav = $("#top-nav");
 
-				if(winTop >= 150){
-			top_nav.addClass("is-sticky");
+			if(winTop >= 150){
+				top_nav.addClass("is-sticky");
 			}else{
 				top_nav.removeClass("is-sticky");
 			}
@@ -164,24 +164,24 @@
 				// scrolled is new position just obtained
 				var scrolled = $(document).scrollTop(),
 					page_header = $('.page-header');
-				
-					if (scrolled > headerHeight){
-						page_header.addClass('off-canvas-menu');
-					} else {
-						page_header.removeClass('off-canvas-menu');
-					}
 
-				    if (scrolled > scroll){
-				         // scrolling down
-						 page_header.removeClass('fixed-tp-menu');
-				      } else {
-						  //scrolling up
-						  page_header.addClass('fixed-tp-menu');
-				    }				
-					 
-					scroll = $(document).scrollTop();	
-				});
-			})
+				if (scrolled > headerHeight){
+					page_header.addClass('off-canvas-menu');
+				} else {
+					page_header.removeClass('off-canvas-menu');
+				}
+
+				if (scrolled > scroll){
+					// scrolling down
+					page_header.removeClass('fixed-tp-menu');
+				} else {
+					//scrolling up
+					page_header.addClass('fixed-tp-menu');
+				}
+
+				scroll = $(document).scrollTop();
+			});
+		})
 	});
 
 
@@ -208,8 +208,8 @@
 		gallery:{enabled:true},
 		zoom:{enabled: true, duration: 300},
 		callbacks: {
-		open: function() {
-			$('html').css('margin-right', 0);
+			open: function() {
+				$('html').css('margin-right', 0);
 			}
 		}
 	});
@@ -228,7 +228,7 @@
 			a.imagesLoaded(function() {
 				a.isotope("layout");
 			});
-			
+
 			$('#control-portfolio li').on('click', function (e) {
 				e.preventDefault();
 
@@ -243,7 +243,7 @@
 
 				return false;
 			});
-		}	
+		}
 	});
 
 	/*-------------------------------------
@@ -260,7 +260,7 @@
 			a.imagesLoaded(function() {
 				a.isotope("layout");
 			});
-			
+
 			$('#control-portfolio li').on('click', function (e) {
 				e.preventDefault();
 
@@ -275,13 +275,13 @@
 				return false;
 			});
 
-			 $(".gallery-items").isotope("on", "layoutComplete", function(a, b) {
-			var b = a.length;
-			$(".num-album").html(b);
-		});
-		var b = $(".gallery-item").length;
-		$(".all-album , .num-album").html(b);
-		}	
+			$(".gallery-items").isotope("on", "layoutComplete", function(a, b) {
+				var b = a.length;
+				$(".num-album").html(b);
+			});
+			var b = $(".gallery-item").length;
+			$(".all-album , .num-album").html(b);
+		}
 	});
 
 	/*-------------------------------------
@@ -290,7 +290,7 @@
 	$('.accordion:nth-child(1n)').accordion({
 		heightStyle: 'content'
 	});
-	
+
 	/*-------------------------------------
 		MFP
 	-------------------------------------*/
@@ -311,91 +311,91 @@
 	-------------------------------------*/
 	$(function () {
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-			} else {
-				$(".heading-title > h2").animated("fadeInDown");
-				$(".heading-title > p").animated("fadeInUp");
-				$(".heading-title > .small-desd").animated("fadeIn");
-				$(".animated-service").animated("fadeIn");
-				$(".masonry-item-pr, .masonry-item").animated("fadeIn");
-			}
+		} else {
+			$(".heading-title > h2").animated("fadeInDown");
+			$(".heading-title > p").animated("fadeInUp");
+			$(".heading-title > .small-desd").animated("fadeIn");
+			$(".animated-service").animated("fadeIn");
+			$(".masonry-item-pr, .masonry-item").animated("fadeIn");
+		}
 	}());
 
 
 	/*-------------------------------------
 	 MagnificPopup
 	 -------------------------------------*/
-    $('.image-modal-gallery').magnificPopup({
-        type:'inline',
-        fixedContentPos: true,
-        removalDelay: 100,
-        closeBtnInside: true,
-        preloader: true,
-        mainClass: 'mfp-fade',
-        // callbacks: {
-        // 	open: initSliders
-        // }
-    });
+	$('.image-modal-gallery').magnificPopup({
+		type:'inline',
+		fixedContentPos: true,
+		removalDelay: 100,
+		closeBtnInside: true,
+		preloader: true,
+		mainClass: 'mfp-fade',
+		// callbacks: {
+		// 	open: initSliders
+		// }
+	});
 
-    // $('.al-gallery-folio').each(function(){
-    //    $(this).on('click', function(){
-    //        $('.slider-portfolio-single').slick('refresh');
-    //        console.log('it is work fine');
-    //    });
-    // });
+	// $('.al-gallery-folio').each(function(){
+	//    $(this).on('click', function(){
+	//        $('.slider-portfolio-single').slick('refresh');
+	//        console.log('it is work fine');
+	//    });
+	// });
 
-    $('.portfolio-items').on('click', '.image-modal-gallery', function(){
-        $('.slider-portfolio').slick('refresh');
-    });
+	$('.portfolio-items').on('click', '.image-modal-gallery', function(){
+		$('.slider-portfolio').slick('refresh');
+	});
 
-    $('.image-modal').each(function(){
-        $(this).magnificPopup({
-            type:'inline',
-            fixedContentPos: true,
-            removalDelay: 100,
-            closeBtnInside: true,
-            preloader: true,
-            mainClass: 'mfp-fade',
-            callbacks: {
-                open: function () {
-                    $('.slider-portfolio').not('.slick-initialized').slick('refresh');
-                    $('html').css('margin-right', '5px');
-                }
-                // e.t.c.
-            }
-        });
-    });
+	$('.image-modal').each(function(){
+		$(this).magnificPopup({
+			type:'inline',
+			fixedContentPos: true,
+			removalDelay: 100,
+			closeBtnInside: true,
+			preloader: true,
+			mainClass: 'mfp-fade',
+			callbacks: {
+				open: function () {
+					$('.slider-portfolio').not('.slick-initialized').slick('refresh');
+					$('html').css('margin-right', '5px');
+				}
+				// e.t.c.
+			}
+		});
+	});
 
 	/*-------------------------------------
 		Slider portfolio
 	-------------------------------------*/
-    $.fn.al_slider_wrap = function() {
-        $(this).each(function() {
-            var $dots = $(this).find('.dots-control-carousel');
-            var $arrows = $(this).find('.prev-next-block-rotate');
-            var $next = $arrows.children(".wrap-next");
-            var $prev = $arrows.children(".wrap-prev");
+	$.fn.al_slider_wrap = function() {
+		$(this).each(function() {
+			var $dots = $(this).find('.dots-control-carousel');
+			var $arrows = $(this).find('.prev-next-block-rotate');
+			var $next = $arrows.children(".wrap-next");
+			var $prev = $arrows.children(".wrap-prev");
 
-            var $slick_slider = $(this).children(".slider-portfolio");
+			var $slick_slider = $(this).children(".slider-portfolio");
 
-            // $arrows.css('display', 'none');
-            $slick_slider.not('.slick-initialized').slick({
-                dots: true,
-                fade: true,
-                appendDots: $dots,
-                dotsClass: 'dots',
-                autoplay: true,
-                autoplaySpeed: 8000,
-                autoHeight: false,
-                infinite: true,
-                cssEase: 'linear',
-                prevArrow: $prev,
-                nextArrow: $next
-            });
+			// $arrows.css('display', 'none');
+			$slick_slider.not('.slick-initialized').slick({
+				dots: true,
+				fade: true,
+				appendDots: $dots,
+				dotsClass: 'dots',
+				autoplay: true,
+				autoplaySpeed: 8000,
+				autoHeight: false,
+				infinite: true,
+				cssEase: 'linear',
+				prevArrow: $prev,
+				nextArrow: $next
+			});
 
-        });
-    };
+		});
+	};
 
-    $('.slider-wrap').al_slider_wrap();
+	$('.slider-wrap').al_slider_wrap();
 
 	/*-------------------------------------
 		Into slider
@@ -453,67 +453,67 @@
 		arrows: false,
 		slidesToShow: 4,
 		responsive: [
-		{
-			breakpoint: 1170,
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: true
-			}
-		},
-		{
-			breakpoint: 1170,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: true
+				}
+			},
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 1,
-				infinite: false,
-				dots: true
-			}
-		},{
-			breakpoint: 1024,
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					infinite: false,
+					dots: true
+				}
+			},{
+				breakpoint: 1024,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 1,
-				infinite: false,
-				dots: true
-			}
-		},
-		{
-			breakpoint: 992,
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					infinite: false,
+					dots: true
+				}
+			},
+			{
+				breakpoint: 992,
 				settings: {
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				infinite: false,
-				dots: true
-			}
-		},
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: false,
+					dots: true
+				}
+			},
 
-		{
-		breakpoint: 600,
-			settings: {
-			slidesToShow: 3,
-			slidesToScroll: 2
-			}
-		},
-		{
-		breakpoint: 500,
-			settings: {
-			slidesToShow: 2,
-			slidesToScroll: 2
-			}
-		},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 2
+				}
+			},
+			{
+				breakpoint: 500,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
 
-		{
-		breakpoint: 480,
-			settings: {
-			slidesToShow: 1,
-			slidesToScroll: 1
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
 			}
-		}
-	 // You can unslick at a given breakpoint now by adding:
-	 // settings: "unslick"
-	 // instead of a settings object
+			// You can unslick at a given breakpoint now by adding:
+			// settings: "unslick"
+			// instead of a settings object
 		]
 	});
 	/*-------------------------------------
@@ -640,52 +640,52 @@
 		prevArrow: $('#control-customers > .wrap-prev'),
 		nextArrow: $('#control-customers > .wrap-next'),
 		responsive: [
-		{
-			breakpoint: 1170,
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: true
-			}
-		},
-		{
-			breakpoint: 1170,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: true
+				}
+			},
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: true
-			}
-		},
-		{
-			breakpoint: 1024,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: true
+				}
+			},
+			{
+				breakpoint: 1024,
 				settings: {
-				slidesToShow: 2,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: true
-			}
-		},
+					slidesToShow: 2,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: true
+				}
+			},
 
-		{
-		breakpoint: 600,
-			settings: {
-			slidesToShow: 2,
-			slidesToScroll: 2
-			}
-		},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
 
-		{
-		breakpoint: 480,
-			settings: {
-			slidesToShow: 1,
-			slidesToScroll: 1
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
 			}
-		}
-	 // You can unslick at a given breakpoint now by adding:
-	 // settings: "unslick"
-	 // instead of a settings object
+			// You can unslick at a given breakpoint now by adding:
+			// settings: "unslick"
+			// instead of a settings object
 		]
 	});
 
@@ -702,52 +702,52 @@
 		prevArrow: $('#control-clients > .wrap-prev'),
 		nextArrow: $('#control-clients > .wrap-next'),
 		responsive: [
-		{
-			breakpoint: 1170,
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: false
-			}
-		},
-		{
-			breakpoint: 1170,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: false
+				}
+			},
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: false
-			}
-		},
-		{
-			breakpoint: 1024,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: false
+				}
+			},
+			{
+				breakpoint: 1024,
 				settings: {
-				slidesToShow: 3,
-				slidesToScroll: 2,
-				infinite: false,
-				dots: false
-			}
-		},
+					slidesToShow: 3,
+					slidesToScroll: 2,
+					infinite: false,
+					dots: false
+				}
+			},
 
-		{
-		breakpoint: 600,
-			settings: {
-			slidesToShow: 3,
-			slidesToScroll: 2
-			}
-		},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 2
+				}
+			},
 
-		{
-		breakpoint: 480,
-			settings: {
-			slidesToShow: 1,
-			slidesToScroll: 1
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
 			}
-		}
-	 // You can unslick at a given breakpoint now by adding:
-	 // settings: "unslick"
-	 // instead of a settings object
+			// You can unslick at a given breakpoint now by adding:
+			// settings: "unslick"
+			// instead of a settings object
 		]
 	});
 
@@ -760,17 +760,17 @@
 		mainClass: 'mfp-with-zoom',
 		iframe: {
 			markup: '<div class="mfp-iframe-scaler">'+
-			'<div class="mfp-close"></div>'+
-			'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-			'</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+				'<div class="mfp-close"></div>'+
+				'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+				'</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
 
 			patterns: {
 				youtube: {
 					index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
 					id: 'v=', // String that splits URL in a two parts, second part should be %id%
-						// Or null - full URL will be returned
-						// Or a function that should return %id%, for example:
-						// id: function(url) { return 'parsed id'; }
+					// Or null - full URL will be returned
+					// Or a function that should return %id%, for example:
+					// id: function(url) { return 'parsed id'; }
 					src: '//www.youtube.com/embed/%id%?autoplay=1' // URL that will be set as a source for iframe.
 				},
 
@@ -799,7 +799,7 @@
 					// openerElement is the element on which popup was initialized, in this case its <a> tag
 					// you don't need to add "opener" option if this code matches your needs, it's defailt one.
 					return openerElement.is('img') ? openerElement : openerElement.find('img');
-					}
+				}
 			},
 
 			srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
@@ -810,19 +810,19 @@
 		Google maps API
 	-------------------------------------*/
 	if (typeof $.fn.gmap3 !== 'undefined') {
-	
+
 		$("#map").each(function() {
-			
+
 			var data_zoom = 15,
 				data_height;
-			
+
 			if ($(this).attr("data-zoom") !== undefined) {
 				data_zoom = parseInt($(this).attr("data-zoom"),10);
 			}
 			if ($(this).attr("data-height") !== undefined) {
 				data_height = parseInt($(this).attr("data-height"),10);
-			}	
-			
+			}
+
 			$(this).gmap3({
 				marker: {
 					values: [{
@@ -836,14 +836,14 @@
 					events:{
 						mouseover: function(marker, event, context){
 							var map = $(this).gmap3("get"),
-							infowindow = $(this).gmap3({get:{name:"infowindow"}});
+								infowindow = $(this).gmap3({get:{name:"infowindow"}});
 							if (infowindow){
 								infowindow.open(map, marker);
 								infowindow.setContent(context.data);
 							} else {
 								$(this).gmap3({
 									infowindow:{
-										anchor:marker, 
+										anchor:marker,
 										options:{content: context.data}
 									}
 								});
@@ -868,23 +868,23 @@
 			});
 			$(this).css("height", data_height + "px");
 		});
-		
+
 	}
 
 	if (typeof $.fn.gmap3 !== 'undefined') {
-	
+
 		$("#map-dark").each(function() {
-			
+
 			var data_zoom = 15,
 				data_height;
-			
+
 			if ($(this).attr("data-zoom") !== undefined) {
 				data_zoom = parseInt($(this).attr("data-zoom"),10);
 			}
 			if ($(this).attr("data-height") !== undefined) {
 				data_height = parseInt($(this).attr("data-height"),10);
-			}	
-			
+			}
+
 			$(this).gmap3({
 				marker: {
 					values: [{
@@ -898,14 +898,14 @@
 					events:{
 						mouseover: function(marker, event, context){
 							var map = $(this).gmap3("get"),
-							infowindow = $(this).gmap3({get:{name:"infowindow"}});
+								infowindow = $(this).gmap3({get:{name:"infowindow"}});
 							if (infowindow){
 								infowindow.open(map, marker);
 								infowindow.setContent(context.data);
 							} else {
 								$(this).gmap3({
 									infowindow:{
-										anchor:marker, 
+										anchor:marker,
 										options:{content: context.data}
 									}
 								});
@@ -930,7 +930,7 @@
 			});
 			$(this).css("height", data_height + "px");
 		});
-		
+
 	}
 
 	/*-------------------------------------
@@ -962,54 +962,54 @@
 		appendDots: '#dots-control-triggers',
 		slidesToScroll: 2,
 		autoplay: true,
-		autoplaySpeed: 4000,
+		autoplaySpeed: 8000,
 		arrows: false,
 		infinite: true,
 		slidesToShow: 3,
 		responsive: [
-		{
-			breakpoint: 1170,
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-			}
-		},
-		{
-			breakpoint: 1170,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+				}
+			},
+			{
+				breakpoint: 1170,
 				settings: {
-				slidesToShow: 4,
-				slidesToScroll: 2,
-				infinite: false,
-			}
-		},
-		{
-			breakpoint: 1024,
+					slidesToShow: 4,
+					slidesToScroll: 2,
+					infinite: false,
+				}
+			},
+			{
+				breakpoint: 1024,
 				settings: {
-				slidesToShow: 3,
-				slidesToScroll: 2,
-				infinite: false,
-			}
-		},
+					slidesToShow: 3,
+					slidesToScroll: 2,
+					infinite: false,
+				}
+			},
 
-		{
-		breakpoint: 600,
-			settings: {
-			slidesToShow: 2,
-			slidesToScroll: 2
-			}
-		},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
 
-		{
-		breakpoint: 480,
-			settings: {
-			slidesToShow: 1,
-			slidesToScroll: 1
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
 			}
-		}
-	 // You can unslick at a given breakpoint now by adding:
-	 // settings: "unslick"
-	 // instead of a settings object
+			// You can unslick at a given breakpoint now by adding:
+			// settings: "unslick"
+			// instead of a settings object
 		]
 	});
 
@@ -1025,52 +1025,52 @@
 			$logo = $('.logo'),
 			$window = $(window);
 
-			$menu.find('.menu-item-has-children > a').on('click', function(e) {
-				e.preventDefault();
-				if ($(this).next('ul').is(':visible')) {
-					$(this).removeClass('sub-active').next('ul').slideUp(250);
-				} else {
-					$('.menu-item-has-children > a').removeClass('sub-active').next('ul').slideUp(250);
-					$(this).addClass('sub-active').next('ul').slideToggle(250);
-				}
-			});
+		$menu.find('.menu-item-has-children > a').on('click', function(e) {
+			e.preventDefault();
+			if ($(this).next('ul').is(':visible')) {
+				$(this).removeClass('sub-active').next('ul').slideUp(250);
+			} else {
+				$('.menu-item-has-children > a').removeClass('sub-active').next('ul').slideUp(250);
+				$(this).addClass('sub-active').next('ul').slideToggle(250);
+			}
+		});
 
-			var fnOpen = false;
+		var fnOpen = false;
 
-			var fnToggleFunc = function() {
-				fnOpen = !fnOpen;
-				$body.toggleClass('fullscreen-nav-open');
-				$fn.stop().fadeToggle(500);
-				$fn.toggleClass("active");
-				$('.toggle-mnu').toggleClass('on');
-				$logo.toggleClass('on');
-				$logo.toggleClass('dark-logo');
+		var fnToggleFunc = function() {
+			fnOpen = !fnOpen;
+			$body.toggleClass('fullscreen-nav-open');
+			$fn.stop().fadeToggle(500);
+			$fn.toggleClass("active");
+			$('.toggle-mnu').toggleClass('on');
+			$logo.toggleClass('on');
+			$logo.toggleClass('dark-logo');
 
-				return false;
-			};
+			return false;
+		};
 
-			$fnToggle.on('click', fnToggleFunc);
+		$fnToggle.on('click', fnToggleFunc);
 
-			$(document).on('keyup', function(e) {
-				if (e.keyCode == 27 && fnOpen) {
-					fnToggleFunc();
-				}
-
-			});
-
-			$fn.find('li:not(.menu-item-has-children) > a').one('click', function() {
+		$(document).on('keyup', function(e) {
+			if (e.keyCode == 27 && fnOpen) {
 				fnToggleFunc();
-				return true;
-			});
+			}
 
-			$menu.on('click', function(){
-				fnToggleFunc();
-				return true;
-			});
+		});
 
-			$('.inner-wrap, .fullscreen-menu-toggle').on('click', function(e){
-				e.stopPropagation();
-			});
+		$fn.find('li:not(.menu-item-has-children) > a').one('click', function() {
+			fnToggleFunc();
+			return true;
+		});
+
+		$menu.on('click', function(){
+			fnToggleFunc();
+			return true;
+		});
+
+		$('.inner-wrap, .fullscreen-menu-toggle').on('click', function(e){
+			e.stopPropagation();
+		});
 	});
 
 	/*-------------------------------------
@@ -1094,9 +1094,9 @@
 	if (typeof $.fn.mb_YTPlayer !== 'undefined') {
 		$(function () {
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-				} else {
-					$("#bgndVideo").mb_YTPlayer(); //Your code
-				}
+			} else {
+				$("#bgndVideo").mb_YTPlayer(); //Your code
+			}
 		}());
 	}
 
@@ -1115,7 +1115,7 @@
 		$('.single-post', this).each(function() {
 			var height = $(this).outerHeight();
 			$('#sidebar').css('height', height);
-		});		
+		});
 	}
 
 	$('.item-service', this).each(function() {
@@ -1142,9 +1142,9 @@
 			else {
 				$ths_in.css('width', '0');
 			}
-			}, {
-				offset: "90%"
-			});
+		}, {
+			offset: "90%"
+		});
 	});
 
 })(jQuery);
