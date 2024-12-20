@@ -1,0 +1,337 @@
+.carousel-item video {
+    width: 100%;
+    height: auto;
+}
+
+.section-portfolio {
+    padding: 60px 0;
+}
+
+.artist-name {
+    font-size: 2.4em;
+    font-weight: bold;
+    color: white;
+    margin-left: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.heading-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.heading-title h2 {
+    font-size: 36px;
+    color: #333;
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+}
+
+/* Bio video */
+.video-content {
+    padding-top: 0;
+}
+
+/* Ensure consistent video sizes and layout */
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.video-thumbnail {
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    padding: 15px; /* Add padding around the video thumbnail */
+    box-sizing: border-box; /* Ensure padding is included in the element's total width */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .video-thumbnail {
+        flex: 0 0 30%; /* Each video takes 30% of the row */
+        margin-bottom: 20px;
+        padding: 10px; /* Padding around each video */
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 767px) {
+    .video-thumbnail {
+        flex: 0 0 48%; /* Each video takes 48% of the row */
+        max-width: 48%;
+        margin-bottom: 20px;
+        padding: 10px; /* Add padding between columns */
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-thumbnail {
+        flex: 0 0 100%; /* Each video takes 100% of the row */
+        max-width: 100%;
+        margin-bottom: 20px;
+        padding: 10px; /* Padding around each video */
+        box-sizing: border-box;
+    }
+}
+
+
+.video-thumbnail-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6vw;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Adjust play button size for smaller screens */
+@media (max-width: 768px) {
+    .play-button {
+        font-size: 8vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .play-button {
+        font-size: 10vw;
+    }
+}
+
+.video-placeholder:hover .video-thumbnail-img {
+    transform: scale(1.05);
+}
+
+.video-placeholder {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.video-thumbnail video {
+    width: 100%;
+    height: 250px; /* Fixed height for consistency */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.video-thumbnail video:hover {
+    transform: scale(1.05);
+}
+
+.video-title {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.small-desd {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .video-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .video-thumbnail {
+        flex: 0 0 30%; /* Three videos per row on larger screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .video-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .video-thumbnail {
+        flex: 0 0 48%; /* Two videos per row on smaller screens */
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .video-thumbnail {
+        flex: 0 0 100%; /* One video per row on very small screens */
+        max-width: 100%;
+    }
+}
+
+/* Button styling for the "Book a Show" CTA */
+.btn-book-show {
+    background-color: #6633cc;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.btn-book-show:hover {
+    background-color: #4b25a1;
+    color: #fff;
+}
+
+/* Booking Section Spacing */
+.booking-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.booking-section h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.booking-section p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.booking-section a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hamburger Menu */
+/* Hamburger Button */
+/* Base styles for the toggle (hamburger) button */
+.toggle-mnu {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1000; /* High z-index ensures it's above other elements */
+}
+
+.toggle-mnu span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+/* Show the toggle button on screens 1024px and below */
+/* Hide regular top menu and show the toggle button on smaller screens */
+@media (max-width: 1024px) {
+    .top-menu {
+        display: none; /* Hide regular menu */
+    }
+
+    .toggle-mnu {
+        display: block; /* Show the hamburger menu on smaller screens */
+    }
+
+    .toggle-mnu span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin: 6px 0;
+    }
+
+    /* Mobile Menu Styles */
+    /* Base styles for the hamburger (toggle) button */
+    .toggle-mnu {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 1000; /* High z-index ensures it's above other elements */
+    }
+
+    .toggle-mnu span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin: 6px 0;
+    }
+
+    /* Show the hamburger button on screens 1024px and below */
+    @media (max-width: 1024px) {
+        .top-menu {
+            display: none; /* Hide regular menu */
+        }
+
+        .toggle-mnu {
+            display: block; /* Show the hamburger menu on smaller screens */
+        }
+
+        /* Mobile menu styles */
+        #mobile-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 60px; /* Push it below the header */
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+            padding: 20px;
+            z-index: 999; /* Ensure it's above other elements */
+        }
+
+        #mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        #mobile-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Show the mobile menu when active */
+        #mobile-menu.active {
+            display: block;
+        }
+    }
+    }
+

@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="css/libs.css">
   <!--Main css-->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/soundhealing.css">
+  <link rel="stylesheet" href="css/rock.css">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,57 +31,107 @@
 
   <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-  </style>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+</style>
 
 </head>
 <body class="dark-load">
 <header class="top-nav page-header" id="top-nav" style="background-color: rgba(0,0,0,0.3);">
-  <div class="container"><a class="logo smooth-scroll" href="#"><img class="logo-white" src="img/logo.png" alt="logo"><img class="logo-dark" src="img/logodark.png" alt="logo"></a>
-    <nav class="top-menu">
-      <ul class="sf-menu">
-        <!--Menu default-->
-        <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>
-        <li><a class="smooth-scroll" href="#about">About</a></li>
-        <li><a class="smooth-scroll" href="#bookings">Sound Healing</a></li>
-        <li><a class="smooth-scroll" href="/rockmusic"/>Rock Music</a></li>
-        <li><a class="smooth-scroll">Albums</a>
-          <ul>
-            <li><a class="smooth-scroll" href="#healing_album">Album - Good as Gold</a></li>
-            <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/rockmusic#rock_album">Album - All Over the Place</a></li>
-          </ul>
-        </li>
-        <li><a class="smooth-scroll" href="#connect">Connect</a>
-      </ul>
-      <!-- Start toggle menu--><a class="toggle-mnu" id="toggle-mnu" href="#"><span></span></a>
-    </nav>
-    <!-- Start mobile menu-->
-    <div id="mobile-menu">
-      <div class="inner-wrap">
-        <nav>
-          <ul class="nav_menu" id="nav_menu">
-            <li><a class="smooth-scroll" href="index.html">Home</a></li>
-            <li><a class="smooth-scroll" href="#about">About</a></li>
-            <li><a class="smooth-scroll" href="#bookings">Sound Healing</a></li>
-            <li><a class="smooth-scroll" href="/rockmusic">Rock Music</a></li>
-            <li><a class="smooth-scroll">Albums</a>
-              <ul>
-                <li><a class="smooth-scroll" href="#healing_album">Album - All Over the Place</a></li>
-                <li><a class="smooth-scroll" href="/rockmusic.html#rock_album">Album - Good as Gold</a></li>
-              </ul>
-            </li>
-            <li><a class="smooth-scroll" href="#connect">Connect</a>
-          </ul>
-        </nav>
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo Section -->
+      <a class="logo smooth-scroll" href="#">
+        <img class="logo-white" src="img/logo.png" alt="logo">
+        <img class="logo-dark" src="img/logodark.png" alt="logo">
+      </a>
+
+      <!-- Artist Name Section -->
+      <div class="artist-name">Eric Paul Levy</div>
+
+      <!-- Navigation Section -->
+      <nav class="top-menu">
+        <ul class="sf-menu">
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>
+          <li><a class="smooth-scroll">Albums</a>
+            <ul>
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#rock_album">Album - All Over the Place</a></li>
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
+            </ul>
+          </li>
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Rock Music</a></li>
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing">Sound Healing</a></li>
+          <li><a class="smooth-scroll" href="#connect">Connect</a></li>
+        </ul>
+        <!-- Start toggle menu-->
+        <a class="toggle-mnu" href="#"><span></span></a>
+      </nav>
+      <!-- Start mobile menu-->
+      <div id="mobile-menu">
+        <div class="inner-wrap">
+          <nav>
+            <ul class="nav_menu">
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Home</a></li>
+              <!-- <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#bookings">Sound Healing</a></li> -->
+              <li><a class="smooth-scroll">Albums</a>
+                <ul>
+                  <li><a class="smooth-scroll" href="#rock_album">Album - All Over the Place</a></li>
+                  <li><a href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
+                </ul>
+              </li>
+              <li><a class="smooth-scroll" href="#connect">Connect</a>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <!-- End mobile menu-->
     </div>
-    <!-- End mobile menu-->
   </div>
 </header>
+<!--<header class="top-nav page-header" id="top-nav" style="background-color: rgba(0,0,0,0.3);">-->
+<!--  <div class="container"><a class="logo smooth-scroll" href="#"><img class="logo-white" src="img/logo.png" alt="logo"><img class="logo-dark" src="img/logodark.png" alt="logo"></a>-->
+<!--    <nav class="top-menu">-->
+<!--      <ul class="sf-menu">-->
+<!--        &lt;!&ndash;Menu default&ndash;&gt;-->
+<!--        <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>-->
+<!--        <li><a class="smooth-scroll" href="#about">About</a></li>-->
+<!--        <li><a class="smooth-scroll" href="#bookings">Sound Healing</a></li>-->
+<!--        <li><a class="smooth-scroll" href="/rockmusic"/>Rock Music</a></li>-->
+<!--        <li><a class="smooth-scroll">Albums</a>-->
+<!--          <ul>-->
+<!--            <li><a class="smooth-scroll" href="#healing_album">Album - Good as Gold</a></li>-->
+<!--            <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/rockmusic#rock_album">Album - All Over the Place</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--        <li><a class="smooth-scroll" href="#connect">Connect</a>-->
+<!--      </ul>-->
+<!--      &lt;!&ndash; Start toggle menu&ndash;&gt;<a class="toggle-mnu" id="toggle-mnu" href="#"><span></span></a>-->
+<!--    </nav>-->
+<!--    &lt;!&ndash; Start mobile menu&ndash;&gt;-->
+<!--    <div id="mobile-menu">-->
+<!--      <div class="inner-wrap">-->
+<!--        <nav>-->
+<!--          <ul class="nav_menu" id="nav_menu">-->
+<!--            <li><a class="smooth-scroll" href="index.html">Home</a></li>-->
+<!--            <li><a class="smooth-scroll" href="#about">About</a></li>-->
+<!--            <li><a class="smooth-scroll" href="#bookings">Sound Healing</a></li>-->
+<!--            <li><a class="smooth-scroll" href="/rockmusic">Rock Music</a></li>-->
+<!--            <li><a class="smooth-scroll">Albums</a>-->
+<!--              <ul>-->
+<!--                <li><a class="smooth-scroll" href="#healing_album">Album - All Over the Place</a></li>-->
+<!--                <li><a class="smooth-scroll" href="/rockmusic.html#rock_album">Album - Good as Gold</a></li>-->
+<!--              </ul>-->
+<!--            </li>-->
+<!--            <li><a class="smooth-scroll" href="#connect">Connect</a>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; End mobile menu&ndash;&gt;-->
+<!--  </div>-->
+<!--</header>-->
 
 <!-- KILROY original video -->
 <a class="player" id="bgndVideo" data-property="{videoURL:'https://youtu.be/xLHVkY2UO4A',containment:'body', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, mute:true, quality:'default'}"></a>
@@ -425,28 +477,47 @@
   <!--Section our skills -->
   <section class="section-our-skills bg-white-section" id="healing_album">
     <div class="container">
-      <div class="row">
-        <div class="heading-title small-heading center left-text">
-          <div style="background-color: rgba(250, 250, 250, 0.9); padding-left: 0px; padding-right: 0px;">
-            <div class="row" style="margin-left: 0px; padding-bottom:10px;">
-              <h2 style="padding: 0px 10px 10px 10px">Album - Good As Gold</h2>
-              <div>
-                <a href="https://music.apple.com/us/album/good-as-gold/1581055861?uo=4&app=music&at=1001lry3&ct=dashboard"><img class="music-link" src="img/applemusic.png" loading="lazy"></a>
-                <a href="https://open.spotify.com/album/3EqDTK6P1RwrbA6vAWBPNU"><img class="music-link" src="img/spotify.png" loading="lazy"></a>
-                <a href="http://www.amazon.com/gp/product/B09CKG5YL5/?tag=distrokid06-20"><img class="music-link" src="img/amazonmusic.png" loading="lazy"></a>
-              </div>
-            </div>
+      <!-- Header with Album Title, Music Links, and Video -->
+      <div class="row album-header align-items-center" style="background-color: rgba(250, 250, 250, 0.9);">
+        <div class="col-md-6">
+          <h2>Album - Good As Gold</h2>
+            <a href="https://music.apple.com/us/album/good-as-gold/1581055861?uo=4&app=music&at=1001lry3&ct=dashboard">
+              <img class="music-link" src="img/applemusic.png" loading="lazy" alt="Apple Music">
+            </a>
+            <a href="https://open.spotify.com/album/3EqDTK6P1RwrbA6vAWBPNU">
+              <img class="music-link" src="img/spotify.png" loading="lazy" alt="Spotify">
+            </a>
+            <a href="http://www.amazon.com/gp/product/B09CKG5YL5/?tag=distrokid06-20">
+              <img class="music-link" src="img/amazonmusic.png" loading="lazy" alt="Amazon Music">
+            </a>
+        </div>
+
+        <!-- Video Section in the White Header -->
+        <div class="col-md-6">
+          <div class="video-thumbnail">
+            <video class="w-100" controls loading="lazy" poster="img/power_of_will.jpg">
+              <source src="videos/power_of_will.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <h4 class="video-title">Power of Will</h4>
           </div>
         </div>
+      </div>
+
+      <!-- Album Images Below Header -->
+      <div class="row album-content">
         <div class="col-md-6">
-          <img src="img/album_cover_goodasgold_outside_72.jpg" class="img-fluid" alt="Good As Gold Album Cover - Outside" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
+          <img src="img/album_cover_goodasgold_outside_72.jpg" class="img-fluid album-cover" alt="Good As Gold Album Cover - Outside" loading="lazy">
         </div>
         <div class="col-md-6">
-          <img src="img/album_cover_goodasgold_inside_72.jpg" class="img-fluid" alt="Good As Gold Album Cover - Inside" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
+          <img src="img/album_cover_goodasgold_inside_72.jpg" class="img-fluid album-cover" alt="Good As Gold Album Cover - Inside" loading="lazy">
         </div>
       </div>
     </div>
   </section>
+
+
+
 
   <!--Section testimonials-->
   <section class="section-testimonials bg-dark-section" style="background-color: rgba(250, 250, 250, 0.9);">

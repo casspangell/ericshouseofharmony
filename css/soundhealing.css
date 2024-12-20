@@ -1,0 +1,164 @@
+.artist-name {
+    font-size: 2rem; /* Default size */
+    font-weight: bold;
+    color: white;
+    padding: 10px 0;
+    text-align: center; /* Centers the artist name */
+}
+
+@media (max-width: 768px) {
+    .artist-name {
+        font-size: 1.5rem; /* Smaller for tablets */
+        padding: 8px 0; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-name {
+        font-size: 1rem; /* Even smaller for mobile phones */
+        padding: 5px 0; /* Further adjust padding */
+    }
+}
+
+/* Flexbox for the header to handle responsive behavior */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Ensures items stack on smaller screens */
+}
+
+.container {
+    padding: 10px 15px;
+}
+
+.top-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Adds space between menu items */
+}
+
+.top-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.toggle-mnu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-menu ul {
+        display: none; /* Hide the full menu on smaller screens */
+    }
+
+    .toggle-mnu {
+        display: block; /* Display the hamburger menu on smaller screens */
+        font-size: 2rem;
+        color: white;
+    }
+}
+
+/* Album Header - Aligns the video and centers music links */
+.album-header {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.album-header h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+/* Music links */
+.music-links {
+    display: flex;
+    gap: 25px; /* Spacing between icons */
+    margin-bottom: 15px;
+    justify-content: center; /* Center the music buttons */
+}
+
+.music-link {
+    height: 100px; /* Set height to 100px */
+    width: auto; /* Width will adjust to maintain the aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.music-link img {
+    height: 100%; /* Ensure the image takes the full height of the container */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.music-link:hover {
+    transform: scale(1.1); /* Hover effect */
+}
+
+/* Video section in the white header */
+.video-thumbnail {
+    margin-top: 20px;
+    padding-left: 20px; /* Add padding to the left of the video */
+}
+
+.video-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.video-thumbnail video {
+    width: 100%;
+    height: 250px; /* Fixed height to ensure consistency */
+    object-fit: cover; /* Ensure that videos fit nicely without distortion */
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.video-thumbnail video:hover {
+    transform: scale(1.05);
+}
+
+/* Album content layout */
+.album-content {
+    margin-top: 20px;
+}
+
+/* Album cover styling */
+.album-cover {
+    width: 100%;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.album-cover:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .album-header {
+        text-align: center;
+    }
+
+    .music-links {
+        justify-content: center;
+    }
+}
+
+/* Video section */
+.video-content {
+    margin-top: 20px;
+}
+
+.video-thumbnail {
+    margin-top: 20px;
+}
+
+.video-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}

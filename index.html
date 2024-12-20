@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="css/libs.css">
   <!--Main css-->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/rock.css">
+  <link rel="stylesheet" href="css/shows.css">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,56 +33,74 @@
     * {
       box-sizing: border-box;
     }
-    .carousel-item video {
-      width: 100%;
-      height: auto;
-    }
-    .carousel-control-prev, .carousel-control-next {
-      filter: brightness(80%);
-    }
+
   </style>
 
 </head>
 <body class="dark-load">
 <header class="top-nav page-header" id="top-nav" style="background-color: rgba(0,0,0,0.3);">
-  <div class="container"><a class="logo smooth-scroll" href="#"><img class="logo-white" src="img/logo.png" alt="logo"><img class="logo-dark" src="img/logodark.png" alt="logo"></a>
-    <nav class="top-menu">
-      <ul class="sf-menu">
-        <!--Menu default-->
-        <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>
-        <!-- <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing"/>Sound Healing</a></li> -->
-        <!-- <li><a class="smooth-scroll"/>Rock Music</a></li> -->
-        <li><a class="smooth-scroll">Albums</a>
-          <ul>
-            <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
-            <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/rockmusic#rock_album">Album - All Over the Place</a></li>
-          </ul>
-        </li>
-        <li><a class="smooth-scroll" href="#connect">Connect</a>
-      </ul>
-      <!-- Start toggle menu--><a class="toggle-mnu" href="#"><span></span></a>
-    </nav>
-    <!-- Start mobile menu-->
-    <div id="mobile-menu">
-      <div class="inner-wrap">
-        <nav>
-          <ul class="nav_menu">
-            <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Home</a></li>
-            <!-- <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#bookings">Sound Healing</a></li> -->
-            <li><a class="smooth-scroll">Albums</a>
-              <ul>
-                <li><a class="smooth-scroll" href="#rock_album">Album - All Over the Place</a></li>
-                <li><a href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
-              </ul>
-            </li>
-            <li><a class="smooth-scroll" href="#connect">Connect</a>
-          </ul>
-        </nav>
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo Section -->
+      <a class="logo smooth-scroll" href="#">
+        <img class="logo-white" src="img/logo.png" alt="logo">
+        <img class="logo-dark" src="img/logodark.png" alt="logo">
+      </a>
+
+      <!-- Artist Name Section -->
+      <div class="artist-name">Eric Paul Levy</div>
+
+      <!-- Navigation Section -->
+      <nav class="top-menu">
+        <ul class="sf-menu">
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>
+          <li><a class="smooth-scroll">Albums</a>
+            <ul>
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#rock_album">Album - All Over the Place</a></li>
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
+            </ul>
+          </li>
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Rock Music</a></li>
+          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing">Sound Healing</a></li>
+          <li><a class="smooth-scroll" href="#connect">Connect</a></li>
+        </ul>
+        <!-- Start toggle menu-->
+        <a class="toggle-mnu" href="#"><span></span></a>
+      </nav>
+      <!-- Start mobile menu-->
+      <div id="mobile-menu">
+        <div class="inner-wrap">
+          <nav>
+            <ul class="nav_menu">
+              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Home</a></li>
+              <!-- <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#bookings">Sound Healing</a></li> -->
+              <li><a class="smooth-scroll">Albums</a>
+                <ul>
+                  <li><a class="smooth-scroll" href="#rock_album">Album - All Over the Place</a></li>
+                  <li><a href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
+                </ul>
+              </li>
+              <li><a class="smooth-scroll" href="#connect">Connect</a>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <!-- End mobile menu-->
     </div>
-    <!-- End mobile menu-->
   </div>
+  <script>
+    const toggleMenu = document.querySelector('.toggle-mnu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleMenu.addEventListener('click', function (e) {
+      e.preventDefault();
+      mobileMenu.classList.toggle('active'); // Toggles the 'active' class
+    });
+  </script>
+
+
 </header>
+
 
 <!-- KILROY original video -->
 <a class="player" id="bgndVideo" data-property="{videoURL:'https://youtu.be/GhXRTTfBDSA',containment:'body', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, mute:true, quality:'default'}"></a>
@@ -92,46 +112,58 @@
     <div id="status"></div>
   </div>
 
-  <!--<div class="full-slider intro">-->
-  <!--<div class="slide bg-white-section full-vh">-->
   <div class="container main-info">
-    <div class="row margin-btm-15">
+    <div class="row margin-btm-15" style="padding-top: 2em">
 
-      <div class="col-lg-6 col-md-12 pad-top-0">
-        <div class="heading-title-big" style="background-color: rgba(0,0,0,1.0); padding: 5px 15px; color: white; font-family: 'Comforter', cursive; text-transform: capitalize;">
-          Rock Artist<br>Eric Paul Levy
-        </div>
-      </div>
-
+      <!-- Text Section (Left side) -->
       <div class="col-lg-6 col-md-12 pad-top-0">
         <div class="description-slide" style="background-color: rgba(153,51,51,1.0); padding: 15px; color: white">
-          Eric has been a musician most of his life. He started playing the guitar at 11, and by 15 he was in his first rock band, Vital Signs. Over the next 20 years, along with graduating from Drexel University with a B.A. in Music in 1991, Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet’s Wishing Well and the legendary blues band, Dr. Harmonica and Rockett 88.<br><br>He's a one man band mixing his smooth voice with skilled guitar stylings for some incredible covers like you've never heard.
+          Eric has been a musician most of his life. He started playing the guitar at 11, and by 15 he was in his first rock band, Vital Signs. Over the next 20 years, along with graduating from Drexel University with a B.A. in Music in 1991, Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet’s Wishing Well and the legendary blues band, Dr. Harmonica and Rockett 88.
+          <br><br>Now he's a one-man band mixing his smooth voice with skilled guitar stylings for some incredible covers like you've never heard.
         </div>
         <div class="buttons-section read-bio">
           <a class="btn accent-br-btn large-btn smooth-scroll" href="https://www.ericshouseofharmony.com/about-rock.html">Read Full Bio Here</a>
         </div>
       </div>
 
+      <!-- Video Section (Right side) -->
+      <div class="col-lg-6 col-md-12 pad-top-0">
+        <div class="video-thumbnail">
+          <video class="w-100" controls loading="lazy">
+            <source src="videos/live_rock/video_medley_promo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!--        </div>-->
-  <!--      </div>-->
-  <div class="video-section">
-    <div class="col-md-6 pad-top-0">
-      <a href="https://ericshouseofharmony.com/videos/power_of_will.mp4"><img src="img/video-cover1_800.jpg" alt="power-of-will-cover-art" style="width:100%; margin-bottom: 50px;"></a>
-    </div>
-  </div>
   <!--Section trigger-->
-  <section class="section-trigger" style="background-color:rgba(153,51,51, 0.85);" id="healing">
+  <section class="section-trigger" style="background-color:rgba(153,51,51, 0.85); padding-top: 0" id="healing">
     <div class="container">
       <div class="row">
-
-        <!--<div class="col-md-12">-->
         <div class="heading-title center" style="padding: 10px 10px 10px 10px">
           <div class="small-desd" style="color: white; font-size: 38px; font-family: 'Bilbo', cursive; text-transform:capitalize;">Every show is unique.<br>Let’s book a show and make some magic at your awesome venue.</div>
         </div>
-        <!--</div>-->
+      </div>
+    </div>
+  </section>
+
+  <section class="section-upcoming-shows" id="upcoming-shows">
+    <div class="container show-container">
+      <div class="heading-title center">
+        <h2 style="font-size: 28px; color: #333; text-align: center;">Upcoming <span style="color: #6633cc;">Shows</span></h2>
+        <p style="font-size: 18px; color: #666; text-align: center;">Join Eric Paul Levy live at these venues!</p>
+      </div>
+      <div class="shows-list" id="shows-list">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+      <div id="pagination" class="pagination-container" style="text-align: center; margin-top: 20px;">
+        <!-- Pagination buttons will be dynamically added here -->
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="#connect" class="btn accent-br-btn large-btn" style="background-color: #6633cc; color: white; padding: 10px 20px; border-radius: 5px;">Book a Show</a>
       </div>
     </div>
   </section>
@@ -144,7 +176,7 @@
           <div class="heading-title center">
             <h2>Live Rock <span>Performances</span></h2>
             <p>I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.</p><br>
-            <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a> <span>to connect or book a live event.</span></div><br>
+            <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a> <span>to connect or book a live event</span></div><br>
             <div class="small-desd" style="background-color: rgba(0,0,0,0.1); padding: 5px 5px 5px 5px; margin-top: 20px;"><h2 style="font-size:24px;"><a href="docs/song-list-8-20.pdf" style="color:#6633cc;">List of Cover Songs</a></h2></div>
           </div>
         </div>
@@ -199,177 +231,46 @@
   </div>
 </section>
 
-<section class="section-portfolio bg-white-section" style="z-index: 0;" id="contact">
-  <div class="container-fluid">
-    <div class="row" style="padding-bottom: 0px;">
-
-      <div class="col-md-8 col-md-push-2">
-        <div class="heading-title center">
-          <h2><span>Live Rock</span> Videos</h2>
-          <!-- Carousel Container -->
-          <div id="rockVideoCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#rockVideoCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="1"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="2"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="3"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="4"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="5"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="6"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="7"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="8"></li>
-              <li data-target="#rockVideoCarousel" data-slide-to="9"></li>
-            </ol>
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/video_medley_promo.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/smashin_pumpkins.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/seminole_wind.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/one_of_a_kind.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/meet_virginia.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/last_dance_with_mary_jane.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/jolene.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/into_the_mystic.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/brandi.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/aint_no_sunshine.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="carousel-item">
-                <video class="d-block w-100" controls>
-                  <source src="videos/live_rock/ace_of_spades.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+  <!--Section our skills-->
+  <section class="section-our-skills bg-white-section" id="rock_album">
+    <div class="container">
+      <div class="row">
+        <div class="heading-title small-heading center left-text">
+          <div style="background-color: rgba(250, 250, 250, 0.9); padding-left: 0px; padding-right: 0px;">
+            <div class="row" style="margin-left: 0px; padding-bottom:10px;">
+              <h2 style="padding: 0px 10px 10px 10px">Album - All Over the Place</h2>
+              <div>
+                <a href="https://music.apple.com/us/album/all-over-the-place/1581051215?uo=4&app=music&at=1001lry3&ct=dashboard"><img alt="apple-link" class="music-link" src="img/applemusic.png" loading="lazy"></a>
+                <a href="https://open.spotify.com/album/7iQldgX4Dwo3YHhyjcXjXV"><img class="music-link" alt="spotify-link" src="img/spotify.png" ></a>
+                <a href="http://www.amazon.com/gp/product/B09CKD3FG2/?tag=distrokid06-20"><img class="music-link" alt="amazon-link" src="img/amazonmusic.png"  ></a>
               </div>
             </div>
-
-            <!-- Carousel Controls -->
-            <a class="carousel-control-prev" href="#rockVideoCarousel" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#rockVideoCarousel" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
           </div>
-          <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a><span> to connect or book a live event</span></div>
+        </div>
+
+        <div class="col-md-6">
+          <img src="img/album_info_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Front" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
+        </div>
+        <div class="col-md-6">
+          <img src="img/album_info_2_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Back" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-  <section class="section-portfolio" style="z-index: 0; padding-top: 0px;">
-    <div class="container-fluid">
-      <div class="row">
-        <!--Portfolio-->
-        <div class="portfolio portfolio-items">
-          <div class="video-section">
-            <div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/11353633/embed' allowfullscreen style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
-          </div> <!-- Close video-section -->
-        </div> <!-- Close portfolio-items -->
-      </div> <!-- Close row -->
-    </div> <!-- Close container-fluid -->
   </section>
 
-<!--End portfolio-->
-
-<!--Section our skills-->
-<section class="section-our-skills bg-white-section" id="rock_album">
-  <div class="container">
-    <div class="row">
-      <div class="heading-title small-heading center left-text">
-        <div style="background-color: rgba(250, 250, 250, 0.9); padding-left: 0px; padding-right: 0px;">
-          <div class="row" style="margin-left: 0px; padding-bottom:10px;">
-            <h2 style="padding: 0px 10px 10px 10px">Album - All Over the Place</h2>
-            <div>
-              <a href="https://music.apple.com/us/album/all-over-the-place/1581051215?uo=4&app=music&at=1001lry3&ct=dashboard"><img alt="apple-link" class="music-link" src="img/applemusic.png" loading="lazy"></a>
-              <a href="https://open.spotify.com/album/7iQldgX4Dwo3YHhyjcXjXV"><img class="music-link" alt="spotify-link" src="img/spotify.png" ></a>
-              <a href="http://www.amazon.com/gp/product/B09CKD3FG2/?tag=distrokid06-20"><img class="music-link" alt="amazon-link" src="img/amazonmusic.png"  ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <img src="img/album_info_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Front" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
-      </div>
-      <div class="col-md-6">
-        <img src="img/album_info_2_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Back" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
+  <section class="section-portfolio bg-white-section" id="connect">
+    <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <!-- Call-to-Action Section for Booking an Event -->
+      <div class="booking-section" style="padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <h3 style="font-size: 24px; color: #333;">Ready to Make Some Magic?</h3>
+        <p style="font-size: 18px;">Book a live show with Eric Paul Levy and bring the house down!</p>
+        <p style="margin-top: 20px;">Or email us directly at <a href="mailto:info@ericshouseofharmony.com" style="color: #6633cc;">info@ericshouseofharmony.com</a></p>
+        <p style="margin-top: 20px;">Call or text <b>302-563-0164</b></p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<section class="connect" style="background-color: rgba(153,51,51, 0.8);" id="connect">
-  <div class="container">
-    <div class="row">
-      <div class="center" style="background-color: rgba(0,0,0,0.8); padding: 10px; box-sizing: border-box;">
-        <h2 style="color: white; text-transform: uppercase; text-align: center; margin: 10px;">
-          <br>
-          To connect or book::
-          <br>
-          <a class="email" href="mailto:info@ericshouseofharmony.com" style="display: block; margin: 10px 0;">info@ericshouseofharmony.com</a>
-          or call <a href="tel:305-767-3370" style="display: block; margin: 10px 0;">305-767-3370</a>
-        </h2>
-        <div class="small-desd" style="color: white; text-align: center;"><span style="color: #ed9005"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<footer style="padding-top:0px; padding-bottom: 80px;">
+<footer style="padding-top:0px;">
   <div class="container">
     <div class="down-footer">
       <div class="container" style="position: relative;">
@@ -381,29 +282,11 @@
   </div>
 </footer>
 
-<div class="playbutton">
-  <audio id="background_audio" src="audio/dark_audio.mp3" preload="auto"></audio>
-  <button class="play-button" id="play_button" onclick="myFunction()">Background Audio Off</button>
-</div>
+<!--<div class="playbutton">-->
+<!--  <audio id="background_audio" src="audio/dark_audio.mp3" preload="auto"></audio>-->
+<!--  <button class="play-button" id="play_button" onclick="myFunction()">Click to Listen</button>-->
+<!--</div>-->
 
-<script>
-  var btn = document.getElementById("play_button");
-  var audio = document.getElementById("background_audio");
-  var isPlaying = false;
-
-  function myFunction() {
-
-    if (!isPlaying) {
-      audio.play();
-      btn.innerHTML = "Background Audio On";
-      isPlaying = true;
-    } else {
-      audio.pause();
-      btn.innerHTML = "Background Audio Off";
-      isPlaying = false;
-    }
-  }
-</script>
 
 
 <div class="top icon-down toTopFromBottom" style="z-index:9999"><a class="smooth-scroll" href="#top"><i class="pe-7s-angle-up"></i></a></div>
@@ -412,6 +295,7 @@
 <script src="js/common.js"></script>
 <script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
 <script src="validator.js"></script>
-
+<script src="js/shows.js"></script>
+</div>
 </body>
 </html>

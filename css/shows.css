@@ -1,0 +1,130 @@
+.section-upcoming-shows {
+    background-color: #f4f4f4;
+    padding: 40px 0;
+}
+
+#shows-list {
+    display: grid;
+    list-style: none; /* Removes bullet circles */
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures content stays within bounds */
+    text-overflow: ellipsis; /* Adds "..." if the text overflows */
+    grid-template-columns: repeat(3, 1fr); /* Default: 3 columns */
+    gap: 20px; /* Default spacing */
+}
+
+#shows-list div {
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* Default font size */
+    overflow: hidden;
+}
+
+/* Pagination container styling */
+.pagination-container {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Add space between buttons */
+}
+
+.pagination-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-container button.active {
+    background-color: #6633cc;
+    color: #fff;
+    border-color: #6633cc;
+}
+
+.pagination-container button:hover {
+    background-color: #442099;
+    color: #fff;
+}
+
+/* Media Query for Medium Screens */
+@media (max-width: 768px) {
+    #shows-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px; /* Slightly smaller gap */
+    }
+
+    #shows-list div {
+        font-size: 14px; /* Reduced font size */
+    }
+
+    .heading-title h2 {
+        font-size: 24px;
+    }
+
+    .heading-title p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .pagination-container {
+        justify-content: space-between; /* Spread buttons out */
+        gap: 4px; /* Smaller gap */
+    }
+
+    .pagination-container button {
+        padding: 8px 12px; /* Adjust padding */
+        font-size: 14px;
+    }
+}
+
+/* Media Query for Smallest Screens */
+@media (max-width: 480px) {
+    #shows-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        overflow: hidden;
+    }
+
+    #shows-list div {
+        padding: 10px;
+        text-align: left;
+        font-size: 12px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .heading-title h2 {
+        font-size: 22px;
+    }
+
+    .heading-title p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .pagination-container {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .pagination-container button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

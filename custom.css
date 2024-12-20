@@ -19,3 +19,108 @@ label {
     color: #ff5050;
     margin-top: 5px;
 }
+
+.carousel-item video {
+    width: 100%;
+    height: auto;
+}
+.section-portfolio {
+    padding: 60px 0;
+}
+
+.heading-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.heading-title h2 {
+    font-size: 36px;
+    color: #333;
+}
+
+/* Ensure consistent video sizes and layout */
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.video-thumbnail {
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.video-thumbnail video {
+    width: 100%;
+    height: 250px; /* Fixed height to ensure consistency */
+    object-fit: cover; /* Ensure that videos fit nicely without distortion */
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.video-thumbnail video:hover {
+    transform: scale(1.05);
+}
+
+.video-title {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.small-desd {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 32%; /* Ensures 3 videos per row */
+        max-width: 32%;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-sm-6 {
+        flex: 0 0 48%; /* Ensures 2 videos per row */
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-sm-6 {
+        flex: 0 0 100%; /* One video per row on small screens */
+        max-width: 100%;
+    }
+}
+
+/* Section Styles */
+.section-trigger {
+    background-color: rgba(153, 51, 51, 0.85);
+    padding: 60px 0;
+}
+
+.video-thumbnail {
+    max-width: 100%;
+}
+
+.heading-title {
+    text-align: center;
+}
+
+.small-desd {
+    font-size: 38px;
+    font-family: 'Bilbo', cursive;
+    text-transform: capitalize;
+    line-height: 1.4;
+}
+
+/* Mobile-friendly Adjustments */
+@media (max-width: 768px) {
+    .small-desd {
+        font-size: 28px;
+    }
+}
