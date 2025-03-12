@@ -147,8 +147,30 @@ p {
   z-index: 1000;
 }
 
+.navigation-menu .dropdown {
+  display: none; /* Initially hidden */
+  position: absolute; /* Positioned relative to parent */
+  top: 100%; /* Positioned right below the parent menu item */
+  left: 0;
+  min-width: 200px;
+  background-color: var(--primary-color, #003366);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0; /* Fully transparent */
+  visibility: hidden; /* Not visible */
+  transform: translateY(-10px); /* Slightly moved up */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
 .navigation-menu li:hover .dropdown {
-  display: block;
+  display: block; /* Show when hovering */
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Actually visible */
+  transform: translateY(0); /* Move to original position */
+}
+
+.navigation-menu .dropdown li a:hover {
+  background-color: rgba(0, 197, 215, 0.2); /* Hover effect */
 }
 
 .dropdown li {
@@ -160,9 +182,16 @@ p {
 }
 
 .dropdown-arrow:after {
-  content: '▼';
   font-size: 10px;
   margin-left: 5px;
+}
+
+.navigation-menu li:not(:hover) .dropdown-arrow:after {
+  content: '◀'; /* Left arrow when not hovered */
+}
+
+.navigation-menu li:hover .dropdown-arrow:after {
+  content: '▼'; /* Down arrow when hovered */
 }
 
 /* Hamburger Menu */
@@ -1476,9 +1505,12 @@ p {
     padding: 25px 20px;
   }
   
-  .benefits-list-header h3 {
-    font-size: 24px;
-  }
+.benefits-list-header h3 {
+  color: rgba(0, 51, 102, 1);
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
   
   .category-benefits {
     grid-template-columns: 1fr;

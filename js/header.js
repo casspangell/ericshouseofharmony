@@ -4,6 +4,40 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Dropdown menu handling
+  const albumsDropdown = document.querySelector('.navigation-menu li:has(.dropdown)');
+  
+  if (albumsDropdown) {
+    // Prevent default behavior of dropdown arrow
+    const dropdownArrow = albumsDropdown.querySelector('.dropdown-arrow');
+    if (dropdownArrow) {
+      dropdownArrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    }
+    
+    // Mobile menu handling
+    const hamburger = document.getElementById('hamburger-menu');
+    const navMenu = document.getElementById('navigation-menu');
+    
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when a link is clicked
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+  }
+
+  
   // Elements
   const hamburger = document.getElementById('hamburger-menu');
   const navMenu = document.getElementById('navigation-menu');

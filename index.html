@@ -300,9 +300,14 @@
 
 <footer>
   <div class="footer-container">
-    <p>© 2024 All Rights Reserved. - Eric's House of Harmony</p>
+    <p>© <span id="currentYear"></span> All Rights Reserved. - Eric's House of Harmony</p>
   </div>
 </footer>
+
+<script>
+  // Update the current year dynamically
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
 
 
   <script src="js/libs.js"></script>
