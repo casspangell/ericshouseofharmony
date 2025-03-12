@@ -1,0 +1,24 @@
+/* Footer Styling */
+footer {
+    background-color: rgba(0,0,0,0.8);
+    color: #606060;
+    height: 50px; /* Fixed height */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    width: 100%; /* Full width of the screen */
+    position: relative; /* Ensure it stays at the bottom */
+}
+
+footer p {
+    margin: 0; /* Remove default margin */
+    font-size: 1.5rem; /* Adjust font size for readability */
+    text-align: center; /* Center align the text */
+     color: #757575;
+}
+
+@media (max-width: 480px) {
+    footer p {
+        font-size: 1rem; /* Adjust font size for readability */
+    }
+}

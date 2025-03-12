@@ -1,0 +1,49 @@
+.playPauseButton {
+    background-color: #3399cc;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    letter-spacing: 0.7px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    transition: all ease 0.50s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-pdf {
+    background-color: #6633cc;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    transition: all ease 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow */
+}
+
+.btn-pdf:hover {
+    background-color: #552299; /* Slightly darker shade on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    transform: scale(1.05); /* Subtle scaling effect */
+}
+
+
+.playPauseButton:hover {
+    background-color: #257197;
+}
+
+.btn-pdf:hover {
+    background-color: #301360;
+}

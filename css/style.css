@@ -1,0 +1,329 @@
+section, .section {
+  padding-top: 85px;
+  padding-bottom: 85px;
+}
+
+.description-slide {
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.sub-text {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+}
+
+.plain-text {
+    font-size: 16px;
+    font-family: sans-serif;
+    color: #fff;
+    text-align: left;
+}
+
+.video-title {
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.heading-title {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.heading-title h2 {
+    font-size: 36px;
+    color: #333;
+}
+
+    .bio {
+        margin-top: 0px;
+    }
+
+    .read-bio a {
+        color: white !important;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+    }
+
+    .read-bio a:hover {
+        color: #000000 !important;
+    }
+
+    .main-header {
+        height: 100px;
+        padding: 0px !important;
+    }
+
+    @media (max-width: 768px) {
+        .row.margin-btm-15 {
+            flex-direction: column; /* Stack items vertically */
+    }
+
+    .description-slide.bio {
+        margin-bottom: 15px; /* Add spacing between text and video */
+    }
+
+    .video-thumbnail video {
+        height: auto; /* Adjust video height */
+    }
+}
+
+/* Default styling */
+.quote-banner {
+    font-size: 38px;
+    color: white;
+    font-family: 'Bilbo', cursive;
+    text-transform:capitalize;
+}
+
+.heading-title .small-desd {
+    font-size: 28px;
+}
+
+/* Font size for devices with a max width of 768px (tablets and smaller) */
+@media (max-width: 768px) {
+    .quote-banner {
+        font-size: 28px;
+    }
+    .heading-title .small-desd {
+        font-size: 20px;
+    }
+}
+
+/* Font size for devices with a max width of 480px (phones and smaller) */
+@media (max-width: 480px) {
+    .quote-banner {
+        font-size: 20px;
+    }
+    .heading-title .small-desd {
+        font-size: 20px;
+    }
+}
+
+/* General styling for the social media icons container */
+.social-media-icons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* General styling for social media icon images */
+.social-icon {
+    width: 40px; /* Default size for desktop */
+    height: 40px; /* Ensures a square aspect ratio */
+    margin: 0 10px; /* Adds spacing between icons */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for icons */
+.social-icon:hover {
+    transform: scale(1.2); /* Slight zoom-in effect */
+}
+
+/* Responsive styling for smaller screens (tablets) */
+@media (max-width: 768px) {
+    .social-icon {
+        width: 35px; /* Smaller size for tablet */
+        height: 35px;
+        margin: 0 8px;
+    }
+}
+
+/* Responsive styling for the smallest screens (phones) */
+@media (max-width: 480px) {
+    .social-icon {
+        width: 30px; /* Smaller size for mobile */
+        height: 30px;
+        margin: 0 5px;
+    }
+}
+
+/* Section Styling */
+.section-our-skills {
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+.heading-title h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.music-link {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.music-link:hover {
+    transform: scale(1.1);
+}
+
+.img-fluid {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Grid */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-6 {
+    flex: 1 1 50%;
+    max-width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .heading-title h2 {
+        font-size: 20px;
+    }
+
+    .music-link {
+        width: 35px;
+        height: 35px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading-title h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .music-link {
+        width: 30px;
+        height: 30px;
+        margin: 0 3px;
+    }
+
+    .img-fluid {
+        box-shadow: none;
+    }
+}
+
+/* Section Styling */
+.live-rock-performances {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.live-rock-performances .description {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.live-rock-performances .email-link {
+    color: #6633cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.live-rock-performances .email-link:hover {
+    color: #4b25a1;
+    text-decoration: underline;
+}
+
+/* Button Styling */
+.live-rock-performances .btn-pdf {
+    display: inline-block;
+    background-color: #6633cc;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    margin: 20px auto 0; /* Adds spacing and centers the button */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.live-rock-performances .btn-pdf:hover {
+    background-color: #4b25a1;
+    color: #fff;
+}
+
+/* General container styling */
+.container {
+    padding: 20px;
+}
+
+.section-banner {
+    background-color:rgba(153,51,51, 0.85);
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+}
+
+.banner-title {
+    text-align: center;
+    font-size: 36px;
+}
+
+.main-content {
+    margin-top: 100px; /* Match the default height of the header */
+}
+
+.main-header.scrolled + .main-content {
+    margin-top: 50px; /* Adjust for smaller header height when scrolled */
+}
+
+.main-info {
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .top-section {
+        padding-top: 4.3em;
+        background-color:rgba(0,0,0, 0.0);
+    }
+
+    .banner-title {
+        text-align: center;
+        font-size: 28px;
+    }
+
+    .main-content {
+        margin-top: 0;
+    }
+
+    .main-header.scrolled + .main-content {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-section {
+        padding-top: 2em;
+        background-color:rgba(0,0,0, 0.0);
+    }
+    .banner-title {
+        text-align: center;
+        font-size: 22px;
+    }
+}

@@ -5,7 +5,7 @@ let shows = [];
 // Adjust `showsPerPage` based on screen size
 function adjustShowsPerPage() {
     if (window.innerWidth <= 480) {
-        showsPerPage = 10;
+        showsPerPage = 6;
     } else if (window.innerWidth <= 768) {
         showsPerPage = 6;
     } else {
@@ -29,15 +29,32 @@ window.addEventListener('resize', handleResize);
 function parseCSV(csvText) {
     console.log("Parsing CSV data...");
     const rows = csvText.split("\n").filter(row => row.trim() !== "");
-    const headers = rows[0].split(",").map(header => header.trim());
 
-    const parsedData = rows.slice(1).map(row => {
+    // Extract headers and convert them to lowercase
+    const headers = rows[0].split(",").map(header => header.trim().toLowerCase());
+
+    const parsedData = rows.slice(1).map((row, rowIndex) => {
         const values = row.split(",").map(value => value.replace(/(^"|"$)/g, "").trim());
-        return headers.reduce((acc, header, index) => {
-            acc[header.toLowerCase()] = values[index]; // Use lowercase keys
+        const rowData = headers.reduce((acc, header, index) => {
+            acc[header] = values[index]; // Use lowercase keys
             return acc;
         }, {});
+
+        // Debugging logs
+        console.log(`Row ${rowIndex + 1} parsed:`, rowData);
+
+        // Combine city and state into a location field
+        if (rowData.city && rowData.state) {
+            rowData.location = `${rowData.city}, ${rowData.state}`;
+        } else if (rowData.city) {
+            rowData.location = rowData.city;
+        } else {
+            rowData.location = "Unknown Location";
+        }
+
+        return rowData;
     });
+
     console.log("Parsed data:", parsedData);
     return parsedData;
 }
@@ -57,7 +74,7 @@ function renderShows(page) {
         div.innerHTML = `
             <span style="font-family: monospace;">${show.date}</span><br>
             <strong>Venue:</strong> ${show.venue}<br>
-            <strong>Location:</strong> ${show.place}<br>
+            <strong>Location:</strong> ${show.location}<br>
             <strong>Time:</strong> ${show.when}
         `;
         showsList.appendChild(div);

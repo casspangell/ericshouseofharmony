@@ -1,0 +1,143 @@
+/* Album heading styling */
+.section-album {
+    padding-top: 50px;
+}
+
+.album-container {
+    margin: 0 auto; /* Center align the container */
+    max-width: 1200px; /* Limit the width for better readability */
+    padding: 0 20px; /* Add padding for mobile screens */
+}
+
+.album-section {
+    background-color: rgba(250, 250, 250, 0.9);
+    padding: 20px 0; /* Add padding to the top and bottom */
+}
+
+.album-info {
+    background-color: rgba(250, 250, 250, 0.9);
+    padding: 20px; /* Add padding for better spacing */
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for the section */
+}
+
+.album-inner-container {
+    display: flex;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.album-info h2 {
+    font-size: 24px;
+    margin-bottom: 15px; /* Slightly larger spacing below heading */
+    color: #333; /* Darker text for better contrast */
+}
+
+.music-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Slightly increase the gap between icons */
+    flex-wrap: wrap; /* Ensure icons wrap on smaller screens */
+}
+
+.music-links img {
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to icons */
+}
+
+.music-links img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Album Covers Layout */
+.album-covers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap for consistent spacing */
+    margin-top: 20px; /* Add spacing above the album covers */
+}
+
+.cover-item {
+    display: flex; /* Enable flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding-top: 20px;
+}
+
+.cover-item img {
+    width: 100%; /* Ensure responsiveness */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cover-item img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .section-album {
+        padding-bottom: 0;
+        padding-top: 20px;
+    }
+
+    .album-container {
+        padding: 0 15px; /* Reduce padding for tablets */
+    }
+
+    .heading-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .music-links img {
+        width: 100px; /* Slightly smaller icons for tablets */
+    }
+
+    .album-covers {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .cover-item {
+        flex: 1 1 100%; /* Full width for stacked layout */
+        max-width: none; /* Remove width restriction */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-album {
+        padding-bottom: 0;
+        padding-top: 20px;
+    }
+
+    .album-container {
+        padding: 0 10px; /* Further reduce padding for mobile */
+    }
+
+    .heading-title h2 {
+        font-size: 1.2rem;
+    }
+
+    .music-links img {
+        width: 80px; /* Smaller icons for mobile screens */
+    }
+
+    .album-covers {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .cover-item img {
+        max-width: 90%; /* Use most of the screen width */
+        margin: 0 auto; /* Center the images */
+    }
+}
