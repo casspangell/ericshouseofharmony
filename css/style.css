@@ -117,8 +117,8 @@ section, .section {
 
 /* General styling for social media icon images */
 .social-icon {
-    width: 40px; /* Default size for desktop */
-    height: 40px; /* Ensures a square aspect ratio */
+    width: 5em; /* Default size for desktop */
+    height: 5em; /* Ensures a square aspect ratio */
     margin: 0 10px; /* Adds spacing between icons */
     transition: transform 0.3s ease; /* Smooth hover effect */
 }
@@ -131,8 +131,8 @@ section, .section {
 /* Responsive styling for smaller screens (tablets) */
 @media (max-width: 768px) {
     .social-icon {
-        width: 35px; /* Smaller size for tablet */
-        height: 35px;
+        width: 4em; /* Smaller size for tablet */
+        height: 4em;
         margin: 0 8px;
     }
 }
@@ -140,8 +140,8 @@ section, .section {
 /* Responsive styling for the smallest screens (phones) */
 @media (max-width: 480px) {
     .social-icon {
-        width: 30px; /* Smaller size for mobile */
-        height: 30px;
+        width: 4em; /* Smaller size for mobile */
+        height: 4em;
         margin: 0 5px;
     }
 }
