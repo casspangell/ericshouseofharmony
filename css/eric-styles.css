@@ -1554,10 +1554,6 @@ footer {
   .benefits-list-header h3 {
     font-size: var(--font-size-lg);
   }
-  
-  .category-benefits {
-    grid-template-columns: 1fr;
-  }
 
   .benefits-categories {
     display: flex;
