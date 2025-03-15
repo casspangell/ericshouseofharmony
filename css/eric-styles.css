@@ -1884,3 +1884,378 @@ footer {
     max-width: 31%;
   }
 }
+
+/* Fix for iPhone 12 and other mobile devices - eliminate right side gap */
+@media screen and (max-width: 428px) {
+  /* Reset any max-width settings for main containers */
+  .main-info,
+  .container,
+  .top-section,
+  .text-section,
+  .services-container,
+  .benefits-list-container,
+  .approach-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Fix for body and html elements */
+  body, 
+  html {
+    width: 100% !important;
+    overflow-x: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Fix stats container width */
+  .stats-container {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .stat-box {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Ensure content doesn't overflow */
+  .main-content {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  
+  /* Remove any horizontal margins */
+  .quote-container,
+  .divider,
+  .bio-text,
+  .section-title {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Fix for Senior section boxes hitting the edge of the screen */
+@media screen and (max-width: 767px) {
+
+  body, html {
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+
+  /* Container for seniors section */
+  .seniors-healing-section .container {
+    width: 95% !important;
+    padding: 0 10px !important;
+    box-sizing: border-box;
+  }
+  
+  /* Add proper padding to the grid container */
+  .seniors-healing-section .container > div {
+    padding: 0 10px !important;
+    box-sizing: border-box;
+  }
+  
+  /* Adjust the grid layout */
+  .seniors-healing-section .container > div > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  /* Individual boxes */
+  .seniors-healing-section-box {
+    margin: 5px !important;
+    padding: 15px !important;
+    width: auto !important;
+  }
+  
+  /* Add proper margin to the heading */
+  .seniors-healing-section h2 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  /* Button container */
+  .seniors-healing-section .container > div > div:last-child {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px !important;
+  }
+
+  /* Reset heights and remove unnecessary space */
+  .approach-section {
+    padding: 30px 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Fix container heights */
+  .approach-section .container,
+  .approach-section .row,
+  .approach-content,
+  .approach-grid {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+  }
+
+  #transformational-healing {
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  /* Ensure content is properly displayed */
+  .approach-text, 
+  .approach-details {
+    margin-bottom: 20px !important;
+    height: auto !important;
+  }
+  
+  /* Fix any background elements */
+  .approach-section::before,
+  .approach-section::after {
+    display: none !important;
+  }
+  
+  /* Reset any fixed positioning */
+  .approach-div,
+  .quote-block,
+  .approach-container {
+    position: static !important;
+    height: auto !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Force column layout */
+  .approach-grid,
+  .approach-section > div > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  /* Ensure headings don't have excessive margins */
+  .approach-section h2,
+  .approach-div h3 {
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Fix for content that might be absolutely positioned */
+  .approach-section * {
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* Prevent phone number from breaking across lines */
+  .booking-section .call-me,
+  .booking-section p strong {
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+  
+  /* Improve overall booking section layout */
+  .booking-section {
+    padding: 20px 15px !important;
+    text-align: center !important;
+  }
+  
+  /* Make sure paragraph text is properly sized and spaced */
+  .booking-section p {
+    margin-bottom: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+    /* Target the email line specifically */
+  .booking-section p:last-of-type,
+  p:contains("email me directly") {
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    line-height: 1.5 !important;
+    margin-top: 20px !important;
+  }
+
+  
+  /* Alternative approach if the above doesn't work */
+  .booking-section .email-line {
+    display: block !important;
+    margin-top: 15px !important;
+  }
+
+  /* Reset all section heights */
+  section, .section {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 380px) {
+  /* Switch to single column for very small screens */
+  .seniors-healing-section .container > div > div {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Ensure text is readable */
+  .seniors-healing-section-box p {
+    font-size: 16px !important;
+  }
+  
+  .seniors-healing-section-h3 {
+    font-size: 18px !important;
+  }
+
+  .booking-section p,
+  .booking-section a {
+    font-size: 14px !important;
+  }
+
+  .booking-section a[href^="mailto"],
+  a[href*="@ericshouseofharmony.com"] {
+    font-size: 13px !important;
+  }
+  
+  .booking-section p:last-child {
+    font-size: 13px !important;
+  }
+}
+
+/* Additional fix for very small screens */
+@media screen and (max-width: 380px) {
+  a[href^="mailto"],
+  a[href*="@ericshouseofharmony.com"] {
+    font-size: 12px !important;
+  }
+  
+  /* Container adjustment */
+  .booking-section {
+    padding: 15px 10px !important;
+  }
+}
+
+/* Email address mobile responsiveness fix */
+@media screen and (max-width: 480px) {
+
+   .booking-section {
+    margin-top: 15px !important;
+  }
+
+  
+  /* Style for email address */
+  .booking-section a[href^="mailto"],
+  a[href*="@ericshouseofharmony.com"] {
+    display: block !important;
+    font-size: 14px !important;
+    margin-top: 8px !important;
+    word-break: break-word !important;
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+  }
+  
+  /* Add margin between text and email */
+  .booking-section br {
+    display: block !important;
+    content: "" !important;
+    margin-top: 5px !important;
+  }
+
+  /* Target the email address specifically */
+  .booking-section a[href^="mailto"],
+  a[href^="mailto"],
+  a[href*="@ericshouseofharmony.com"] {
+    font-size: 14px !important;
+    word-break: break-all !important;
+    word-wrap: break-word !important;
+    display: block !important; /* Display as block to force a line break */
+    line-height: 1.4 !important;
+    margin-top: 8px !important; /* Add space above the email */
+  }
+  
+  /* Target the email label text */
+  .booking-section p:last-child,
+  p:has(a[href^="mailto"]) {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin-top: 15px !important;
+  }
+  
+  /* Style specifically for the "Or email me directly at" text */
+  .booking-section p:last-child:before,
+  p:has(a[href^="mailto"]):before {
+    display: block !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* But keep the email visible */
+  .booking-section p:last-child a,
+  p:has(a[href^="mailto"]) a {
+    font-size: 14px !important;
+  }
+}
+
+/* iPhone landscape orientation social icons fix */
+@media screen and (min-width: 667px) and (max-width: 896px) and (orientation: landscape) {
+  /* Target social media icons container */
+  .social-media-icons {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Force 3 columns */
+    gap: 10px !important;
+    padding: 12px !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 20px auto !important;
+  }
+  
+  /* Make icons smaller to fit properly in landscape mode */
+  .social-icon {
+    width: 4em !important;
+    height: 4em !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Ensure each icon link is properly sized and centered */
+  .social-icon-link {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* Fix for any rows that might have less than 3 icons */
+  .social-media-icons::after {
+    content: "";
+    display: block;
+    grid-column: span 1;
+  }
+}
+
+/* Specific iPhone 12/13 landscape fix (added precision) */
+@media only screen and (min-device-width: 844px) and (max-device-width: 896px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  .social-media-icons {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 500px !important;
+  }
+}
+
+/* Additional fix for iPhone X and newer notch devices */
+@media screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3),
+       screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3),
+       screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+  /* Safe area inset adjustments */
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left) !important;
+  }
+}
