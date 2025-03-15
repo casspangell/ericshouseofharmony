@@ -1594,6 +1594,10 @@ footer {
     margin-right: auto;
     text-align: center;
   }
+
+  .main-content {
+    padding-top: 0px !important;
+  }
 }
 
 /* Phone sized screens */
