@@ -200,7 +200,7 @@ p {
 }
 
 .website-name {
-  font-size: 2.5rem;
+  font-size: 4rem;
   color: white;
   text-decoration: none;
   font-family: var(--heading-font);
@@ -208,7 +208,7 @@ p {
 }
 
 /* Navigation Menu */
-.navigation-menu ul {
+/*.navigation-menu ul {
   display: flex;
   list-style: none;
   margin: 0;
@@ -230,10 +230,10 @@ p {
 
 .navigation-menu li a:hover {
   color: var(--accent-color);
-}
+}*/
 
 /* Dropdown Menu */
-.dropdown {
+/*.dropdown {
   display: none;
   position: absolute;
   top: 100%;
@@ -275,10 +275,10 @@ p {
 
 .navigation-menu li:hover .dropdown-arrow:after {
   content: '▼';
-}
+}*/
 
 /* Hamburger Menu - Hidden on desktop */
-.hamburger-menu {
+/*.hamburger-menu {
   display: none;
   cursor: pointer;
   width: 30px;
@@ -324,7 +324,7 @@ p {
 .hamburger-menu.active span:nth-child(3) {
   top: 8px;
   transform: rotate(-135deg);
-}
+}*/
 
 /* Header when scrolled */
 .main-header.scrolled {
@@ -2248,5 +2248,57 @@ footer {
   /* Safe area inset adjustments */
   body {
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left) !important;
+  }
+}
+
+/* Default order for larger screens */
+.text-section {
+  order: 1;
+}
+
+.video-section {
+  order: 2;
+}
+
+/* On mobile screens, swap the order */
+@media (max-width: 768px) {
+  .top-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .text-section {
+    order: 2; /* Move text to second position */
+  }
+  
+  .video-section {
+    order: 1; /* Move video to first position */
+    margin-bottom: 30px; /* Add some space after the video */
+  }
+  
+  /* Ensure the video is fully visible at the top */
+  .main-content {
+    padding-top: 70px !important; /* Adjust based on your header height */
+  }
+  
+  /* Fix any additional spacing issues */
+  .video-thumbnail {
+    margin-top: 0;
+  }
+  
+  /* Make sure there's adequate spacing between elements */
+  .quote-container {
+    margin-top: 20px;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 480px) {
+  .video-section {
+    margin-bottom: 20px;
+  }
+  
+  .main-content {
+    padding-top: 60px !important;
   }
 }

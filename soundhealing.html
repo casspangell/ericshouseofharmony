@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/libs.css">
   <!--Main css-->
   <link rel="stylesheet" href="css/eric-styles.css">
+  <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/wavesurfer.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -56,8 +57,8 @@
         <li>
           <a href="#">Albums <span class="dropdown-arrow"></span></a>
           <ul class="dropdown">
-            <li><a href="https://www.ericshouseofharmony.com/#rock_album">Album - All Over the Place</a></li>
-            <li><a href="#healing_album" class="scroll-link">Album - Good as Gold</a></li>
+            <li><a href="https://www.ericshouseofharmony.com/#rock_album" class="scroll-link">Album - All Over the Place</a></li>
+            <li><a href="https://www.ericshouseofharmony.com/#healing_album" class="scroll-link">Album - Good as Gold</a></li>
           </ul>
         </li>
         <li><a href="#connect" class="scroll-link">Connect</a></li>
@@ -72,53 +73,6 @@
     </div>
   </div>
 </header>
-
-<!-- JavaScript for Header Navigation -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Hamburger menu toggle
-    const hamburger = document.getElementById('hamburger-menu');
-    const navMenu = document.getElementById('navigation-menu');
-    
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-    
-    // Header scroll effect
-    const header = document.getElementById('header');
-    
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('.scroll-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          // Close mobile menu if open
-          hamburger.classList.remove('active');
-          navMenu.classList.remove('active');
-          
-          // Scroll to target
-          window.scrollTo({
-            top: targetElement.offsetTop - 80, // Adjust for header height
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  });
-</script>
 
 <!-- Background Video Container -->
 <div class="background-video-container" id="background-video-container">
@@ -232,7 +186,7 @@
 
 <!-- Banner Section -->
 <section class="section-banner">
-  <div class="container">
+  <div class="banner-container">
     <div class="row">
       <div class="banner-content">
         <h2 class="banner-title">Begin Your Healing Journey Today</h2>
@@ -394,7 +348,7 @@
 
 <!-- Benefits Section -->
 <section style="padding: 50px 0; background-color: rgba(0,51,102, 0.05);">
-  <div class="container">
+  <div class="benefits-container">
     <div class="heading-title center">
       <h2 style="font-size: 28px; color: #333; text-align: center;">
         Verified Effects of <span style="color: #0051a8;">Sound Energy Healing</span>
@@ -603,7 +557,7 @@
 
 <!-- Sound Healing for Seniors Section -->
 <section class="seniors-healing-section" style="background: linear-gradient(to right, #3A8FB7, #4ECDC4); position: relative; padding: 80px 0; overflow: hidden;">
-  <div class="container" style="position: relative; z-index: 2;">
+  <div class="seniors-container" style="position: relative; z-index: 2;">
     <div style="max-width: 1200px; margin: 0 auto;">
       <h2 style="color: white; font-size: 48px; text-align: center; margin-bottom: 40px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
         Sound Healing for Seniors
@@ -646,7 +600,7 @@
 
 <!-- About Eric's Approach Section -->
 <section style="padding: 60px 0; background: linear-gradient(135deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.65)); color: white;">
-  <div class="container">
+  <div class="about-container">
     <div class="section-header text-center mb-5">
       <h2 style="font-size: 42px; color: white; margin-bottom: 15px;">
         Transformational Sound Healing for Everyone
@@ -798,22 +752,20 @@
 </script>
 
 <!-- Scripts -->
-<script src="js/libs.js"></script>
-<script src="js/common.js"></script>
-<script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
-<script src="validator.js"></script>
-<script src="background-video.js"></script>
-<script src="js/testimonials.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/album.js"></script>
-<script src="js/header.js"></script>
-<script src="js/wavesurfer.js"></script>
-<script src="js/wavesurfer-healing.js"></script>
-<script src="https://unpkg.com/wavesurfer.js@7"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+  <script src="js/libs.js"></script>
+  <script src="js/common.js"></script>
+  <script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
+  <script src="validator.js"></script>
+  <script src="js/shows.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/wavesurfer.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/album.js"></script>
+  <script src="js/header.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js@7"></script>
 
 </body>
 </html>
