@@ -1,24 +1,24 @@
 name: FTP Deploy
-
 on:
   push:
     branches:
-      - main # or the branch you want to deploy from
-
+      - main
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3  # Updated to v3
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Updated to latest version
         with:
-          server: ${{ secrets.FTP_SERVER }}    # FTP server (e.g., ftp.example.com)
-          username: ${{ secrets.FTP_USERNAME }} # FTP username
-          password: ${{ secrets.FTP_PASSWORD }} # FTP password
-          local-dir: ./  # Directory to deploy, adjust if needed
-          server-dir: /path/on/server/ # Remote directory on the server
-
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /public_html/  # Most common for shared hosting
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .github/
