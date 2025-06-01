@@ -2,7 +2,7 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
