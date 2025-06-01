@@ -649,7 +649,7 @@
 
   <div class="playbutton">
     <audio id="background_audio" src="audio/light_audio.mp3" preload="auto"></audio>
-    <button class = "play-button" id="play_button" onclick="myFunction()">Listen to Eric Now</button>
+    <button class = "play-button" id="play_button" onclick="playMusic()">Listen to Eric Now</button>
   </div>
 
   <script>
@@ -657,7 +657,7 @@
     var audio = document.getElementById("background_audio");
     var isPlaying = false;
 
-    function myFunction() {
+    function playMusic() {
 
       if (!isPlaying) {
         audio.play();

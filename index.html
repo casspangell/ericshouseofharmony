@@ -22,6 +22,18 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/rock.css">
   <link rel="stylesheet" href="css/shows.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/testimonials.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/album.css">
+  <link rel="stylesheet" href="css/wavesurfer.css">
+  <link rel="stylesheet" href="css/topcontent.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <!-- SwiperJS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.css" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,72 +45,42 @@
     * {
       box-sizing: border-box;
     }
-
+    body {
+      margin: 0;
+      padding: 0;
+    }
   </style>
 
 </head>
+
 <body class="dark-load">
-<header class="top-nav page-header" id="top-nav" style="background-color: rgba(0,0,0,0.3);">
+<header class="main-header" id="header">
   <div class="container">
-    <div class="header-content">
-      <!-- Logo Section -->
-      <a class="logo smooth-scroll" href="#">
-        <img class="logo-white" src="img/logo.png" alt="logo">
-        <img class="logo-dark" src="img/logodark.png" alt="logo">
-      </a>
+    <!-- Website Name -->
+    <div class="website-name">Eric Paul Levy</div>
 
-      <!-- Artist Name Section -->
-      <div class="artist-name">Eric Paul Levy</div>
+    <!-- Navigation Menu -->
+    <nav class="navigation-menu" id="navigation-menu">
+      <ul>
+        <li><a href="https://www.ericshouseofharmony.com">Home</a></li>
+        <li>
+          <a href="#">Albums <span class="dropdown-arrow"></span></a>
+          <ul class="dropdown">
+            <li><a href="#rock_album" class="scroll-link">Album - All Over the Place</a></li>
+            <li><a href="#healing_album" class="scroll-link">Album - Good as Gold</a></li>
+          </ul>
+        </li>
+        <li><a href="#connect" class="scroll-link">Connect</a></li>
+      </ul>
+    </nav>
 
-      <!-- Navigation Section -->
-      <nav class="top-menu">
-        <ul class="sf-menu">
-          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/">Home</a></li>
-          <li><a class="smooth-scroll">Albums</a>
-            <ul>
-              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#rock_album">Album - All Over the Place</a></li>
-              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
-            </ul>
-          </li>
-          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Rock Music</a></li>
-          <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/soundhealing">Sound Healing</a></li>
-          <li><a class="smooth-scroll" href="#connect">Connect</a></li>
-        </ul>
-        <!-- Start toggle menu-->
-        <a class="toggle-mnu" href="#"><span></span></a>
-      </nav>
-      <!-- Start mobile menu-->
-      <div id="mobile-menu">
-        <div class="inner-wrap">
-          <nav>
-            <ul class="nav_menu">
-              <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com">Home</a></li>
-              <!-- <li><a class="smooth-scroll" href="https://www.ericshouseofharmony.com/#bookings">Sound Healing</a></li> -->
-              <li><a class="smooth-scroll">Albums</a>
-                <ul>
-                  <li><a class="smooth-scroll" href="#rock_album">Album - All Over the Place</a></li>
-                  <li><a href="https://www.ericshouseofharmony.com/soundhealing#healing_album">Album - Good as Gold</a></li>
-                </ul>
-              </li>
-              <li><a class="smooth-scroll" href="#connect">Connect</a>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- End mobile menu-->
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
-  <script>
-    const toggleMenu = document.querySelector('.toggle-mnu');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    toggleMenu.addEventListener('click', function (e) {
-      e.preventDefault();
-      mobileMenu.classList.toggle('active'); // Toggles the 'active' class
-    });
-  </script>
-
-
 </header>
 
 
@@ -106,196 +88,234 @@
 <a class="player" id="bgndVideo" data-property="{videoURL:'https://youtu.be/GhXRTTfBDSA',containment:'body', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, mute:true, quality:'default'}"></a>
 
 <!-- Start slider section-->
-
-<div class="slider" id="top">
-  <div id="preloader">
-    <div id="status"></div>
-  </div>
-
-  <div class="container main-info">
-    <div class="row margin-btm-15" style="padding-top: 2em">
-
-      <!-- Text Section (Left side) -->
-      <div class="col-lg-6 col-md-12 pad-top-0">
-        <div class="description-slide" style="background-color: rgba(153,51,51,1.0); padding: 15px; color: white">
-          Eric has been a musician most of his life. He started playing the guitar at 11, and by 15 he was in his first rock band, Vital Signs. Over the next 20 years, along with graduating from Drexel University with a B.A. in Music in 1991, Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet’s Wishing Well and the legendary blues band, Dr. Harmonica and Rockett 88.
-          <br><br>Now he's a one-man band mixing his smooth voice with skilled guitar stylings for some incredible covers like you've never heard.
-        </div>
-        <div class="buttons-section read-bio">
-          <a class="btn accent-br-btn large-btn smooth-scroll" href="https://www.ericshouseofharmony.com/about-rock.html">Read Full Bio Here</a>
-        </div>
-      </div>
-
-      <!-- Video Section (Right side) -->
-      <div class="col-lg-6 col-md-12 pad-top-0">
-        <div class="video-thumbnail">
-          <video class="w-100" controls loading="lazy">
-            <source src="videos/live_rock/video_medley_promo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!--Section trigger-->
-  <section class="section-trigger" style="background-color:rgba(153,51,51, 0.85); padding-top: 0" id="healing">
-    <div class="container">
-      <div class="row">
-        <div class="heading-title center" style="padding: 10px 10px 10px 10px">
-          <div class="small-desd" style="color: white; font-size: 38px; font-family: 'Bilbo', cursive; text-transform:capitalize;">Every show is unique.<br>Let’s book a show and make some magic at your awesome venue.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-upcoming-shows" id="upcoming-shows">
-    <div class="container show-container">
-      <div class="heading-title center">
-        <h2 style="font-size: 28px; color: #333; text-align: center;">Upcoming <span style="color: #6633cc;">Shows</span></h2>
-        <p style="font-size: 18px; color: #666; text-align: center;">Join Eric Paul Levy live at these venues!</p>
-      </div>
-      <div class="shows-list" id="shows-list">
-        <!-- Dynamic content will be inserted here -->
-      </div>
-      <div id="pagination" class="pagination-container" style="text-align: center; margin-top: 20px;">
-        <!-- Pagination buttons will be dynamically added here -->
-      </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <a href="#connect" class="btn accent-br-btn large-btn" style="background-color: #6633cc; color: white; padding: 10px 20px; border-radius: 5px;">Book a Show</a>
-      </div>
-    </div>
-  </section>
-
-  <!--Section our some work-->
-  <section class="section-portfolio" style="z-index: 0; background-color: rgba(255,255,255,1.0)" id="rock">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-push-2">
-          <div class="heading-title center">
-            <h2>Live Rock <span>Performances</span></h2>
-            <p>I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.</p><br>
-            <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a> <span>to connect or book a live event</span></div><br>
-            <div class="small-desd" style="background-color: rgba(0,0,0,0.1); padding: 5px 5px 5px 5px; margin-top: 20px;"><h2 style="font-size:24px;"><a href="docs/song-list-8-20.pdf" style="color:#6633cc;">List of Cover Songs</a></h2></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!--Section testimonials-->
-<section class="section-testimonials bg-dark-section">
-  <div class="container">
-    <div class="row">
-      <div class="testimonials-items">
-        <!-- Start Block item-->
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p  class="name">"This guy is talented musically but is also one of the nicest and kindest individuals I have ever met. And it shows whenever he’s on our stage playing his beautiful music! Our customers and staff love it whenever Eric is in town and I get a chance to schedule him."</p><span class="name">- Tony L.</span><span class="person" style="color:rgba(0,0,0,0.8);">Autumn Arch Beer Project</span>
-          </div>
-        </div>
-        <!-- Start Block item-->
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p  class="name">"Fantastic vibe & music! At Viva Saloon as a new owners, Eric just surprised us with his loops and great covers!...a cool guy and a great musician!"</p><span class="name">- Alfredo</span><span class="person" style="color:rgba(0,0,0,0.8);">Viva Saloon</span>
-          </div>
-        </div>
-        <!-- Start Block item-->
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"Eric is a fantastic musician who has played for Willie T's over the past few years. His musical talent coupled with his incredible skills to captivate our customers are top notch! Our staff, locals and tourists alike love him!"</p><span class="name">- Maureen</span><span class="person" style="color:rgba(0,0,0,0.8);">Willie T's</span>
-          </div>
-        </div>
-        <!-- Block item-->
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"Stayed for the whole second set. Eric played all of our favorite songs and takes requests! Thanks for the dancing tunes and such a fun night."</p><span class="name">- Amanda M.</span>
-          </div>
-        </div>
-
-        <!-- End Block item-->
-      </div>
-    </div>
-    <!-- Dots control carousel-->
-    <div class="dots-control-carousel" id="dots-control-testimonials"></div>
-  </div>
-  <!-- Strat Control carousel-->
-  <div class="prev-next-block-rotate" id="control-customers">
-    <div class="wrap-prev">
-      <div class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-    </div>
-    <div class="wrap-next">
-      <div class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-    </div>
-  </div>
-</section>
-
-  <!--Section our skills-->
-  <section class="section-our-skills bg-white-section" id="rock_album">
-    <div class="container">
-      <div class="row">
-        <div class="heading-title small-heading center left-text">
-          <div style="background-color: rgba(250, 250, 250, 0.9); padding-left: 0px; padding-right: 0px;">
-            <div class="row" style="margin-left: 0px; padding-bottom:10px;">
-              <h2 style="padding: 0px 10px 10px 10px">Album - All Over the Place</h2>
-              <div>
-                <a href="https://music.apple.com/us/album/all-over-the-place/1581051215?uo=4&app=music&at=1001lry3&ct=dashboard"><img alt="apple-link" class="music-link" src="img/applemusic.png" loading="lazy"></a>
-                <a href="https://open.spotify.com/album/7iQldgX4Dwo3YHhyjcXjXV"><img class="music-link" alt="spotify-link" src="img/spotify.png" ></a>
-                <a href="http://www.amazon.com/gp/product/B09CKD3FG2/?tag=distrokid06-20"><img class="music-link" alt="amazon-link" src="img/amazonmusic.png"  ></a>
-              </div>
+  <div class="main-content top-content">
+    <div class="main-info">
+      <div class="row margin-btm-15 top-section">
+        <!-- Text Section (Left side) -->
+        <div class="text-section">
+          <div class="bio">
+            <p class="plain-text">Eric has been a musician most of his life.
+              He started playing the guitar at 11, and by 15 he was in his first rock band, Vital Signs.
+              Over the next 20 years, along with graduating from Drexel University with a B.A. in Music,
+              Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet’s
+              Wishing Well and the legendary blues band, Dr. Harmonica and Rockett 88.
+            <br><br>Now he's a one-man band mixing his smooth voice with skilled guitar stylings for
+            some incredible covers like you've never heard.<br></p>
+            <div class="read-bio">
+              <a href="https://www.ericshouseofharmony.com/about-rock.html">Read Full Bio Here</a>
             </div>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <img src="img/album_info_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Front" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
-        </div>
-        <div class="col-md-6">
-          <img src="img/album_info_2_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Back" style="width:100%; transition: transform 0.5s ease;" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-portfolio bg-white-section" id="connect">
-    <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <!-- Call-to-Action Section for Booking an Event -->
-      <div class="booking-section" style="padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-        <h3 style="font-size: 24px; color: #333;">Ready to Make Some Magic?</h3>
-        <p style="font-size: 18px;">Book a live show with Eric Paul Levy and bring the house down!</p>
-        <p style="margin-top: 20px;">Or email us directly at <a href="mailto:info@ericshouseofharmony.com" style="color: #6633cc;">info@ericshouseofharmony.com</a></p>
-        <p style="margin-top: 20px;">Call or text <b>302-563-0164</b></p>
-      </div>
-    </div>
-  </section>
-
-<footer style="padding-top:0px;">
-  <div class="container">
-    <div class="down-footer">
-      <div class="container" style="position: relative;">
-        <div>
-          <p style="text-align: center;">© 2024 All Rights Reserved.  -   Eric's House of Harmony</p>
+        <!-- Video Section (Right side) -->
+        <div class="video-section">
+          <div class="video-thumbnail">
+            <video controls loading="lazy">
+              <source src="videos/live_rock/video_medley_promo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <section class="section-banner" style="background-color:rgba(153,51,51, 0.85); padding-top: 0">
+    <div class="container">
+      <div class="row">
+        <div class="banner-title center" style="padding: 10px 10px 10px 10px">
+          <div class="banner-title" style="color: white; font-family: 'Bilbo', cursive; text-transform:capitalize;">Every show is unique.<br>Let’s book a show and make some magic at your awesome venue.</div>
+        </div>
+
+        <div class="social-media-icons" style="text-align: center;">
+          <a href="https://www.facebook.com/eric.p.levy" target="_blank" class="social-icon-link">
+            <img src="/img/fb.png" class="social-icon" />
+          </a>
+          <a href="https://www.instagram.com/ericpaullevy/" target="_blank" class="social-icon-link">
+            <img src="/img/insta.png" class="social-icon" />
+          </a>
+          <a href="https://www.youtube.com/@ericfromphilly/videos" target="_blank" class="social-icon-link">
+            <img src="/img/yt.png" class="social-icon" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<section class="section-upcoming-shows" id="upcoming-shows">
+  <div class="show-container">
+    <div class="waveform-main-container">
+    <div class="player-container">
+      <!-- Waveform container -->
+      <div class="waveform-container">
+        <div id="waveform1" class="waveform"></div>
+        <button class="playPauseButton" id="playPauseButton1">Play Rock Highlights</button>
+      </div>
+      <!-- Second Waveform -->
+      <div class="waveform-container">
+        <div id="waveform2" class="waveform"></div>
+        <button class="playPauseButton" id="playPauseButton2">Listen to Softer Vibes</button>
+      </div>
+    </div>
+
+      <!-- Controls and buttons in one row -->
+      <div class="controls-buttons-container">
+        <button class="btn-pdf" id="viewPdfButton">
+          View Extensive Cover Songs List
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("viewPdfButton").addEventListener("click", () => {
+        window.open("/docs/song_list_7_29_24.pdf", "_blank");
+      });
+    </script>
+  </div>
+
+  <div class="shows-main-container">
+    <div class="heading-title center">
+      <h2 style="font-size: 28px; color: #333; text-align: center;">
+        Upcoming <span style="color: #6633cc;">Shows</span>
+      </h2>
+      <p class="sub-text">Join Eric Paul Levy live at these venues!</p>
+    </div>
+
+    <div class="shows-list" id="shows-list">
+      <!-- Dynamic content will be inserted here -->
+    </div>
+
+    <div id="pagination" class="pagination-container" style="text-align: center; margin-top: 20px;">
+      <!-- Pagination buttons will be dynamically added here -->
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="#connect" class="btn accent-br-btn large-btn" style="background-color: #6633cc; color: white; padding: 10px 20px; border-radius: 5px;">
+        Book a Show
+      </a>
+    </div>
+  </div>
+
+</section>
+
+
+  <section class="section-testimonials">
+    <div class="banner-title center" style="padding: 10px 10px 10px 10px">
+      <div class="testimonial-title">Testimonials</div>
+    </div>
+    <div class="testimonial-container">
+      <swiper-container class="mySwiper" pagination="true" navigation="true" space-between="30" slides-per-view="2">
+        <!-- Dynamic slides will be added here by JavaScript -->
+      </swiper-container>
+    </div>
+  </section>
+
+  <!--Section our some work-->
+<!--  <section class="section-portfolio" style="z-index: 0; background-color: rgba(255,255,255,1.0)" id="rock">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-8 col-md-push-2">-->
+<!--          <div class="heading-title center">-->
+<!--            <h2>Live Rock <span>Performances</span></h2>-->
+<!--            <p>I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.</p><br>-->
+<!--            <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a> <span>to connect or book a live event</span></div><br>-->
+<!--            <div class="small-desd" style="background-color: rgba(0,0,0,0.1); padding: 5px 5px 5px 5px; margin-top: 20px;"><h2 style="font-size:24px;"><a href="docs/song-list-8-20.pdf" style="color:#6633cc;">List of Cover Songs</a></h2></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+  <!-- <section class="live-rock-performances">
+    <div class="container show-container">
+      <div class="heading-title center">
+        <h2 style="font-size: 28px; color: #333; text-align: center;">Live Rock <span style="color: #6633cc;">Performances</span></h2>
+      </div>
+      <p class="description">
+        I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.
+      </p>
+      <p>
+        For bookings or inquiries, email us at
+        <a href="mailto:info@rockband.com" class="email-link">info@rockband.com</a>.
+      </p>
+
+    </div>
+  </section> -->
+
+  <div class="section-album">
+    <div class="album-container">
+      <div class="heading-title small-heading center">
+
+        <div class="album-info" id="rock_album">
+          <h2>Album - All Over the Place</h2>
+          <div class="music-links">
+            <a href="https://music.apple.com/us/album/all-over-the-place/1581051215?uo=4&app=music&at=1001lry3&ct=dashboard">
+              <img alt="apple-link" src="img/applemusic.png" loading="lazy">
+            </a>
+            <a href="https://open.spotify.com/album/7iQldgX4Dwo3YHhyjcXjXV">
+              <img alt="spotify-link" src="img/spotify.png">
+            </a>
+            <a href="http://www.amazon.com/gp/product/B09CKD3FG2/?tag=distrokid06-20">
+              <img alt="amazon-link" src="img/amazonmusic.png">
+            </a>
+          </div>
+          <div class="cover-item">
+            <img src="img/album_info_2.png" class="img-fluid" alt="All Over the Place Album Cover - Back" loading="lazy">
+          </div>
+        </div>
+
+        <div class="album-info" id="healing_album">
+          <h2>Album - Good as Gold</h2>
+          <div class="music-links">
+            <a href="https://music.apple.com/us/album/good-as-gold/1581055861?uo=4&app=music&at=1001lry3&ct=dashboard">
+              <img alt="apple-link" src="img/applemusic.png" loading="lazy">
+            </a>
+            <a href="https://open.spotify.com/album/3EqDTK6P1RwrbA6vAWBPNU">
+              <img alt="spotify-link" src="img/spotify.png">
+            </a>
+            <a href="http://www.amazon.com/gp/product/B09CKG5YL5/?tag=distrokid06-20">
+              <img alt="amazon-link" src="img/amazonmusic.png">
+            </a>
+          </div>
+          <div class="cover-item">
+            <img src="img/album_cover_goodasgold_outside_72.jpg" class="img-fluid" alt="All Over the Place Album Cover - Back" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-booking bg-white-section" id="connect">
+    <div class="booking-container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="booking-section" style="padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <h3 style="font-size: 24px; color: #333;">Ready to Make Some Magic?</h3>
+        <p style="font-size: 18px;">Book a live show with Eric Paul Levy and bring the house down!</p>
+        <p style="margin-top: 20px;">Call or text <b>302-563-0164</b></p>
+        <p style="margin-top: 20px;">Or email us directly at <a href="mailto:info@ericshouseofharmony.com" style="color: #6633cc;">info@ericshouseofharmony.com</a></p>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="footer-container">
+    <p>© 2024 All Rights Reserved. - Eric's House of Harmony</p>
+  </div>
 </footer>
 
-<!--<div class="playbutton">-->
-<!--  <audio id="background_audio" src="audio/dark_audio.mp3" preload="auto"></audio>-->
-<!--  <button class="play-button" id="play_button" onclick="myFunction()">Click to Listen</button>-->
-<!--</div>-->
 
-
-
-<div class="top icon-down toTopFromBottom" style="z-index:9999"><a class="smooth-scroll" href="#top"><i class="pe-7s-angle-up"></i></a></div>
-
-<script src="js/libs.js"></script>
-<script src="js/common.js"></script>
-<script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
-<script src="validator.js"></script>
-<script src="js/shows.js"></script>
-</div>
+  <script src="js/libs.js"></script>
+  <script src="js/common.js"></script>
+  <script src="https://kit.fontawesome.com/facd3cc4f3.js" crossorigin="anonymous"></script>
+  <script src="validator.js"></script>
+  <script src="js/shows.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/wavesurfer.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/album.js"></script>
+  <script src="js/header.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js@7"></script>
 </body>
 </html>
