@@ -136,7 +136,7 @@
     padding: 12px 25px;
     text-decoration: none;
     border-radius: 25px;
-    font-size: 1 rem;
+    font-size: 1.4rem;
     font-weight: 500;
     transition: all 0.3s ease;
     width: 100%;
@@ -149,6 +149,138 @@
     transform: translateY(-1px);
     text-decoration: none;
     color: white;
+  }
+
+  /* Verified Effects Section Styling */
+  .verified-effects-section {
+    
+  }
+
+  .verified-effects-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .verified-effects-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(135deg, #00c5d7, #0099aa);
+    margin: 20px auto;
+    border-radius: 2px;
+  }
+
+  .verified-effects-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .verified-effects-col {
+    flex: 1;
+  }
+
+  /* Philosophy Cards */
+  .philosophy-section {
+    margin-bottom: 30px;
+  }
+
+  .philosophy-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #00c5d7;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .philosophy-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .philosophy-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #00c5d7, #0099aa);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .philosophy-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.5rem;
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    background: linear-gradient(135deg, rgba(0, 197, 215, 0.05), rgba(0, 153, 170, 0.05));
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 197, 215, 0.1);
+  }
+
+  .benefits-title {
+    font-size: 2.1rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .benefits-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .benefit-item {
+    color: #555;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 197, 215, 0.1);
+  }
+
+  .benefit-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Disclaimer */
+  .disclaimer-box {
+    background: rgba(0, 197, 215, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 197, 215, 0.2);
+    margin-top: 30px;
+  }
+
+  .disclaimer-box p {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .disclaimer-box strong {
+    color: #2c3e50;
   }
 
   @media (max-width: 768px) {
@@ -167,7 +299,34 @@
       font-size: 1.2rem;
     }
 
-
+    .verified-effects-title {
+      font-size: 2rem;
+    }
+    
+    .verified-effects-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .philosophy-card {
+      padding: 15px;
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    
+    .philosophy-icon {
+      align-self: center;
+    }
+    
+    .benefits-section {
+      padding: 20px;
+      margin-top: 30px;
+    }
+    
+    .benefits-title {
+      font-size: 1.3rem;
+    }
   }
 
   @media (max-width: 480px) {
@@ -292,7 +451,7 @@
 <section class="section-two" style="background-color:white;" id="bookings">
   <!-- Header Section - Moved to top -->
   <div class="container">
-    <div class="row pad-btm-20" style="background-color: rgba(0,197,215, 0.2); margin-bottom: 25px;">
+    <div class="row pad-btm-20" style="background-color: rgba(0,197,215, 0.2);margin-bottom: 25px;">
       <div class="col-md-12">
         <div class="heading-title center">
           <h2 style="font-size: 28px; color: #333; text-align: center; font-family: 'Raleway', sans-serif; font-weight: 700; margin-bottom: 10px;">
@@ -305,6 +464,15 @@
       </div>
     </div>
   </div>
+
+      <!-- Additional Services Header -->
+    <div class="row pad-btm-20 pad-top-20" style="border-radius: 10px; margin-bottom: 20px;">
+      <div class="col-md-8 col-md-push-2">
+        <div class="heading-title small-heading center">
+          <h7 style="font-size: 18px;"><b>In addition to the services below:</b><br>Eric provides a wide range of supplementary activities and experiences, such as songwriting, rhythm exploration, music listening, live music yoga, weekend workshops, and more!<br><br>All offerings available in 60, 90, and 120 minutes.</h7><br><br>
+        </div>
+      </div>
+    </div>
   
   <!-- Services Cards -->
   <div class="container">
@@ -365,67 +533,79 @@
       </div>
     </div>
   </div>
+
 </section>
 
 <!--Section services-->
-<section class="services-section" style="padding-top: 0px; background-color: rgba(255,255,255,1.0);">
+<section class="services-section" style="background-color: rgba(255,255,255,1.0);">
   <div class="container">
-    <div class="row pad-btm-20 pad-top-20" style="background-color: rgba(0,197,215, 0.2);">
-      <div class="col-md-8 col-md-push-2">
-        <div class="heading-title small-heading center">
-          <h7 style="font-size: 18px;"><b>Additional Services for Individuals and Groups:</b><br>Eric provides a wide range of supplementary activities and experiences, such as songwriting, rhythm exploration, music listening, live music yoga, weekend workshops, and more!<br><br>All offerings available in 60, 90, and 120 minutes.</h7><br><br>
-          <div class="heading-title center">
-            <a class="btn smooth-scroll" href="#connect" style="font-size:20px;">Call or Email for a FREE Consultation</a>
+
+
+    <!-- Verified Effects Section -->
+    <div class="verified-effects-section">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="verified-effects-title">Verified Effects of Sound Energy Healing</h1>
+        </div>
+      </div>
+
+      <div class="verified-effects-row">
+        <!-- Philosophy Section -->
+        <div class="verified-effects-col">
+          <div class="philosophy-section">
+            <div class="philosophy-card">
+              <div class="philosophy-icon">1</div>
+              <p>Breathing deeply brings in fresh oxygen and releases toxins from the body.</p>
+            </div>
+            
+            <div class="philosophy-card">
+              <div class="philosophy-icon">2</div>
+              <p>Sound healing promotes natural health and wellness by returning the body to its natural tone and rhythm. This realigns the body, creating coherence down to the cellular level.</p>
+            </div>
+            
+            <div class="philosophy-card">
+              <div class="philosophy-icon">3</div>
+              <p>Thoughts become powerful when voiced. Positive thoughts create positive vibrations that not only are sent out into the universe but also deep within the cells of our body. By adding intention to sound, true healing can occur.</p>
+            </div>
+            
+            <div class="philosophy-card">
+              <div class="philosophy-icon">4</div>
+              <p>Harmony within ourselves leads to harmony with others and the world. Let's all strive for perfect harmony to create a peaceful and loving world.</p>
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="disclaimer-box">
+            <p><strong>Disclaimer:</strong> Sound Healing / Sound Therapy is not a substitute for medical advice, diagnosis or treatment from a physician or health care professional. It is available to enhance your total wellness, which can and should be used in conjunction with your traditional medical care. Please check with your doctor or health care professional about using sound healing to complement your medical treatment (if any).</p>
+          </div>
+        </div>
+
+        <!-- Benefits List -->
+        <div class="verified-effects-col">
+          <div class="benefits-section">
+            <h3 class="benefits-title">Scientifically Documented Benefits</h3>
+            <div class="benefits-grid">
+              <div class="benefit-item">✓ Reduced Blood Pressure and Respiration Rates</div>
+              <div class="benefit-item">✓ Reduced Depression</div>
+              <div class="benefit-item">✓ Reduced Pain and Mirgranes</div>
+              <div class="benefit-item">✓ Stress Reduction</div>
+              <div class="benefit-item">✓ Cellular level changes restoring the body back to its healthy frequencies</div>
+              <div class="benefit-item">✓ Calms the entire nervous system</div>
+              <div class="benefit-item">✓ Boosts the Immune System triggering natural healing mechanisms</div>
+              <div class="benefit-item">✓ Drives energy from cell to cell, clearing blockages</div>
+              <div class="benefit-item">✓ Improves Sleep</div>
+              <div class="benefit-item">✓ Improves clarity of mind</div>
+              <div class="benefit-item">✓ Enhances creativity</div>
+              <div class="benefit-item">✓ Increased Oxygen Intake</div>
+              <div class="benefit-item">✓ Increased Immune Cell Activity</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row" style="padding-left: 50px; padding-right:25px;">
-      <div id="tabs-1">
-        <h1>Verified Effects<br>of Sound Energy Healing</h1>
-        <div class="col-md-6">
-          <div class="head-service small-head text-left">
-
-            <h2 style="color: #336666">Breathing deeply brings in fresh oxygen and releases toxins from the body.</h2>
-            <h2 style="color: #336666">Sound healing promotes natural health and wellness by returning the body to its natural tone and rhythm. This realigns the body, creating coherence down to the cellular level.</h2>
-            <h2 style="color: #336666">Thoughts become powerful when voiced. Positive thoughts create positive vibrations that not only are sent out into the universe but also deep within the cells of our body. By adding intention to sound, true healing can occur.</h2>
-            <h2 style="color: #336666">Harmony within ourselves leads to harmony with others and the world. Let's all strive for perfect harmony to create a peaceful and loving world.</h2>
-          </div>
-          <div class="col-md-10" style="background-color: rgba(0,197,215, 0.75); color: white; margin-top:75px; font-size:14px"><p style="margin: 5px;"><i><b>Disclaimer:</b></i> Sound Healing / Sound Therapy is not a substitute for medical advice, diagnosis or treatment from a physician or health care professional.  It is available to enhance your total wellness, which can and should be used in conjunction with your traditional medical care. Please check with your doctor or health care professional about using sound healing to complement your medical treatment (if any).</p></div>
-        </div>
-
-        <div class="col-md-5 col-md-push-1">
-          <ul class="list" style="margin-bottom: 10px;">
-            <li>Reduced Blood Pressure</li>
-            <li>Reduced Heart and Respiration Rates</li>
-            <li>Reduced Depression</li>
-            <li>Reduced Migraines</li>
-            <li>Reduced Pain</li>
-            <li>Stress Reduction</li>
-            <li>Cellular level changes restoring the body back to its healthy frequencies and homeostasis</li>
-            <li>Calms the entire nervous system</li>
-            <li>Boosts the Immune System triggering the natural healing mechanisms of the body</li>
-            <li>Drives energy from cell to cell, clearing blockages and stimulating neural pathways</li>
-            <li>Improves Sleep</li>
-            <li>Heightens awareness</li>
-            <li>Improves clarity of mind</li>
-            <li>Enhances creativity</li>
-            <li>Increased Oxygen Intake</li>
-            <li>Increased Weight Gain in Premature Babies</li>
-            <li>Increased Sleep for people suffering from Sleep Disorders</li>
-            <li>25% Decrease in Cortisol Levels (Stress Levels)</li>
-            <li>Increased Immune Cell Activity</li>
-            <li>Increased Brain Functioning through Spatial IQ testing</li>
-            <li>Higher Statistical Odds of Recovering from Illnesses and Diseases</li>
-          </ul>
-        </div>
-
-        <div><!--tabs1-->
-        </div><!--row-->
-      </div><!--container-->
-
-
+  </div>
 </section>
+
 <section class="section-portfolio" style="z-index: 0; padding-top: 0px;">
   <div class="into-slider" style="background-color:rgba(0, 51, 102, 0.75);" id="into">
     <div class="container-fluid">
@@ -440,13 +620,13 @@
 
         <div class="small-desd" style="color: white; text-transform:inherit; margin: 20px;">Eric is also a member of the Medical Sound Association, an organization that collaborates with medical professionals, scientists, therapists, sound healers, and others to develop and standardize Sound Therapy treatments for implementation in hospitals and clinics worldwide. His expertise lies in creating effective, safe, and affordable medical sound and vibration treatments, free from any negative side effects.</div>
 
-
         <div class="small-desd" style="color: white; text-transform:inherit; margin: 20px;">Employing the induction of sound waves directly into the body, coupled with calming ambient tones, Eric delivers a compelling and impactful form of therapy. Clients frequently report experiencing a range of benefits, including entering a meditative state and attaining deep relaxation.</div>
 
         <div class="small-desd" style="color: white; text-transform:inherit; margin: 15px; text-align: center; padding-bottom: 20px;">Certified by the American Association of Drugless Practitioners<br>Member of the Medical Sound Association<br>Member and Certified by the Sound Healers Association<br/>Certified Usui Method Reiki Level 2<br>Certified Health Coach by the Institute for Integrative Nutrition<br>Yoga 200hr Certification through Open Sky Yoga<br><br></div>
       </div>
     </div><!--kilroy -->
 </section>
+
 <!--Section our skills -->
 <section class="section-our-skills bg-white-section" id="healing_album">
   <div class="container">
@@ -773,3 +953,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+              <div class="benefit-item">
