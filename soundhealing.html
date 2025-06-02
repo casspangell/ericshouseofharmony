@@ -470,6 +470,34 @@
         width: 100px !important;
       }
     }
+
+    /* Loading and Error States */
+.services-loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #00c5d7;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.services-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 1.2rem;
+}
 </style>
 
 </head>
@@ -593,75 +621,45 @@
     </div>
   </div>
 
-      <!-- Additional Services Header -->
-    <div class="row pad-btm-20 pad-top-20" style="border-radius: 10px; margin-bottom: 20px;">
-      <div class="col-md-8 col-md-push-2">
-        <div class="heading-title small-heading center">
-          <h7 style="font-size: 18px;"><b>In addition to the services below:</b><br>Eric provides a wide range of supplementary activities and experiences, such as songwriting, rhythm exploration, music listening, live music yoga, weekend workshops, and more!<br><br>All offerings available in 60, 90, and 120 minutes.</h7><br><br>
-        </div>
-      </div>
-    </div>
-  
-  <!-- Services Cards -->
-  <div class="container">
-    <div class="services-cards-harmony">
-      <!-- Card 1 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">1</div>
-        <div class="service-card-icon"><img src="/img/img5.png" alt="Crystal Bowl Icon"></div>
-        <h3 class="service-card-title">Crystal Bowl Relaxing Sound Bath</h3>
-        <p class="service-card-desc">During the crystal sound bath, the harmonious vibrations emitted by the crystal bowls will penetrate deep into your being, resonating with the cells of your body and harmonizing your energy centers. As the enchanting tones envelop you, you will be transported on a sonic journey of self-discovery and healing. The ethereal sounds will wash away stress, tension, and stagnant energies, while promoting relaxation, clarity, and inner harmony. Through this immersive experience, you will emerge with a renewed sense of vitality and a heightened connection to your inner self, ready to embrace life's challenges with a restored sense of peace and well-being.</p>
-        <div class="service-price">$120</div>
-        <a class="btn" href="#connect">Select</a>
-      </div>
-      <!-- Card 2 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">2</div>
-        <div class="service-card-icon"><img src="/img/img4.png" alt="Tuning Fork Icon"></div>
-        <h3 class="service-card-title">Tuning Fork Chakra Balancing</h3>
-        <p class="service-card-desc">Harnessing the resonant power of tuning forks, we embark on a profound journey of chakra balancing. Each chakra holds unique qualities, influencing our physical, emotional, and spiritual well-being. Guided by focused intent, we harmonize and restore balance to your energy centers through gentle tones that permeate your being. This transformative experience not only brings relaxation and relief but also catalyzes deep inner healing and energetic shifts. Discover tranquility or embark on a quantum leap in your healing journey with our sessions, leaving you aligned, vitalized, and in harmony.</p>
-        <div class="service-price">$120</div>
-        <a class="btn smooth-scroll" href="#connect">Select</a>
-      </div>
-      <!-- Card 3 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">3</div>
-        <div class="service-card-icon"><img src="/img/img3.png" alt="Voice Icon"></div>
-        <h3 class="service-card-title">Voice as Medicine</h3>
-        <p class="service-card-desc">Many teachers agree that there is nothing in the world, no crystal bowl, no gong, no didgeridoo that is more healing than your own voice. Of course, all these healing instruments are great, but they just don't compare to the human voice.<br><br>By creating the tones and timbres yourself, you become the sound and this resonates through every cell of your body. Then, your body becomes a symphony with each system playing their part, and you use your own voice as the conductor, keeping every organ and every cell, in tune and on time. In these sessions, we will explore many techniques to liberate the voice and use it as a healing tool.</p>
-        <div class="service-price">$120</div>
-        <a class="btn smooth-scroll" href="#connect">Select</a>
-      </div>
-      <!-- Card 4 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">4</div>
-        <div class="service-card-icon"><img src="/img/img2.png" alt="Home Note Icon"></div>
-        <h3 class="service-card-title">Re-Discover Your Home Note and Rhythm</h3>
-        <p class="service-card-desc">Just like every song has its key or home note, there is the theory that everyone also has their own home note, the note in the key of their soul's song. We are either attracted to, or repulsed by, another person's tone and rhythm more than anything else. Here, we will tune our body instruments, vibrating the right frequency to all our healthy cells. Using a simple process of elimination, we will discover what your note is. You will know the one because it will be the sole one that will immediately feel good and likely bliss you out.</p>
-        <div class="service-price">$120</div>
-        <a class="btn" href="#connect">Select</a>
-      </div>
-      <!-- Card 5 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">5</div>
-        <div class="service-card-icon"><img src="/img/img1.png" alt="Activation Icon"></div>
-        <h3 class="service-card-title">Music for Activation</h3>
-        <p class="service-card-desc">Everyone gets the blues. Times are rough for many right now, and the weight of it all can be too much for anyone to carry. Whatever is getting us down in the dumps, depressed, unable or unwilling to take a step in any direction, we can, at any given moment, start to think differently and open ourselves to the infinite possibilities of the universe. In these deep and personal sessions we will dive into and find the roots of what is happening, and then use sound and music to find, shake up, and transform them into positive movement, activation and motivation.</p>
-        <div class="service-price">$120</div>
-        <a class="btn smooth-scroll" href="#connect">Select</a>
-      </div>
-      <!-- Card 6 -->
-      <div class="service-card-harmony">
-        <div class="service-card-number">6</div>
-        <div class="service-card-icon"><img src="/img/eq_3.png" alt="Great Song Icon"></div>
-        <h3 class="service-card-title">The Great Song Workshop</h3>
-        <p class="service-card-desc">Discover the essence of The Great Song – a reflection of life itself. Life can be likened to a melodious composition, an unending symphony composed of countless notes and melodies contributed by all species and beings on mother earth. Just like a vast symphony, we all play our part, contributing our distinct tones and timbres that form our individual frequencies. This personal resonance is what we refer to as our "home note." Immerse yourself in the harmonious exploration of The Great Song and embrace the profound interconnectedness of existence.</p>
-        <div class="service-price">Contact for Pricing</div>
-        <a class="btn smooth-scroll" href="https://www.ericshouseofharmony.com/greatsong.html">Read More</a>
+    <!-- Additional Services Header -->
+  <div class="additional-services-flex" style="display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 20px; padding: 24px 16px; gap: 32px; flex-wrap: wrap;">
+    <div style="flex: 1 1 320px; min-width: 220px; max-width: 600px; text-align: center;">
+      <div class="heading-title small-heading center">
+        <h7 style="font-size: 18px;"><b>In addition to the services below:</b><br>Eric provides a wide range of supplementary activities and experiences, such as songwriting, rhythm exploration, music listening, live music yoga, weekend workshops, and more!<br><br>All offerings available in 60, 90, and 120 minutes.</h7>
       </div>
     </div>
   </div>
+  <style>
+    @media (max-width: 700px) {
+      .additional-services-flex {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 16px 4px !important;
+      }
+    }
+  </style>
 
+  <!-- Services Cards -->
+  <div class="container">
+    <div class="services-cards-harmony">
+      <!-- Loading State -->
+    <div id="services-loading" class="services-loading">
+      <div class="loading-spinner"></div>
+      <p>Loading services...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="services-error" class="services-error" style="display: none;">
+      <p>Unable to load services. Please check back later.</p>
+    </div>
+
+    <!-- Dynamic Services Cards -->
+    <div id="services-cards-container" class="services-cards-harmony" style="display: none;">
+      <!-- Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  </div>
 </section>
 
 <!--Section services-->
