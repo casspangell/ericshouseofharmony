@@ -29,20 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
             header.classList.remove("shrink");
         }
     });
-});
 
-document.querySelectorAll('.scroll-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const offset = 50;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = target.getBoundingClientRect().top;
-        const offsetPosition = elementRect - bodyRect - offset;
+    // Add scroll-link event listeners
+    document.querySelectorAll('.scroll-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            const offset = 50;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = target.getBoundingClientRect().top;
+            const offsetPosition = elementRect - bodyRect - offset;
 
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         });
     });
 });

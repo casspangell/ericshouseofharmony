@@ -83,11 +83,8 @@ class ServicesManager {
         console.error('❌ HTTP Error:', response.status, response.statusText);
         throw new Error(`HTTP ${response.status}: ${response.statusText || 'Failed to fetch from Google Sheets'}`);
       }
-
-      console.log('✅ Response received, reading text...');
+      
       const csvText = await response.text();
-      console.log(`📄 CSV text length: ${csvText.length} characters`);
-      console.log('📄 First 200 characters:', csvText.substring(0, 200));
       
       if (!csvText || csvText.trim().length === 0) {
         throw new Error('Google Sheets returned empty data');
@@ -133,7 +130,6 @@ class ServicesManager {
     
     // Parse header to understand column structure
     const headers = this.parseCSVLine(lines[0]).map(h => h.toLowerCase().trim());
-    console.log('📋 CSV Headers found:', headers);
     
     // Find column indices
     const columnMap = {
@@ -144,8 +140,6 @@ class ServicesManager {
       category: this.findColumnIndex(headers, ['category', 'type']),
       image: this.findColumnIndex(headers, ['image', 'img', 'icon'])
     };
-    
-    console.log('🗂️ Column mapping:', columnMap);
     
     // Check if we found essential columns
     if (columnMap.name === -1) {
@@ -176,7 +170,6 @@ class ServicesManager {
         // Only add service if it has a name and description
         if (service.name.trim() && service.description.trim()) {
           services.push(service);
-          console.log(`📝 Added service: ${service.name}`);
         } else {
           console.warn(`⚠️ Skipping row ${i + 1}: Missing name or description`);
         }
@@ -194,7 +187,6 @@ class ServicesManager {
     for (const name of possibleNames) {
       const index = headers.findIndex(header => header.includes(name));
       if (index !== -1) {
-        console.log(`Found column "${name}" at index ${index}`);
         return index;
       }
     }
