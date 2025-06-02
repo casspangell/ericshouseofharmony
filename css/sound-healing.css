@@ -1,0 +1,461 @@
+ * {
+      box-sizing: border-box;
+    }
+
+    /* Enhanced Service Cards Styling */
+    .services-cards-harmony {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .service-card-harmony {
+      background: #d71b00b5;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0, 197, 215, 0.1);
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card-harmony:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-card-number {
+      position: absolute;
+      top: -15px;
+      left: 30px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #00c5d7, #0099aa);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0, 197, 215, 0.3);
+    }
+
+    .service-card-icon {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .service-card-icon img {
+      width: 60px;
+      height: auto;
+      opacity: 0.8;
+    }
+
+    .service-card-title {
+      font-size: 2.3rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .service-card-desc {
+      padding: 20px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      flex-grow: 1;
+      border-radius: 15px;
+      background-color: #fff;
+    }
+
+    .service-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: rgb(255 255 255);
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: linear-gradient(135deg, #eeeeee3b, rgba(0, 153, 170, 0.1));
+      border-radius: 8px;
+      border: 2px solid #eeeeee6e;
+    }
+
+    .service-card-harmony .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00c5d7, #0099aa);
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 1.4rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .service-card-harmony .btn:hover {
+      background: linear-gradient(135deg, #00c5d7, #6cf0ff);
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Verified Effects Section Styling */
+    .verified-effects-section {
+      
+    }
+
+    .verified-effects-title {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 300;
+      position: relative;
+    }
+
+    .verified-effects-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(135deg, #00c5d7, #0099aa);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    .verified-effects-row {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .verified-effects-col {
+      flex: 1;
+    }
+
+    /* Philosophy Cards */
+    .philosophy-section {
+      margin-bottom: 30px;
+    }
+
+    .philosophy-card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #00c5d7;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .philosophy-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .philosophy-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #00c5d7, #0099aa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .philosophy-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+      font-size: 1.5rem;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      background: linear-gradient(135deg, rgba(0, 197, 215, 0.05), rgba(0, 153, 170, 0.05));
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 197, 215, 0.1);
+    }
+
+    .benefits-title {
+      font-size: 2.1rem;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .benefits-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefit-item {
+      color: #555;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0, 197, 215, 0.1);
+    }
+
+    .benefit-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Disclaimer */
+    .disclaimer-box {
+      background: rgba(0, 197, 215, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 197, 215, 0.2);
+      margin-top: 30px;
+    }
+
+    .disclaimer-box p {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .disclaimer-box strong {
+      color: #2c3e50;
+    }
+
+    .blurb-small-desd {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: white; 
+      text-transform:inherit;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #00c5d7, #0099aa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 4px 15px rgba(0, 197, 215, 0.3);
+    }
+
+    .card-content h3 {
+      color: #2c3e50;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .card-content p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .certifications-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .cert-item {
+      color: #555;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      padding: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      .services-cards-harmony {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+      }
+      
+      .service-card-harmony {
+        padding: 25px 20px;
+        min-height: auto;
+      }
+      
+      .service-card-title {
+        font-size: 1.2rem;
+      }
+
+      .verified-effects-title {
+        font-size: 2rem;
+      }
+      
+      .verified-effects-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .philosophy-card {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .philosophy-icon {
+        align-self: center;
+      }
+      
+      .benefits-section {
+        padding: 20px;
+        margin-top: 30px;
+      }
+      
+      .benefits-title {
+        font-size: 1.3rem;
+      }
+
+      .blurb-small-desd {
+        font-size: 38px;
+        font-family: 'Bilbo', cursive;
+        text-transform: capitalize;
+        line-height: 1.4;
+        color: white; 
+        text-transform:inherit;
+      }
+
+      .about-card {
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+      
+      .card-content h3 {
+        font-size: 1.2rem;
+      }
+      
+      .card-content p {
+        font-size: 0.9rem;
+      }
+
+      .album-content-row {
+        flex-direction: column !important;
+      }
+      
+      .album-covers,
+      .album-video {
+        min-width: 100% !important;
+      }
+      
+      .cover-items {
+        flex-direction: column !important;
+      }
+      
+      .music-links {
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+      }
+      
+      .music-links img {
+        width: 100px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-card-harmony {
+        padding: 20px 15px;
+      }
+
+      .about-card {
+        padding: 20px;
+      }
+    }
+
+    /* Album Section Hover Effects */
+    .music-links a:hover {
+      transform: scale(1.05);
+    }
+
+    .album-cover:hover {
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+
+    /* Loading and Error States */
+    .services-loading {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .service-duration {
+      font-size: 1.3rem;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #00c5d7;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .services-error {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      font-size: 1.2rem;
+    }
