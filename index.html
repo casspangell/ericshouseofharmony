@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -97,7 +96,7 @@
             <p class="plain-text">Eric has been a musician most of his life.
               He started playing the guitar at 11, and by 15 he was in his first rock band, Vital Signs.
               Over the next 20 years, along with graduating from Drexel University with a B.A. in Music,
-              Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet’s
+              Eric played guitar in a handful of great yet unknown original bands, most notably Resin, Juliet's
               Wishing Well and the legendary blues band, Dr. Harmonica and Rockett 88.
             <br><br>Now he's a one-man band mixing his smooth voice with skilled guitar stylings for
             some incredible covers like you've never heard.<br></p>
@@ -124,7 +123,7 @@
     <div class="container">
       <div class="row">
         <div class="banner-title center" style="padding: 10px 10px 10px 10px">
-          <div class="banner-title" style="color: white; font-family: 'Bilbo', cursive; text-transform:capitalize;">Every show is unique.<br>Let’s book a show and make some magic at your awesome venue.</div>
+          <div class="banner-title" style="color: white; font-family: 'Bilbo', cursive; text-transform:capitalize;">Every show is unique.<br>Let's book a show and make some magic at your awesome venue.</div>
         </div>
 
         <div class="social-media-icons" style="text-align: center;">
@@ -218,7 +217,7 @@
 <!--        <div class="col-md-8 col-md-push-2">-->
 <!--          <div class="heading-title center">-->
 <!--            <h2>Live Rock <span>Performances</span></h2>-->
-<!--            <p>I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.</p><br>-->
+<!--            <p>I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let's book a show and make some magic at your awesome venue.</p><br>-->
 <!--            <div class="small-desd" style="color: #6633cc"><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a> <span>to connect or book a live event</span></div><br>-->
 <!--            <div class="small-desd" style="background-color: rgba(0,0,0,0.1); padding: 5px 5px 5px 5px; margin-top: 20px;"><h2 style="font-size:24px;"><a href="docs/song-list-8-20.pdf" style="color:#6633cc;">List of Cover Songs</a></h2></div>-->
 <!--          </div>-->
@@ -233,7 +232,7 @@
         <h2 style="font-size: 28px; color: #333; text-align: center;">Live Rock <span style="color: #6633cc;">Performances</span></h2>
       </div>
       <p class="description">
-        I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let’s book a show and make some magic at your awesome venue.
+        I've been a performing musician since I was a child. It began with the tuba in the school band from 5th grade and then the guitar in rock bands starting in high school until 2010 when I released my first solo  CD. I love making music and interacting with people so performing live in bars, restaurants and small music venues is a perfect outlet for me. Every show is unique but check out a video or two to get a glimpse of what a live show brings. Let's book a show and make some magic at your awesome venue.
       </p>
       <p>
         For bookings or inquiries, email us at
@@ -297,9 +296,15 @@
     </div>
   </section>
 
-<footer>
-  <div class="footer-container">
-    <p>© 2024 All Rights Reserved. - Eric's House of Harmony</p>
+<footer style="padding-top:0px;">
+  <div class="container">
+    <div class="down-footer">
+      <div class="container" style="position: relative;">
+        <div>
+          <p style="text-align: center;">© <span id="copyright-year"></span> All Rights Reserved. - Eric's House of Harmony</p>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -317,5 +322,14 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <script src="https://unpkg.com/wavesurfer.js@7"></script>
+  <script>
+  // Dynamically update copyright year
+  (function() {
+    var yearSpan = document.getElementById('copyright-year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  })();
+  </script>
 </body>
 </html>

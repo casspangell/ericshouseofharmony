@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -95,9 +94,9 @@
             <!-- Text Section (Left side) -->
             <div class="text-section">
                 <div class="bio">
-                    <p class="plain-text">Eric has been a musician most of his life. He started playing the guitar at 11 and by 15 he was in his first rock band, Vital Signs. Over the next 20 years, along with graduating from Drexel University with a B.A. in Music in 1991, Eric played rhythm and lead guitar in a handful of original bands, most notably Resin, Juliet’s Wishing Well and a 3 year stint with the legendary blues band, Dr. Harmonica and Rockett 88.  <br><br>
+                    <p class="plain-text">Eric has been a musician most of his life. He started playing the guitar at 11 and by 15 he was in his first rock band, Vital Signs. Over the next 20 years, along with graduating from Drexel University with a B.A. in Music in 1991, Eric played rhythm and lead guitar in a handful of original bands, most notably Resin, Juliet's Wishing Well and a 3 year stint with the legendary blues band, Dr. Harmonica and Rockett 88.  <br><br>
                         In 2010, Eric wrote, recorded and produced his first solo CD under the name Eric from Philly and embarked on a 6 month cross country tour to support it.  Eric continued to tour around the country for the next couple years and then finally landed in Key West in 2012.  For the next 12 years, Eric played 6-8 gigs a week in Key West at many venues in the keys from tiki bars, fine dining restaurants, hotel pool side and more.<br><br>
-                        Eric has developed an understanding of the basics of ‘working the crowd’, and he sets out to satisfy the most discriminating ear.  Most folks want to hear a familiar song, but delivered uniquely, from the soul.  If they can sing along, that’s even better.   “I like to have fun and mix it up with people.  I like to engage people and make the evening more of an interactive party.”  Having an appreciation for all music genres and styles has helped him create a very diverse repertoire.  One of his biggest compliments is the variety of songs in his sets.  There is a song on his list for everyone.  <br><br>
+                        Eric has developed an understanding of the basics of 'working the crowd', and he sets out to satisfy the most discriminating ear.  Most folks want to hear a familiar song, but delivered uniquely, from the soul.  If they can sing along, that's even better.   "I like to have fun and mix it up with people.  I like to engage people and make the evening more of an interactive party."  Having an appreciation for all music genres and styles has helped him create a very diverse repertoire.  One of his biggest compliments is the variety of songs in his sets.  There is a song on his list for everyone.  <br><br>
                         Whether it be a college bar, an Irish pub or a tiki hut, Eric is comfortable playing almost anywhere.  He also enjoys a relaxed Sunday morning gig at a cafe or even a chilled out set at a fine dining room.  Private parties are a favorite and just to keep that true bluesy edge, every once in a while you might find him busking on a busy street corner.  With his deep, rich, vocal tone and dynamic guitar style, listeners become lost in the sound.  He will put a smile on your face or maybe instigate a tear.  Either way, you will feel something.</p>
                 </div>
             </div>
@@ -126,7 +125,7 @@
 
 <footer>
     <div class="footer-container">
-        <p>© 2024 All Rights Reserved. - Eric's House of Harmony</p>
+        <p>© <span id="copyright-year"></span> All Rights Reserved. - Eric's House of Harmony</p>
     </div>
 </footer>
 
@@ -144,5 +143,14 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://unpkg.com/wavesurfer.js@7"></script>
+<script>
+// Dynamically update copyright year
+(function() {
+  var yearSpan = document.getElementById('copyright-year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+})();
+</script>
 </body>
 </html>

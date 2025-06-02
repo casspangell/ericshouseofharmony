@@ -1,0 +1,231 @@
+:root {
+  /* Theme Colors */
+  --contact-btn-primary: #00c5d7;
+  --contact-btn-secondary: #003366;
+  --contact-btn-minimal: transparent;
+  --contact-btn-text: #ffffff;
+  --contact-btn-text-dark: #333333;
+  --contact-btn-shadow: rgba(0, 0, 0, 0.1);
+  --contact-btn-border: #00c5d7;
+  
+  /* Sizes */
+  --contact-btn-small: 0.875rem;
+  --contact-btn-medium: 1rem;
+  --contact-btn-large: 1.25rem;
+  
+  /* Spacing */
+  --contact-btn-padding-small: 0.5rem 1rem;
+  --contact-btn-padding-medium: 0.75rem 1.5rem;
+  --contact-btn-padding-large: 1rem 2rem;
+  
+  /* Border Radius */
+  --contact-btn-radius: 8px;
+  --contact-btn-radius-round: 50%;
+  
+  /* Transitions */
+  --contact-btn-transition: all 0.3s ease;
+  
+  /* Z-index */
+  --contact-btn-z-index: 1000;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: var(--contact-btn-radius);
+  transition: var(--contact-btn-transition);
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* Style Variants */
+.contact-btn--primary {
+  background-color: var(--contact-btn-primary);
+  color: var(--contact-btn-text);
+}
+
+.contact-btn--secondary {
+  background-color: var(--contact-btn-secondary);
+  color: var(--contact-btn-text);
+}
+
+.contact-btn--minimal {
+  background-color: var(--contact-btn-minimal);
+  color: var(--contact-btn-primary);
+  border: 2px solid var(--contact-btn-border);
+}
+
+.contact-btn--floating {
+  border-radius: var(--contact-btn-radius-round);
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px var(--contact-btn-shadow);
+}
+
+/* Size Variants */
+.contact-btn--small {
+  font-size: var(--contact-btn-small);
+  padding: var(--contact-btn-padding-small);
+}
+
+.contact-btn--medium {
+  font-size: var(--contact-btn-medium);
+  padding: var(--contact-btn-padding-medium);
+}
+
+.contact-btn--large {
+  font-size: var(--contact-btn-large);
+  padding: var(--contact-btn-padding-large);
+}
+
+/* Position Variants */
+.contact-btn--fixed {
+  position: fixed;
+  z-index: var(--contact-btn-z-index);
+}
+
+.contact-btn--fixed-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.contact-btn--fixed-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.contact-btn--fixed-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+/* Icon Styles */
+.contact-btn__icon {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+.contact-btn--floating .contact-btn__icon {
+  margin-right: 0;
+  font-size: 1.5em;
+}
+
+/* Hover Effects */
+.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--contact-btn-shadow);
+}
+
+.contact-btn--minimal:hover {
+  background-color: var(--contact-btn-primary);
+  color: var(--contact-btn-text);
+}
+
+.contact-btn--floating:hover {
+  transform: scale(1.1);
+}
+
+/* Active State */
+.contact-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px var(--contact-btn-shadow);
+}
+
+/* Focus State */
+.contact-btn:focus {
+  outline: 2px solid var(--contact-btn-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .contact-btn--fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+  }
+  
+  .contact-btn--fixed-top-right {
+    top: auto;
+  }
+  
+  .contact-btn--floating {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact-btn--floating .contact-btn__icon {
+    font-size: 1.3em;
+  }
+}
+
+/* Animation Classes */
+.contact-btn--fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.contact-btn--slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.contact-btn--bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  70% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Loading State */
+.contact-btn--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.contact-btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+} 
