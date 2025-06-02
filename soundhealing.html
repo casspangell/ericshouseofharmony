@@ -29,10 +29,6 @@
   <link rel="stylesheet" href="css/topcontent.css">
   <link rel="stylesheet" href="css/buttons.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <!-- SwiperJS CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.css" />
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -543,18 +539,28 @@
         <div class="flex-top-section" style="display: flex; width: 100%; flex-wrap: nowrap; justify-content: center; align-items: stretch; gap: 40px; padding: 40px 60px; min-height: 350px; box-sizing: border-box;">
           <div class="flex-left" style="flex: 0 1 70%; min-width: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <a href="https://ericshouseofharmony.com/videos/sound_healing_intro.mp4">
-              <img src="img/video-cover2_800.jpg" style="width:100%; max-width: 500px; margin-bottom: 30px;">
+              <img src="img/video-cover2_800.jpg" style="width:100%; max-width: 700px; margin-bottom: 30px;">
             </a>
             <div class="container">
+
             <div class="row margin-btm-15 top-section">
 
             </div>
           </div>
           </div>
+             <div class="our-clients">
+              <div class="healing-static-row">
+                <img src="img/ericfull_185.jpg" alt="Eric full portrait" />
+                <img src="img/forks1_185.jpg" alt="Tuning forks" />
+                <img src="img/erictingsha_185.jpg" alt="Eric with tingsha" />
+                <img src="img/ericbowl2_185.jpg" alt="Eric with second bowl" />
+                <img src="img/Pagosa_185.jpg" alt="Pagosa landscape" />
+              </div>
+            </div>
           <div class="flex-right" style="flex: 0 1 30%; min-width: 200px; display: flex; align-items: center; justify-content: center; text-align: left;">
             <div class="description-slide" style="width: 100%;">
               <div class="heading-title center" style="text-align: left;">
-                <div class="small-desd" style="line-height: 26pt; color: rgb(0, 51, 102); font-size: 38px; font-family: 'Amatic SC', cursive; text-transform:capitalize; text-align: center;">"The way in which man<br/>can find his own place<br>is to tune his instrument to<br/>the keynote of the chord<br/>of which he belongs."<br><br>- Hazrat Inyat Kahn</div>
+                <div class="small-desd" style="line-height: 26pt; color: rgb(0, 51, 102); font-size: 38px; font-family: 'Amatic SC', cursive; text-transform:capitalize; text-align: center;">"The way in which man<br/>can find his own place<br>is to tune his instrument to the keynote of the chord of which he belongs."<br><br>- Hazrat Inyat Kahn</div>
               </div>
             </div>
           </div>
@@ -588,16 +594,6 @@
           </span> -Hazrat Inyat Khan
           <br><br>
           It seems so simple yet it can be dramatically effective<br>in improving your health and well being.
-        </div>
-      </div>
-      <div class="our-clients">
-        <div class="healing-static-row">
-          <img src="img/ericfull_185.jpg" alt="Eric full portrait" />
-          <img src="img/ericbowl1_185.jpg" alt="Eric with bowl" />
-          <img src="img/forks1_185.jpg" alt="Tuning forks" />
-          <img src="img/erictingsha_185.jpg" alt="Eric with tingsha" />
-          <img src="img/ericbowl2_185.jpg" alt="Eric with second bowl" />
-          <img src="img/Pagosa_185.jpg" alt="Pagosa landscape" />
         </div>
       </div>
     </div>
@@ -732,7 +728,7 @@
   </div>
 </section>
 
-<section class="section-bio" style="z-index: 0; padding-top: 0px;">
+<section class="section-bio" style="z-index: 0; padding-top: 0px; padding-bottom: 0px;">
   <div class="into-slider" style="background-color:rgba(0, 51, 102, 0.75);" id="into">
     <div class="container-fluid">
 
@@ -749,8 +745,8 @@
         <div class="blurb-small-desd">Employing the induction of sound waves directly into the body, coupled with calming ambient tones, Eric delivers a compelling and impactful form of therapy. Clients frequently report experiencing a range of benefits, including entering a meditative state and attaining deep relaxation.</div>
       </div>
   
-      <div class="row" style="margin: 25px;">
-        <div class="flex-cert-bio" style="display: flex; gap: 32px; justify-content: center; align-items: stretch; margin: 25px auto; max-width: 1100px;">
+      <div class="row" style="margin: 25px 0 0 0;">
+        <div class="flex-cert-bio" style="display: flex; gap: 32px; justify-content: center; align-items: stretch; margin: 25px auto 0 auto; max-width: 1100px; margin-bottom: 0;">
           <!-- Left Column - Professional Certifications -->
           <div style="flex: 1; min-width: 280px; max-width: 500px; display: flex; align-items: center;">
             <div class="about-card" style="text-align: center; width: 100%;">
@@ -794,7 +790,16 @@
 </section>
 
 <!--Section our skills -->
-<section class="section-album" style="background-color: rgba(250, 250, 250, 0.9); padding: 60px 0;" id="healing_album">
+<section class="section-album" style="background-color: rgba(250, 250, 250, 0.9); padding: 0 0 60px 0; margin-top: 0;" id="healing_album">
+  <style>
+    .section-album, .album-container, .section-album .heading-title {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .flex-cert-bio {
+      margin-bottom: 0 !important;
+    }
+  </style>
   <div class="container">
     <div class="album-container">
       <div class="heading-title small-heading center">
@@ -887,34 +892,6 @@
 <script src="js/navigation.js"></script>
 <script src="js/album.js"></script>
 <script src="js/header.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-<script src="https://unpkg.com/wavesurfer.js@7"></script>
-
-<!-- Swiper JS CDN and initialization -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const swiperElement = document.querySelector('.healing-marquee');
-  if (swiperElement) {
-    new Swiper('.healing-marquee', {
-      slidesPerView: 'auto',
-      spaceBetween: 0,
-      loop: true,
-      allowTouchMove: true,
-      speed: 18000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        reverseDirection: true,
-        pauseOnMouseEnter: true,
-      },
-      freeMode: true,
-      freeModeMomentum: false,
-      grabCursor: true,
-    });
-  }
-});
-</script>
 
 <script>
 // Dynamically update copyright year
