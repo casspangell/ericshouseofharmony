@@ -14,8 +14,6 @@ class ServicesManager {
     this.retryDelay = 1500; // 1.5 seconds between retries
     this.isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
-    console.log(`🏗️ ServicesManager initialized on ${this.isLocalhost ? 'localhost' : 'live server'}`);
-    
     this.init();
   }
 
@@ -62,8 +60,6 @@ class ServicesManager {
     this.showLoading();
 
     try {
-      console.log('🌐 Attempting to fetch from:', this.sheetsURL);
-      console.log('🔗 Current domain:', window.location.hostname);
       
       const startTime = Date.now();
       
@@ -77,13 +73,12 @@ class ServicesManager {
       });
 
       const fetchTime = Date.now() - startTime;
-      console.log(`⏱️ Fetch completed in ${fetchTime}ms`);
 
       if (!response.ok) {
         console.error('❌ HTTP Error:', response.status, response.statusText);
         throw new Error(`HTTP ${response.status}: ${response.statusText || 'Failed to fetch from Google Sheets'}`);
       }
-      
+
       const csvText = await response.text();
       
       if (!csvText || csvText.trim().length === 0) {
@@ -306,7 +301,6 @@ class ServicesManager {
     const iconPath = iconMap[cleanImageValue];
     
     if (iconPath) {
-      console.log(`📷 Mapped image "${imageValue}" to ${iconPath}`);
       return iconPath;
     } else {
       console.warn(`⚠️ Unknown image value: "${imageValue}" - using default icon`);
@@ -414,7 +408,6 @@ document.addEventListener('DOMContentLoaded', function() {
   try {
     // Only initialize if we're on a page with services
     if (document.getElementById('services-cards-container')) {
-      console.log('🚀 Initializing Services Manager...');
       new ServicesManager();
     } else {
       console.log('ℹ️ Services container not found - skipping initialization');
