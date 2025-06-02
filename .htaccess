@@ -1,6 +1,9 @@
 # Enable the use of the .htaccess file
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  
+  # Define base path - empty for root domain, /project-name for localhost subdirectories
+  # RewriteBase /
 </IfModule>
 
 # Set the default charset to UTF-8 (optional)
@@ -20,15 +23,28 @@ Options -Indexes
 ErrorDocument 404 /error_pages/404.html
 ErrorDocument 500 /error_pages/500.html
 
-# Redirect to HTTPS (optional, if you have an SSL certificate installed)
+# Redirect to HTTPS (but skip this on localhost)
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# Remove .html extension from URLs
+# Part 1: Redirect requests with .html to clean URLs (external redirect)
 <IfModule mod_rewrite.c>
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+</IfModule>
+
+# Part 2: Internally map clean URLs to .html files (internal rewrite)
+<IfModule mod_rewrite.c>
+  # If the requested URL is not a file
   RewriteCond %{REQUEST_FILENAME} !-f
+  # And it's not a directory
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)\.html$ /$1 [L,R=301]
+  # And the requested URL with .html added is a file
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
+  # Then rewrite to the .html version internally
+  RewriteRule ^(.*)$ $1.html [L]
 </IfModule>

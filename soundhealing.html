@@ -514,7 +514,7 @@
     <!-- Navigation Menu -->
     <nav class="navigation-menu" id="navigation-menu">
       <ul>
-        <li><a href="https://www.ericshouseofharmony.com">Home</a></li>
+        <li><a href="https://www.ericshouseofharmony.com/soundhealing">Home</a></li>
         <li>
           <a href="#">Albums <span class="dropdown-arrow"></span></a>
           <ul class="dropdown">
@@ -522,6 +522,7 @@
             <li><a href="#healing_album" class="scroll-link">Album - Good as Gold</a></li>
           </ul>
         </li>
+        <li><a href="https://www.ericshouseofharmony.com">Rock Music</a></li>
         <li><a href="#connect" class="scroll-link">Connect</a></li>
       </ul>
     </nav>
@@ -910,6 +911,25 @@
     yearSpan.textContent = new Date().getFullYear();
   }
 })();
+
+
+function bookService(serviceId, serviceName, duration, price) {
+  // For Google Apps Script web apps, we need to use a specific URL format
+  const baseUrl = 'https://script.google.com/macros/s/AKfycbzsuiK3CphV3hynHuSLNXNiTe9ZejOLjHTr-hWpshyweuKKwDIlIklypHEIFWt90XD02w/exec';
+  
+  // Create a URL that will work with Apps Script
+  const url = new URL(baseUrl);
+  
+  // Add service parameters
+  url.searchParams.append('id', serviceId);
+  url.searchParams.append('name', serviceName);
+  url.searchParams.append('duration', duration);
+  url.searchParams.append('price', price);
+  
+  // Navigate to the booking page
+  window.location.href = url.toString();
+}
+
 </script>
 </body>
 </html>

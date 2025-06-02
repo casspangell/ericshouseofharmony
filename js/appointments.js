@@ -91,7 +91,7 @@ class ServicesManager {
         throw new Error('No valid services found in Google Sheets');
       }
 
-      console.log(`✅ Successfully loaded ${services.length} services from Google Sheets`);
+      // console.log(`✅ Successfully loaded ${services.length} services from Google Sheets`);
       this.renderServices(services);
       this.showServices();
       
@@ -116,7 +116,19 @@ class ServicesManager {
   }
 
   parseCSV(csvText) {
+    // DEBUG: Log the raw CSV data
+    // console.log('📄 Raw CSV text:');
+    // console.log(JSON.stringify(csvText));
+    // console.log('📄 CSV length:', csvText.length);
+    
     const lines = csvText.split('\n').map(line => line.trim()).filter(line => line);
+    
+    // DEBUG: Log each line
+    // console.log('📄 Parsed lines:', lines.length);
+    lines.forEach((line, index) => {
+      // console.log(`Line ${index}: "${line}" (length: ${line.length})`);
+    });
+    
     const services = [];
     
     if (lines.length < 2) {
@@ -125,6 +137,7 @@ class ServicesManager {
     
     // Parse header to understand column structure
     const headers = this.parseCSVLine(lines[0]).map(h => h.toLowerCase().trim());
+    // console.log('📄 Headers found:', headers);
     
     // Find column indices
     const columnMap = {
@@ -135,6 +148,8 @@ class ServicesManager {
       category: this.findColumnIndex(headers, ['category', 'type']),
       image: this.findColumnIndex(headers, ['image', 'img', 'icon'])
     };
+    
+    // console.log('📄 Column mapping:', columnMap);
     
     // Check if we found essential columns
     if (columnMap.name === -1) {
@@ -151,6 +166,7 @@ class ServicesManager {
       
       try {
         const columns = this.parseCSVLine(line);
+        // console.log(`📄 Row ${i} columns:`, columns);
         
         // Extract service data using column mapping
         const service = {
@@ -162,19 +178,24 @@ class ServicesManager {
           image: this.getColumnValue(columns, columnMap.image) || ''
         };
         
+        // console.log(`📄 Parsed service ${i}:`, service);
+        
         // Only add service if it has a name and description
         if (service.name.trim() && service.description.trim()) {
           services.push(service);
+          console.log(`✅ Added service: ${service.name}`);
         } else {
-          console.warn(`⚠️ Skipping row ${i + 1}: Missing name or description`);
+          console.warn(`⚠️ Skipping row ${i + 1}: Missing name (${service.name}) or description (${service.description})`);
         }
         
       } catch (error) {
         console.warn(`⚠️ Error parsing row ${i + 1}:`, error.message);
+        console.warn(`⚠️ Row content: "${line}"`);
         continue; // Skip problematic lines
       }
     }
     
+    // console.log(`📄 Final services array (${services.length} services):`, services);
     return services;
   }
 
@@ -225,6 +246,7 @@ class ServicesManager {
     return result.map(item => item.replace(/^"|"$/g, '').trim());
   }
 
+  // Replace your renderServices method with this improved version
   renderServices(services) {
     if (!this.container) {
       throw new Error('Services container element not found - check that id="services-cards-container" exists');
@@ -234,26 +256,113 @@ class ServicesManager {
     
     services.forEach((service, index) => {
       try {
+        // console.log(`🔨 Creating card for service ${index + 1}:`, service);
+        
         const serviceCard = this.createServiceCard(service, index + 1);
+        
+        // Check if card was created successfully
+        if (!serviceCard) {
+          console.error(`❌ createServiceCard returned null/undefined for service ${index + 1}`);
+          return; // Skip this service
+        }
+        
+        if (!(serviceCard instanceof Node)) {
+          console.error(`❌ createServiceCard returned invalid node type for service ${index + 1}:`, typeof serviceCard);
+          return; // Skip this service
+        }
+        
         this.container.appendChild(serviceCard);
+        // console.log(`✅ Successfully added card for service ${index + 1}`);
+        
       } catch (error) {
         console.error(`❌ Error creating card for service ${index + 1}:`, error);
+        console.error(`❌ Service data:`, service);
+        
+        // Create a fallback error card so the user knows something went wrong
+        const errorCard = this.createErrorCard(service, index + 1, error.message);
+        if (errorCard) {
+          this.container.appendChild(errorCard);
+        }
       }
     });
   }
 
+  createErrorCard(service, number, errorMessage) {
+    try {
+      const card = document.createElement('div');
+      card.className = 'service-card-harmony';
+      card.style.backgroundColor = '#ffe6e6';
+      card.style.border = '2px solid #ff9999';
+      
+      card.innerHTML = `
+        <div class="service-card-number">${number}</div>
+        <h3 class="service-card-title" style="color: #cc0000;">Error Loading Service</h3>
+        <p class="service-card-desc" style="color: #666;">
+          Service Name: ${this.escapeHtml(service.name || 'Unknown')}<br>
+          Error: ${this.escapeHtml(errorMessage)}
+        </p>
+        <div class="service-price">Contact for Info</div>
+        <a class="btn" href="mailto:info@ericshouseofharmony.com" style="background: #cc0000;">Contact for Details</a>
+      `;
+      
+      return card;
+    } catch (e) {
+      console.error('Failed to create error card:', e);
+      return null;
+    }
+  }
+
   createServiceCard(service, number) {
+  try {
+    // Validate inputs
+    if (!service) {
+      throw new Error('Service data is null or undefined');
+    }
+    
+    if (!service.name || service.name.trim().length === 0) {
+      throw new Error('Service name is required');
+    }
+    
     const card = document.createElement('div');
+    if (!card) {
+      throw new Error('Failed to create div element');
+    }
+    
     card.className = 'service-card-harmony';
     
     // Determine button text and link based on service type
     let buttonHTML = '';
-    const serviceName = service.name.toLowerCase();
+    const serviceName = (service.name || '').toLowerCase();
     
     if (serviceName.includes('workshop') || serviceName.includes('great song')) {
       buttonHTML = `<a class="btn smooth-scroll" href="https://www.ericshouseofharmony.com/greatsong.html">Learn More</a>`;
     } else {
-      buttonHTML = `<a class="btn smooth-scroll" href="#connect">Book Now</a>`;
+      // Format service duration from text to minutes
+      let durationMinutes = 60; // default
+      if (service.duration) {
+        const durationText = service.duration.toLowerCase().trim();
+        const match = durationText.match(/(\d+)/);
+        if (match) {
+          durationMinutes = parseInt(match[1]);
+          if (durationMinutes < 10 && durationText.includes('hour')) {
+            durationMinutes *= 60;
+          }
+        }
+      }
+      
+      // Format price as a number
+      let priceValue = 0;
+      if (service.price) {
+        const priceText = service.price.replace(/[^\d.]/g, '');
+        priceValue = parseFloat(priceText) || 0;
+      }
+      
+      // Escape the service name for JavaScript
+      const escapedName = this.escapeJs(service.name || '');
+      
+      buttonHTML = `<a class="btn smooth-scroll" 
+        onclick="bookService(${number}, '${escapedName}', ${durationMinutes}, ${priceValue})" 
+        href="javascript:void(0);">Book Now</a>`;
     }
 
     // Format price display
@@ -268,20 +377,34 @@ class ServicesManager {
     // Get the correct icon path
     const iconPath = this.getIconPath(service.image);
 
-    card.innerHTML = `
+    // Build the card HTML with proper escaping
+    const cardHTML = `
       <div class="service-card-number">${number}</div>
       <div class="service-card-icon">
-        <img src="${iconPath}" alt="${service.name} Icon" onerror="this.style.display='none'">
+        <img src="${this.escapeHtml(iconPath)}" alt="${this.escapeHtml(service.name)} Icon" onerror="this.style.display='none'">
       </div>
       <h3 class="service-card-title">${this.escapeHtml(service.name)}</h3>
       <p class="service-card-desc">${this.escapeHtml(description)}</p>
-      ${durationDisplay ? `<div class="service-duration">Duration: ${durationDisplay}</div>` : ''}
-      <div class="service-price">${priceDisplay}</div>
+      ${durationDisplay ? `<div class="service-duration">Duration: ${this.escapeHtml(durationDisplay)}</div>` : ''}
+      <div class="service-price">${this.escapeHtml(priceDisplay)}</div>
       ${buttonHTML}
     `;
     
+    card.innerHTML = cardHTML;
+    
+    // Verify the card was created properly
+    if (!card.firstChild) {
+      throw new Error('Card HTML failed to render');
+    }
+    
     return card;
+    
+  } catch (error) {
+    console.error(`Failed to create service card for service ${number}:`, error);
+    console.error('Service data:', service);
+    throw error; // Re-throw to be caught by renderServices
   }
+}
 
   getIconPath(imageValue) {
     // Map of spreadsheet image values to file paths
@@ -322,6 +445,17 @@ class ServicesManager {
     }
     
     return price; // Return original if can't parse
+  }
+
+  escapeJs(text) {
+    if (!text) return '';
+    return text
+      .replace(/\\/g, '\\\\')
+      .replace(/'/g, "\\'")
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, '\\n')
+      .replace(/\r/g, '\\r')
+      .replace(/\t/g, '\\t');
   }
 
   formatDuration(duration) {
