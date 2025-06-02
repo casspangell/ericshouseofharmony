@@ -39,7 +39,7 @@ class ServicesManager {
     
     for (let attempt = 1; attempt <= this.retryAttempts; attempt++) {
       try {
-        console.log(`Loading services from Google Sheets - attempt ${attempt}/${this.retryAttempts}`);
+        console.log(`Loading services - attempt ${attempt}/${this.retryAttempts}`);
         await this.loadServices();
         return; // Success, exit retry loop
       } catch (error) {
