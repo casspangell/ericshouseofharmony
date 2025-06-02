@@ -731,7 +731,7 @@
   </div>
 </section>
 
-<section class="section-portfolio" style="z-index: 0; padding-top: 0px;">
+<section class="section-bio" style="z-index: 0; padding-top: 0px;">
   <div class="into-slider" style="background-color:rgba(0, 51, 102, 0.75);" id="into">
     <div class="container-fluid">
 
@@ -866,7 +866,7 @@
   </div>
 </section>
 
-<footer style="padding-top:0px; padding-bottom: 80px;">
+<footer>
   <div class="container">
     <div class="down-footer">
       <div class="container" style="position: relative;">
@@ -877,30 +877,6 @@
 
     </div>
 </footer>
-
-<div class="playbutton">
-  <audio id="background_audio" src="audio/light_audio.mp3" preload="auto"></audio>
-  <button class = "play-button" id="play_button" onclick="playMusic()">Listen to Eric Now</button>
-</div>
-
-<script>
-  var btn = document.getElementById("play_button");
-  var audio = document.getElementById("background_audio");
-  var isPlaying = false;
-
-  function playMusic() {
-
-    if (!isPlaying) {
-      audio.play();
-      btn.innerHTML = "Silence Audio";
-      isPlaying = true;
-    } else {
-      audio.pause();
-      btn.innerHTML = "Listen to Eric Now";
-      isPlaying = false;
-    }
-  }
-</script>
 
 <div class="top icon-down toTopFromBottom" style="z-index:9999"><a class="smooth-scroll" href="#top"><i class="pe-7s-angle-up"></i></a></div>
 
@@ -915,138 +891,6 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://unpkg.com/wavesurfer.js@7"></script>
-
-<!-- Custom Carousel Script -->
-<script>
-(function() {
-  const viewer = document.getElementById('horizontal-scroll-viewer');
-  if (!viewer) return; // Exit if element doesn't exist
-  
-  const container = viewer.querySelector('.scroll-container');
-  const row = viewer.querySelector('.scroll-row');
-  const images = Array.from(row.querySelectorAll('.scroll-image'));
-  const thumbnails = Array.from(viewer.querySelectorAll('.thumbnail'));
-  const progressBar = viewer.querySelector('.scroll-progress');
-  const leftArrow = viewer.querySelector('.scroll-arrow.left');
-  const rightArrow = viewer.querySelector('.scroll-arrow.right');
-  let autoScrollInterval = null;
-  let isHovered = false;
-  let scrollSpeed = 0.5; // px per frame (slow and steady)
-  let imageWidth = images[0].offsetWidth + 24; // image + gap
-  let totalWidth = 0;
-
-  // Duplicate images for seamless infinite scroll
-  function duplicateImages() {
-    row.innerHTML += row.innerHTML;
-  }
-  duplicateImages();
-
-  // Update image/row references after duplication
-  const allImages = Array.from(row.querySelectorAll('.scroll-image'));
-  totalWidth = images.length * imageWidth;
-
-  // Auto-scroll logic
-  function autoScroll() {
-    if (isHovered) return;
-    container.scrollLeft += scrollSpeed;
-    if (container.scrollLeft >= totalWidth) {
-      container.scrollLeft = 0;
-    }
-    updateProgress();
-    updateActiveThumbnail();
-    requestAnimationFrame(autoScroll);
-  }
-
-  function startAutoScroll() {
-    isHovered = false;
-    requestAnimationFrame(autoScroll);
-  }
-  function stopAutoScroll() {
-    isHovered = true;
-  }
-
-  // Manual scroll with arrows
-  leftArrow.addEventListener('click', () => {
-    container.scrollLeft -= imageWidth;
-    updateProgress();
-    updateActiveThumbnail();
-  });
-  rightArrow.addEventListener('click', () => {
-    container.scrollLeft += imageWidth;
-    updateProgress();
-    updateActiveThumbnail();
-  });
-
-  // Pause on hover
-  container.addEventListener('mouseenter', stopAutoScroll);
-  container.addEventListener('mouseleave', startAutoScroll);
-  leftArrow.addEventListener('mouseenter', stopAutoScroll);
-  leftArrow.addEventListener('mouseleave', startAutoScroll);
-  rightArrow.addEventListener('mouseenter', stopAutoScroll);
-  rightArrow.addEventListener('mouseleave', startAutoScroll);
-
-  // Mouse wheel horizontal scroll
-  container.addEventListener('wheel', e => {
-    e.preventDefault();
-    container.scrollLeft += e.deltaY;
-    updateProgress();
-    updateActiveThumbnail();
-  }, { passive: false });
-
-  // Touch/Swipe support
-  let startX = 0, scrollStart = 0;
-  container.addEventListener('touchstart', e => {
-    stopAutoScroll();
-    startX = e.touches[0].clientX;
-    scrollStart = container.scrollLeft;
-  }, { passive: true });
-  container.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - startX;
-    container.scrollLeft = scrollStart - dx;
-    updateProgress();
-    updateActiveThumbnail();
-  }, { passive: true });
-  container.addEventListener('touchend', startAutoScroll);
-
-  // Thumbnail navigation
-  thumbnails.forEach((thumb, idx) => {
-    thumb.addEventListener('click', () => {
-      container.scrollLeft = idx * imageWidth;
-      updateProgress();
-      updateActiveThumbnail();
-    });
-  });
-
-  // Progress bar
-  function updateProgress() {
-    let percent = (container.scrollLeft % totalWidth) / totalWidth * 100;
-    progressBar.style.width = percent + '%';
-  }
-
-  // Active thumbnail sync
-  function updateActiveThumbnail() {
-    let idx = Math.round((container.scrollLeft % totalWidth) / imageWidth) % images.length;
-    thumbnails.forEach((thumb, i) => {
-      thumb.classList.toggle('active', i === idx);
-    });
-  }
-
-  // Responsive: recalculate on resize
-  window.addEventListener('resize', () => {
-    imageWidth = images[0].offsetWidth + 24;
-    totalWidth = images.length * imageWidth;
-  });
-
-  // Initialize
-  container.scrollLeft = 0;
-  updateProgress();
-  updateActiveThumbnail();
-  startAutoScroll();
-
-  // Cleanup
-  window.addEventListener('beforeunload', stopAutoScroll);
-})();
-</script>
 
 <!-- Swiper JS CDN and initialization -->
 <script>
