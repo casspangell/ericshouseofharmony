@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -219,7 +218,7 @@
               <div class="icon icon-circle" style="background-color: #336666"><i class="fas fa-guitar"></i></div>
             </div>
             <h3>Extensive Experience</h3>
-            <p>Eric holds a B.A. in Music/Marketing and was fortunate to be in a handful of great bands, most notably Resin, Juliet’s Wishing Well, Harter Attack and the legendary blues band, Dr. Harmonica and Rockett 88. He has spent the last 11 years touring the country as a solo artist and playing the last 9 years nightly in Key West Florida.</p>
+            <p>Eric holds a B.A. in Music/Marketing and was fortunate to be in a handful of great bands, most notably Resin, Juliet's Wishing Well, Harter Attack and the legendary blues band, Dr. Harmonica and Rockett 88. He has spent the last 11 years touring the country as a solo artist and playing the last 9 years nightly in Key West Florida.</p>
           </div>
           <!-- Edn items-->
         </div>
@@ -239,7 +238,7 @@
 
           <!--<div class="col-md-12">-->
             <div class="heading-title center" style="padding: 10px 10px 10px 10px">
-              <div class="small-desd" style="color: white; font-size: 25px">Every show is unique.<br>Let’s book a show and make some magic at your awesome venue.</div> 
+              <div class="small-desd" style="color: white; font-size: 25px">Every show is unique.<br>Let's book a show and make some magic at your awesome venue.</div> 
             </div>
           <!--</div>-->    
         </div>
@@ -257,7 +256,7 @@
       <div class="down-footer">
         <div class="container" style="position: relative;">
             <div>
-              <p style="text-align: center;">© 2024 All Rights Reserved.  -   Eric's House of Harmony</p>
+              <p style="text-align: center;">© <span id="copyright-year"></span> All Rights Reserved.  -   Eric's House of Harmony</p>
             </div>
           </div>
 
@@ -273,6 +272,15 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="validator.js"></script>
     <script src="contact.js"></script>
+    <script>
+    // Dynamically update copyright year
+    (function() {
+      var yearSpan = document.getElementById('copyright-year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    })();
+    </script>
 
   </body>
 </html>

@@ -756,8 +756,8 @@
         <div class="blurb-small-desd">Employing the induction of sound waves directly into the body, coupled with calming ambient tones, Eric delivers a compelling and impactful form of therapy. Clients frequently report experiencing a range of benefits, including entering a meditative state and attaining deep relaxation.</div>
       </div>
   
-      <div class="col-md-6">
-          <div class="about-card">
+      <div class="col-md-6 col-md-offset-3">
+          <div class="about-card" style="text-align: center;">
               <div class="card-icon">
               </div>
               <div class="card-content">
@@ -772,7 +772,9 @@
                   </div>
               </div>
           </div>
-    </div><!--kilroy -->
+      </div>
+    </div>
+  </div>
 </section>
 
 <!--Section our skills -->
@@ -828,62 +830,6 @@
       </div>
     </div>
   </div>
-
-<!--Section testimonials-->
-<section class="section-testimonials bg-dark-section" style="background-color: rgba(250, 250, 250, 0.9);">
-  <div class="container">
-    <div class="row">
-      <div class="testimonials-items">
-
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"Very tasteful, well-conceived, well-executed, metaphysical concept album! There is just enough diversity in the first half of the album to keep it interesting while still adhering to the overall feel of the project. Brilliant work of art!"</p><span class="name">- Lou L.</span><span class="person" style="color: rgba(0,0,0,0.8);">Sacramento, CA</span>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"I can't stop listening! It's a multi-layered, sonic, chakra awakening sound healing experience. Be sure to check it out. You'll be singing your chakras awake with the songs and relaxing into a state of bliss with the mellow sound healing tracks. It's really two CDs in one. Good As Gold is the next best thing in sound healing music. Thanks Eric for sticking with this vision so that we may all benefit."</p><span class="name">- Debra K.</span><span class="person" style="color: rgba(0,0,0,0.8);">Pagosa Springs, CO</span>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"This album marks a new era in music. The skillful combination of "New Age", Folk, Americana, and Meditational Inspiration is a fresh and entertaining twist that listeners of any genre will want in their collection. Eric has reached far into his depth of years of education, collaborations, and multi-instrumental talent and created a sound that ushers in the dawn of awakening."</p><span class="name">- George Moore</span><span class="person" style="color: rgba(0,0,0,0.8);">Wilmington, DE</span>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"I loved it!  Very inspiring and serene with heartfelt energy."</p><span class="name">- Digby</span><span class="person" style="color:rgba(0,0,0,0.8);">Winter park, FL</span>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="item-testimonials">
-            <p class="name">"I LOVE YOUR MUSIC! I have listened to the whole thing 5-6 times now and each time I get a new layer. There is something so ancient, the wisdom, conveyed in a modern and accessible way. There are tracks that remind me of being in a shamans circle, then others that invoke Pink Floyd. I love the sounds of the earth elements you have woven into your music. Thank you for sharing this with me."</p><span class="name">- Amber G</span><span class="person" style="color:rgba(0,0,0,0.8);"> Pueblo, CO</span>
-          </div>
-        </div>
-        <!-- End Block item-->
-      </div>
-    </div>
-
-    <div class="dots-control-carousel" id="dots-control-testimonials"></div>
-  </div>
-
-  <div class="prev-next-block-rotate" id="control-customers">
-    <div class="wrap-prev">
-      <div class="prev"><i class="fa fa-angle-left"></i></div>
-    </div>
-    <div class="wrap-next">
-      <div class="next"><i class="fa fa-angle-right"></i></div>
-    </div>
-  </div>
-</section>
-
-<div class="row pad-top-25" id="good_as_gold">
-</div>
-
 </section>
 
 <section class="connect" style="background-color: rgba(0,197,215, 0.8);" id="connect">
@@ -910,7 +856,7 @@
     <div class="down-footer">
       <div class="container" style="position: relative;">
         <div>
-          <p style="text-align: center;">© 2024 All Rights Reserved.  -   Eric's House of Harmony</p>
+          <p style="text-align: center;">© <span id="copyright-year"></span> All Rights Reserved.  -   Eric's House of Harmony</p>
         </div>
       </div>
 
@@ -1111,6 +1057,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
+<script>
+// Dynamically update copyright year
+(function() {
+  var yearSpan = document.getElementById('copyright-year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+})();
+</script>
 </body>
 </html>
-              <div class="benefit-item">
