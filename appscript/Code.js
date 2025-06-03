@@ -63,15 +63,25 @@ function processBookings() {
       return;
     }
     
+    console.log('Attempting to get calendar with ID:', AVAILABILITY_CALENDAR_ID);
     const calendar = CalendarApp.getCalendarById(AVAILABILITY_CALENDAR_ID);
+    
+    if (!calendar) {
+      console.error('Failed to get calendar. Please check if the calendar ID is correct and if the script has permission to access it.');
+      return;
+    }
+    
+    console.log('Successfully accessed calendar:', calendar.getName());
     
     let processedCount = 0;
     
     // Start from row 2 to skip headers
     for (let i = 1; i < values.length; i++) {
       try {
-        // Check if status is "Pending"
-        if (values[i][7] === "Pending") {
+        // Check if status is "Booked"
+        if (values[i][7] === "Booked") {
+          console.log(`Processing booking in row ${i + 1}`);
+          
           const name = values[i][0];
           const email = values[i][1];
           const phone = values[i][2];
@@ -79,6 +89,15 @@ function processBookings() {
           const date = values[i][4]; // Date object
           const timeStr = values[i][5]; // Time as string "HH:MM"
           const duration = values[i][6] || 60; // Duration in minutes, default 60
+          
+          console.log('Booking details:', {
+            name,
+            email,
+            service,
+            date: date.toString(),
+            timeStr,
+            duration
+          });
           
           // Validate required fields
           if (!name || !email || !service || !date || !timeStr) {
@@ -98,33 +117,37 @@ function processBookings() {
           
           const endTime = new Date(startTime.getTime() + duration * 60 * 1000);
           
-          // Check if the time is available (no existing bookings in this slot)
-          if (isTimeAvailable(startTime, endTime, calendar)) {
-            // Create the booking event on the availability calendar
-            const event = calendar.createEvent(
-              `Booked - ${name} (${service})`,
-              startTime,
-              endTime,
-              {
-                description: `${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website`,
-                guests: email,
-                sendInvites: true,
-                location: "Eric's House of Harmony",
-                color: CalendarApp.EventColor.BLUE // Different color for bookings
-              }
-            );
-            
-            // Update the row with confirmation and event ID
-            sheet.getRange(i + 1, 8).setValue("Confirmed");
-            sheet.getRange(i + 1, 9).setValue(event.getId());
-            processedCount++;
-            
-            console.log(`Processed booking for ${name} - ${service} on availability calendar`);
-          } else {
-            // Time not available
-            sheet.getRange(i + 1, 8).setValue("Not Available");
-            console.log(`Time not available for ${name} - ${service}`);
-          }
+          console.log('Calculated times:', {
+            startTime: startTime.toString(),
+            endTime: endTime.toString()
+          });
+          
+          // Create the event first
+          const event = calendar.createEvent(
+            `Booked - ${name} (${service})`,
+            startTime,
+            endTime,
+            {
+              description: `${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website`,
+              guests: email,
+              sendInvites: true,
+              location: "Eric's House of Harmony",
+              color: CalendarApp.EventColor.BLUE
+            }
+          );
+          
+          const eventId = event.getId();
+          console.log('Calendar event created successfully:', eventId);
+          
+          // Update the event description to include the ID
+          event.setDescription(`${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website\nEvent ID: ${eventId}`);
+          
+          // Update the row with confirmation and event ID
+          sheet.getRange(i + 1, 8).setValue("Confirmed");
+          sheet.getRange(i + 1, 9).setValue(eventId);
+          processedCount++;
+          
+          console.log(`Processed booking for ${name} - ${service} on availability calendar`);
         }
       } catch (rowError) {
         console.error(`Error processing row ${i + 1}:`, rowError);
@@ -146,34 +169,51 @@ function processBookings() {
 
 // Check if a time slot is available
 function isTimeAvailable(startTime, endTime, calendar) {
+  console.log('Checking availability for:', {
+    startTime: startTime.toString(),
+    endTime: endTime.toString()
+  });
+  
   // Get all events in this time period
   const events = calendar.getEvents(startTime, endTime);
+  console.log('Found events in time period:', events.length);
   
   // Check if there's an "Open" availability slot that covers this time
   let hasAvailability = false;
   for (let i = 0; i < events.length; i++) {
-    if (events[i].getTitle() === "Open") {
+    const event = events[i];
+    console.log('Checking event:', {
+      title: event.getTitle(),
+      start: event.getStartTime().toString(),
+      end: event.getEndTime().toString()
+    });
+    
+    if (event.getTitle() === "Open") {
       // Make sure the open slot completely covers our requested time
-      if (events[i].getStartTime() <= startTime && events[i].getEndTime() >= endTime) {
+      if (event.getStartTime() <= startTime && event.getEndTime() >= endTime) {
         hasAvailability = true;
+        console.log('Found matching availability slot');
         break;
       }
     }
   }
   
   if (!hasAvailability) {
-    return false; // No availability found
+    console.log('No availability found for this time slot');
+    return false;
   }
   
   // Check if there are any existing bookings (events starting with "Booked")
   for (let i = 0; i < events.length; i++) {
-    if (events[i].getTitle().startsWith("Booked")) {
-      // There's already a booking in this time slot
+    const event = events[i];
+    if (event.getTitle().startsWith("Booked")) {
+      console.log('Found existing booking in this time slot');
       return false;
     }
   }
   
-  return true; // Time is available
+  console.log('Time slot is available');
+  return true;
 }
 
 // Show dialog for setting availability
@@ -382,7 +422,7 @@ function submitBooking(formData) {
       bookingDate,
       formData.time || '',
       parseInt(formData.duration) || 60,
-      "Pending",
+      "Booked",
       "" // Empty event ID for now
     ];
     
