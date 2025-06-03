@@ -431,7 +431,8 @@ function submitBooking(formData) {
       formData.time || '',
       parseInt(formData.duration) || 60,
       "Booked",
-      "" // Empty event ID for now
+      "", // Empty event ID for now,
+      formData.price || 'n/a'
     ];
     
     console.log('Adding row data:', rowData);

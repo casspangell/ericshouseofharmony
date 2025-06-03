@@ -366,7 +366,7 @@ class ServicesManager {
   navigateToBooking(serviceData) {
     try {
       // Your Google Apps Script web app URL
-      const baseUrl = 'https://script.google.com/macros/s/AKfycbzlpt14mWSLACapqPzPDZ_J3DLmiJoSdI7NZ75SC760DVPvFB6Bc-C8zBegjHjzw8OlbQ/exec';
+      const baseUrl = 'https://script.google.com/macros/s/AKfycbwxeTvp4efKlYKAA4A0fnGFWXXvOvszzCtBB2MbtkpAzn6XFKF8krXUG4ddMnGKpCe5DA/exec';
       
       const url = new URL(baseUrl);
       
