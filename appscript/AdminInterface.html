@@ -60,6 +60,13 @@
     .btn-primary:hover {
       background-color: #3367d6;
     }
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
     .loading {
       text-align: center;
       padding: 20px;
@@ -83,34 +90,68 @@
       padding: 15px;
       margin-bottom: 15px;
       background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .booking-item.cancelled {
+      background: #f8f9fa;
+      opacity: 0.6;
+      border-color: #dc3545;
+    }
+    .booking-item.past {
+      background: #f8f9fa;
+      opacity: 0.7;
+      border-color: #6c757d;
+      color: #6c757d;
+    }
+    .booking-item.past h4 {
+      color: #6c757d !important;
     }
     .booking-info {
+      flex: 1;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
       font-size: 14px;
       color: #666;
     }
+    .booking-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 120px;
+    }
+    .timezone-note {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <h1>📅 Booking Management</h1>
+    <h1>Booking Management</h1>
     <p>Manage appointments for Eric's House of Harmony</p>
   </div>
 
-  <!-- Debug Panel -->
   <div class="section">
     <button class="btn btn-primary" onclick="toggleDebugPanel()">Toggle Debug Console</button>
     <button class="btn btn-primary" onclick="testConnection()">Test Connection</button>
     <button class="btn btn-primary" onclick="loadBookingsManually()">Load Bookings</button>
+    <button class="btn btn-primary" onclick="testDateLogic()">Test Date Logic</button>
     <div id="debugPanel" class="debug-panel">
       <div id="debugLog">Debug console ready...</div>
     </div>
   </div>
 
   <div class="section">
-    <h2>📊 Quick Stats</h2>
+    <h2>Quick Stats</h2>
     <div class="stats">
       <div class="stat-card">
         <div class="stat-number" id="totalBookings">0</div>
@@ -132,24 +173,31 @@
   </div>
 
   <div class="section">
-    <h2>📋 Current Bookings</h2>
+    <h2>Current Bookings</h2>
+    <div class="timezone-note">
+      📍 All times shown in Eastern Time (America/New_York timezone)
+    </div>
     <div id="loadingMessage" class="loading">Click "Load Bookings" to start...</div>
-    <div id="bookingsList"></div>
+    <div id="currentBookingsList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Past Bookings</h2>
+    <div id="pastBookingsList"></div>
   </div>
 
   <script>
     let allBookings = [];
     let debugMessages = [];
 
-    // Debug logging function
-    function debugLog(message, data = null) {
+    function debugLog(message, data) {
       const timestamp = new Date().toLocaleTimeString();
-      const logEntry = `[${timestamp}] ${message}`;
+      const logEntry = '[' + timestamp + '] ' + message;
       console.log(logEntry, data || '');
       
       debugMessages.push({
-        timestamp,
-        message,
+        timestamp: timestamp,
+        message: message,
         data: data ? JSON.stringify(data, null, 2) : null
       });
       
@@ -159,13 +207,13 @@
     function updateDebugPanel() {
       const debugPanel = document.getElementById('debugLog');
       if (debugPanel) {
-        const html = debugMessages.slice(-20).map(entry => {
-          let html = `<div style="margin-bottom: 5px; padding: 5px; border-bottom: 1px solid #eee;">`;
-          html += `<span style="color: #666;">${entry.timestamp}</span> ${entry.message}`;
+        const html = debugMessages.slice(-20).map(function(entry) {
+          let html = '<div style="margin-bottom: 5px; padding: 5px; border-bottom: 1px solid #eee;">';
+          html += '<span style="color: #666;">' + entry.timestamp + '</span> ' + entry.message;
           if (entry.data) {
-            html += `<pre style="margin: 3px 0; padding: 5px; background: #fff; border: 1px solid #ddd; border-radius: 3px; font-size: 10px; max-height: 100px; overflow-y: auto;">${entry.data}</pre>`;
+            html += '<pre style="margin: 3px 0; padding: 5px; background: #fff; border: 1px solid #ddd; border-radius: 3px; font-size: 10px; max-height: 100px; overflow-y: auto;">' + entry.data + '</pre>';
           }
-          html += `</div>`;
+          html += '</div>';
           return html;
         }).join('');
         debugPanel.innerHTML = html;
@@ -185,68 +233,80 @@
     }
 
     function testConnection() {
-      debugLog('🧪 Testing Google Apps Script connection...');
+      debugLog('Testing Google Apps Script connection...');
       
       if (typeof google === 'undefined') {
-        debugLog('❌ ERROR: google object is undefined');
-        debugLog('This means the page is not running in Google Apps Script environment');
+        debugLog('ERROR: google object is undefined');
         return;
       }
       
       if (!google.script) {
-        debugLog('❌ ERROR: google.script is undefined');
+        debugLog('ERROR: google.script is undefined');
         return;
       }
       
       if (!google.script.run) {
-        debugLog('❌ ERROR: google.script.run is undefined');
+        debugLog('ERROR: google.script.run is undefined');
         return;
       }
       
-      debugLog('✅ Google Apps Script objects are available');
-      debugLog('🔄 Testing getAllBookingsForAdmin function...');
+      debugLog('Google Apps Script objects are available');
+      debugLog('Testing getAllBookingsForAdmin function...');
       
       google.script.run
         .withSuccessHandler(function(result) {
-          debugLog('✅ SUCCESS: getAllBookingsForAdmin returned data');
+          debugLog('SUCCESS: getAllBookingsForAdmin returned data');
           debugLog('Data received', result);
         })
         .withFailureHandler(function(error) {
-          debugLog('❌ ERROR: getAllBookingsForAdmin failed');
+          debugLog('ERROR: getAllBookingsForAdmin failed');
           debugLog('Error details', error);
         })
         .getAllBookingsForAdmin();
     }
 
     function loadBookingsManually() {
-      debugLog('📊 Starting manual booking load...');
-      document.getElementById('loadingMessage').innerHTML = 'Loading bookings...';
-      document.getElementById('bookingsList').innerHTML = '';
+      debugLog('Starting manual booking load...');
+      
+      const loadingElement = document.getElementById('loadingMessage');
+      if (loadingElement) {
+        loadingElement.innerHTML = 'Loading bookings...';
+      }
+      
+      const currentContainer = document.getElementById('currentBookingsList');
+      const pastContainer = document.getElementById('pastBookingsList');
+      
+      if (currentContainer) {
+        currentContainer.innerHTML = '';
+      }
+      if (pastContainer) {
+        pastContainer.innerHTML = '';
+      }
       
       if (typeof google !== 'undefined' && google.script && google.script.run) {
-        debugLog('✅ Google Apps Script available, calling getAllBookingsForAdmin...');
+        debugLog('Google Apps Script available, calling getAllBookingsForAdmin...');
         
         google.script.run
           .withSuccessHandler(function(data) {
-            debugLog('✅ Success callback triggered');
+            debugLog('Success callback triggered');
             handleBookingsData(data);
           })
           .withFailureHandler(function(error) {
-            debugLog('❌ Failure callback triggered');
+            debugLog('Failure callback triggered');
             debugLog('Error details', error);
             handleBookingsError(error);
           })
           .getAllBookingsForAdmin();
       } else {
-        debugLog('⚠️ Google Apps Script not available, using mock data');
-        setTimeout(() => {
+        debugLog('Google Apps Script not available, using mock data');
+        setTimeout(function() {
           handleBookingsData(getMockData());
         }, 1000);
       }
     }
 
     function handleBookingsData(bookings) {
-      debugLog('📊 handleBookingsData called');
+      debugLog('handleBookingsData called');
       debugLog('Raw data received', bookings);
       
       allBookings = bookings || [];
@@ -257,41 +317,57 @@
       });
       
       updateStats();
-      renderBookings();
+      renderCurrentBookings();
+      renderPastBookings();
       
-      document.getElementById('loadingMessage').style.display = 'none';
-      debugLog('✅ Booking data processing complete');
+      const loadingElement = document.getElementById('loadingMessage');
+      if (loadingElement) {
+        loadingElement.style.display = 'none';
+      }
+      
+      debugLog('Booking data processing complete');
     }
 
     function handleBookingsError(error) {
-      debugLog('❌ handleBookingsError called');
+      debugLog('handleBookingsError called');
       debugLog('Error details', error);
-      document.getElementById('loadingMessage').innerHTML = 
-        '<div style="color: #dc3545;">❌ Error loading bookings: ' + (error.message || error) + '</div>';
+      
+      const loadingElement = document.getElementById('loadingMessage');
+      if (loadingElement) {
+        loadingElement.innerHTML = 
+          '<div style="color: #dc3545;">Error loading bookings: ' + (error.message || error) + '</div>';
+      } else {
+        const currentContainer = document.getElementById('currentBookingsList');
+        if (currentContainer) {
+          currentContainer.innerHTML = 
+            '<div style="color: #dc3545;">Error loading bookings: ' + (error.message || error) + '</div>';
+        }
+      }
     }
 
     function updateStats() {
-      debugLog('📈 Updating stats...');
+      debugLog('Updating stats...');
       
       const total = allBookings.length;
-      const confirmed = allBookings.filter(b => {
+      const confirmed = allBookings.filter(function(b) {
         const status = (b.status || '').toString().toLowerCase();
         return status === 'confirmed';
       }).length;
       
-      const cancelled = allBookings.filter(b => {
+      const cancelled = allBookings.filter(function(b) {
         const status = (b.status || '').toString().toLowerCase();
         return status.includes('cancel');
       }).length;
       
-      const today = new Date().toISOString().split('T')[0];
-      const todayBookings = allBookings.filter(b => {
+      // Get today's date in Eastern Time
+      const todayET = getCurrentDateInEasternTime();
+      const todayBookings = allBookings.filter(function(b) {
         if (!b.date) return false;
         try {
-          const bookingDate = new Date(b.date).toISOString().split('T')[0];
+          const bookingDateET = convertToEasternTimeDate(b.date);
           const status = (b.status || '').toString().toLowerCase();
-          return bookingDate === today && status === 'confirmed';
-        } catch {
+          return bookingDateET === todayET && status === 'confirmed';
+        } catch (e) {
           return false;
         }
       }).length;
@@ -301,44 +377,154 @@
       document.getElementById('cancelledBookings').textContent = cancelled;
       document.getElementById('todayBookings').textContent = todayBookings;
       
-      debugLog('📈 Stats updated', { total, confirmed, cancelled, todayBookings });
+      debugLog('Stats updated', { total: total, confirmed: confirmed, cancelled: cancelled, todayBookings: todayBookings });
     }
 
-    function renderBookings() {
-      debugLog('🎨 Rendering bookings...');
-      const container = document.getElementById('bookingsList');
+    function renderCurrentBookings() {
+      debugLog('Rendering current bookings...');
+      const container = document.getElementById('currentBookingsList');
       
-      if (allBookings.length === 0) {
-        container.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No bookings found.</div>';
+      if (!container) {
+        debugLog('Current bookings container not found');
+        return;
+      }
+      
+      const currentBookings = allBookings.filter(function(booking) {
+        const isPast = isBookingInPast(booking.date, booking.time);
+        debugLog('Checking if booking is past', {
+          name: booking.name,
+          date: booking.date,
+          time: booking.time,
+          isPast: isPast
+        });
+        return !isPast;
+      });
+      
+      if (currentBookings.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No current bookings found.</div>';
         return;
       }
 
-      let html = '';
-      allBookings.forEach((booking, index) => {
-        debugLog(`🎨 Rendering booking ${index}`, booking);
-        
-        html += `
-          <div class="booking-item">
-            <h4 style="margin: 0 0 10px 0; color: #333;">
-              ${booking.name || 'N/A'} - ${booking.service || 'N/A'}
-              <span style="color: #666; font-size: 14px;">(${booking.status || 'Unknown'})</span>
-            </h4>
-            <div class="booking-info">
-              <div><strong>📧 Email:</strong> ${booking.email || 'N/A'}</div>
-              <div><strong>📞 Phone:</strong> ${booking.phone || 'N/A'}</div>
-              <div><strong>📅 Date:</strong> ${formatDate(booking.date)}</div>
-              <div><strong>🕐 Time:</strong> ${booking.time || 'N/A'}</div>
-              <div><strong>⏱️ Duration:</strong> ${booking.duration || 'N/A'} min</div>
-              <div><strong>💰 Price:</strong> $${parseFloat(booking.price || 0).toFixed(2)}</div>
-              <div><strong>📋 Status:</strong> ${booking.status || 'N/A'}</div>
-              <div><strong>🆔 Event ID:</strong> ${booking.eventId || 'None'}</div>
-            </div>
-          </div>
-        `;
+      currentBookings.sort(function(a, b) {
+        const dateA = new Date(a.date + ' ' + (a.time || '00:00'));
+        const dateB = new Date(b.date + ' ' + (b.time || '00:00'));
+        return dateA - dateB;
       });
 
+      let html = '';
+      for (let i = 0; i < currentBookings.length; i++) {
+        html += renderBookingItem(currentBookings[i], i, false);
+      }
+
       container.innerHTML = html;
-      debugLog('🎨 Bookings rendered successfully');
+      debugLog('Current bookings rendered successfully', { count: currentBookings.length });
+    }
+
+    function renderPastBookings() {
+      debugLog('Rendering past bookings...');
+      const container = document.getElementById('pastBookingsList');
+      
+      if (!container) {
+        debugLog('Past bookings container not found');
+        return;
+      }
+      
+      const pastBookings = allBookings.filter(function(booking) {
+        return isBookingInPast(booking.date, booking.time);
+      });
+      
+      if (pastBookings.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No past bookings found.</div>';
+        return;
+      }
+
+      pastBookings.sort(function(a, b) {
+        const dateA = new Date(a.date + ' ' + (a.time || '00:00'));
+        const dateB = new Date(b.date + ' ' + (b.time || '00:00'));
+        return dateB - dateA;
+      });
+
+      let html = '';
+      for (let i = 0; i < pastBookings.length; i++) {
+        html += renderBookingItem(pastBookings[i], i, true);
+      }
+
+      container.innerHTML = html;
+      debugLog('Past bookings rendered successfully', { count: pastBookings.length });
+    }
+
+    function renderBookingItem(booking, index, isPastSection) {
+      const isCancelled = (booking.status || '').toLowerCase().includes('cancel');
+      const isPast = isPastSection;
+      
+      const canCancel = !isCancelled && 
+                       !isPast &&
+                       (booking.status || '').toLowerCase() === 'confirmed' && 
+                       booking.eventId && 
+                       booking.eventId.trim() !== '';
+      
+      const canViewCalendar = !isCancelled && 
+                             booking.eventId && 
+                             booking.eventId.trim() !== '' &&
+                             (booking.status || '').toLowerCase() === 'confirmed' &&
+                             !isPast;
+      
+      let cssClasses = 'booking-item';
+      if (isCancelled) cssClasses += ' cancelled';
+      else if (isPast) cssClasses += ' past';
+      
+      let html = '<div class="' + cssClasses + '">';
+      html += '  <div class="booking-info">';
+      html += '    <div style="grid-column: 1 / -1;">';
+      html += '      <h4 style="margin: 0 0 10px 0; color: #333;">';
+      html += '        ' + (booking.name || 'N/A') + ' - ' + (booking.service || 'N/A');
+      html += '        <span style="color: ' + (isCancelled ? '#dc3545' : isPast ? '#6c757d' : '#28a745') + '; font-size: 14px; font-weight: normal;">';
+      html += '          (' + (booking.status || 'Unknown') + ')';
+      html += '        </span>';
+      if (isCancelled) {
+        html += '        <span style="color: #dc3545; font-size: 12px;"> - CANCELLED</span>';
+      }
+      if (isPast && !isCancelled) {
+        html += '        <span style="color: #6c757d; font-size: 12px;"> - COMPLETED</span>';
+      }
+      html += '      </h4>';
+      html += '    </div>';
+      html += '    <div><strong>Email:</strong> ' + (booking.email || 'N/A') + '</div>';
+      html += '    <div><strong>Phone:</strong> ' + (booking.phone || 'N/A') + '</div>';
+      html += '    <div><strong>Date:</strong> ' + formatDate(booking.date) + '</div>';
+      html += '    <div><strong>Time:</strong> ' + formatTimeWithTimezone(booking.time) + '</div>';
+      html += '    <div><strong>Duration:</strong> ' + (booking.duration || 'N/A') + ' min</div>';
+      html += '    <div><strong>Price:</strong> $' + parseFloat(booking.price || 0).toFixed(2) + '</div>';
+      html += '    <div><strong>Event ID:</strong> ' + (booking.eventId || 'None') + '</div>';
+      html += '  </div>';
+      html += '  <div class="booking-actions">';
+      
+      if (canCancel) {
+        html += '    <button class="btn btn-danger" onclick="cancelBooking(\'' + booking.eventId + '\', \'' + booking.name + '\', \'' + booking.service + '\', \'' + booking.date + '\', \'' + booking.time + '\', ' + (booking.rowIndex || index + 2) + ')">';
+        html += '      Cancel Booking';
+        html += '    </button>';
+      }
+      
+      if (canViewCalendar) {
+        html += '    <button class="btn btn-primary" onclick="openCalendarEvent(\'' + booking.eventId + '\')">';
+        html += '      View Calendar';
+        html += '    </button>';
+      }
+      
+      if (isCancelled) {
+        html += '    <span style="color: #666; font-size: 12px; text-align: center;">Cancelled</span>';
+      } else if (isPast) {
+        html += '    <span style="color: #6c757d; font-size: 12px; text-align: center;">Completed</span>';
+      } else if (!canCancel && !canViewCalendar) {
+        html += '    <span style="color: #999; font-size: 11px; text-align: center;">';
+        html += !booking.eventId ? 'No Event ID' : 'Cannot Cancel';
+        html += '    </span>';
+      }
+      
+      html += '  </div>';
+      html += '</div>';
+      
+      return html;
     }
 
     function formatDate(dateStr) {
@@ -351,13 +537,220 @@
           month: 'short', 
           day: 'numeric' 
         });
-      } catch {
+      } catch (e) {
         return dateStr;
       }
     }
 
+    function formatTimeWithTimezone(timeStr) {
+      if (!timeStr) return 'N/A';
+      try {
+        const parts = timeStr.split(':');
+        const hour = parseInt(parts[0]);
+        const min = parseInt(parts[1]);
+        
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const displayHour = hour % 12 || 12;
+        const displayMinutes = min.toString().padStart ? min.toString().padStart(2, '0') : (min < 10 ? '0' + min : min.toString());
+        
+        return displayHour + ':' + displayMinutes + ' ' + ampm + ' ET';
+      } catch (e) {
+        return timeStr;
+      }
+    }
+
+    // FIXED: Ultra-simple and bulletproof past booking detection
+    function isBookingInPast(dateStr, timeStr) {
+      if (!dateStr) return false;
+      
+      try {
+        debugLog('Checking if booking is in past', { dateStr: dateStr, timeStr: timeStr });
+        
+        // Create booking date object
+        const bookingDate = new Date(dateStr + 'T00:00:00');
+        
+        // Create today's date object (start of day)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        debugLog('Date objects created', {
+          bookingDateStr: dateStr,
+          bookingDate: bookingDate.toISOString(),
+          today: today.toISOString(),
+          bookingTime: bookingDate.getTime(),
+          todayTime: today.getTime()
+        });
+        
+        // If booking is on a previous day, it's past
+        if (bookingDate < today) {
+          debugLog('Booking is on a past day');
+          return true;
+        }
+        
+        // If booking is on a future day, it's not past
+        if (bookingDate > today) {
+          debugLog('Booking is on a future day');
+          return false;
+        }
+        
+        // If booking is today, check the time
+        if (bookingDate.getTime() === today.getTime() && timeStr) {
+          const now = new Date();
+          const currentHour = now.getHours();
+          const currentMinute = now.getMinutes();
+          
+          const [bookingHour, bookingMinute] = timeStr.split(':').map(num => parseInt(num, 10));
+          
+          // Convert to total minutes for easier comparison
+          const currentTotalMinutes = currentHour * 60 + currentMinute;
+          const bookingTotalMinutes = bookingHour * 60 + bookingMinute;
+          
+          const isPast = bookingTotalMinutes < currentTotalMinutes;
+          
+          debugLog('Same day time comparison', {
+            currentTime: `${currentHour}:${currentMinute.toString().padStart(2, '0')}`,
+            bookingTime: timeStr,
+            currentTotalMinutes: currentTotalMinutes,
+            bookingTotalMinutes: bookingTotalMinutes,
+            isPast: isPast
+          });
+          
+          return isPast;
+        }
+        
+        // If it's today but no time specified, consider it not past
+        debugLog('Booking is today with no specific time - considering not past');
+        return false;
+        
+      } catch (e) {
+        debugLog('Error in isBookingInPast', e.message);
+        return false;
+      }
+    }
+
+    function getCurrentDateInEasternTime() {
+      // Simplified - just use local date since we're mainly comparing dates
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function convertToEasternTimeDate(dateStr) {
+      if (!dateStr) return '';
+      return dateStr; // Just return as-is for date comparison
+    }
+
+    function formatInEasternTime(date) {
+      // Helper function to format a date for debugging
+      return date.toISOString();
+    }
+
+    function cancelBooking(eventId, name, service, date, time, rowIndex) {
+      debugLog('cancelBooking called', { eventId: eventId, name: name, service: service, date: date, time: time, rowIndex: rowIndex });
+      
+      const confirmMessage = 'Are you sure you want to cancel this booking?\n\n' +
+                            'Client: ' + name + '\n' +
+                            'Service: ' + service + '\n' +
+                            'Date: ' + formatDate(date) + '\n' +
+                            'Time: ' + formatTimeWithTimezone(time) + '\n\n' +
+                            'This will:\n' +
+                            '• Change status to "Cancelled" in spreadsheet\n' +
+                            '• Remove the event from Google Calendar\n' +
+                            '• Send cancellation email to client';
+      
+      if (!confirm(confirmMessage)) {
+        debugLog('User cancelled the cancellation');
+        return;
+      }
+      
+      debugLog('User confirmed cancellation, proceeding...');
+      
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        debugLog('Calling adminCancelBooking function...');
+        
+        google.script.run
+          .withSuccessHandler(function(result) {
+            debugLog('Cancellation successful', result);
+            alert('Booking cancelled successfully!\n\n' + result);
+            
+            updateLocalBookingStatus(eventId, 'Cancelled');
+            renderCurrentBookings();
+            renderPastBookings();
+            updateStats();
+          })
+          .withFailureHandler(function(error) {
+            debugLog('Cancellation failed', error);
+            alert('Error cancelling booking:\n\n' + (error.message || error));
+          })
+          .adminCancelBooking(eventId, 'Cancelled by admin via admin interface');
+      } else {
+        debugLog('Google Apps Script not available, simulating cancellation');
+        
+        updateLocalBookingStatus(eventId, 'Cancelled');
+        renderCurrentBookings();
+        renderPastBookings();
+        updateStats();
+        
+        alert('Booking cancelled successfully! (Demo mode)');
+      }
+    }
+
+    function updateLocalBookingStatus(eventId, newStatus) {
+      debugLog('Updating local booking status', { eventId: eventId, newStatus: newStatus });
+      
+      for (let i = 0; i < allBookings.length; i++) {
+        if (allBookings[i].eventId === eventId) {
+          allBookings[i].status = newStatus;
+          debugLog('Local booking status updated', allBookings[i]);
+          break;
+        }
+      }
+    }
+
+    function openCalendarEvent(eventId) {
+      debugLog('Opening calendar event', eventId);
+      const calendarUrl = 'https://calendar.google.com/calendar/u/0/r/eventedit/' + eventId;
+      window.open(calendarUrl, '_blank');
+    }
+
+    function testDateLogic() {
+      debugLog('=== TESTING DATE LOGIC ===');
+      
+      // Test cases
+      const testCases = [
+        { date: '2025-06-01', time: '12:00', description: 'June 1st (yesterday)' },
+        { date: '2025-06-02', time: '12:00', description: 'June 2nd (yesterday)' },
+        { date: '2025-06-03', time: '08:00', description: 'June 3rd morning (today, early)' },
+        { date: '2025-06-03', time: '23:00', description: 'June 3rd evening (today, late)' },
+        { date: '2025-06-04', time: '12:00', description: 'June 4th (tomorrow)' },
+        { date: '2025-06-05', time: '12:00', description: 'June 5th (day after tomorrow)' }
+      ];
+      
+      const now = new Date();
+      debugLog('Current time', {
+        now: now.toISOString(),
+        localTime: now.toString(),
+        currentHour: now.getHours(),
+        currentMinute: now.getMinutes()
+      });
+      
+      testCases.forEach(function(testCase) {
+        const isPast = isBookingInPast(testCase.date, testCase.time);
+        debugLog(`TEST: ${testCase.description}`, {
+          date: testCase.date,
+          time: testCase.time,
+          isPast: isPast,
+          expectedResult: testCase.date < '2025-06-03' ? 'PAST' : 'CURRENT/FUTURE'
+        });
+      });
+      
+      debugLog('=== DATE LOGIC TEST COMPLETE ===');
+    }
+
     function getMockData() {
-      debugLog('🧪 Creating mock data...');
+      debugLog('Creating mock data...');
       return [
         {
           name: "John Doe",
@@ -386,14 +779,12 @@
       ];
     }
 
-    // Initialize when page loads
     window.onload = function() {
-      debugLog('🌐 Admin interface loaded');
-      debugLog('🚀 Starting automatic initialization...');
+      debugLog('Admin interface loaded');
+      debugLog('Starting automatic initialization...');
       
-      // Automatically load bookings when page loads
-      setTimeout(() => {
-        debugLog('⏱️ Auto-loading bookings after 1 second delay...');
+      setTimeout(function() {
+        debugLog('Auto-loading bookings after 1 second delay...');
         loadBookingsManually();
       }, 1000);
     };

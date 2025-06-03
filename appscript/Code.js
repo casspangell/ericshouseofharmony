@@ -3,13 +3,32 @@ const AVAILABILITY_CALENDAR_ID = '34854a8095df3ec33ae6b136617b62ac9c2d48a6679c49
 
 // Creates a menu item for easy access
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('Booking System')
-    .addItem('Process New Bookings', 'processBookings')
-    .addItem('Set Availability', 'showAvailabilityDialog')
-    .addItem('Refresh Calendar Status', 'syncCalendarToSheet')
-    .addItem('Show Admin Interface', 'showAdminInterface')
-    .addToUi();
+  console.log('onOpen called - setting up menu');
+  
+  try {
+    SpreadsheetApp.getUi()
+      .createMenu('Booking System')
+      .addItem('Process New Bookings', 'processBookings')
+      .addItem('Set Availability', 'showAvailabilityDialog')
+      .addItem('Refresh Calendar Status', 'syncCalendarToSheet')
+      .addSeparator()
+      .addItem('🎯 Setup Specific Calendar Trigger', 'setupSpecificCalendarTrigger')
+      .addItem('⏰ Setup Enhanced Periodic Sync (3 min)', 'setupEnhancedPeriodicSync')
+      .addSeparator()
+      .addItem('🧪 Test Calendar Access', 'testSpecificCalendarAccess')
+      .addItem('✏️ Test Strikethrough Formatting', 'testStrikethroughFormatting')
+      .addItem('❌ Manual Cancel Booking (Test)', 'manualCancelBooking')
+      .addItem('🔄 Remove Cancelled Formatting', 'removeCancelledFormatting')
+      .addSeparator()
+      .addItem('🗑️ Remove Specific Calendar Triggers', 'removeSpecificCalendarTrigger')
+      .addSeparator()
+      .addItem('Admin Interface', 'showAdminInterface')
+      .addToUi();
+    
+    console.log('Menu created successfully with formatting test options');
+  } catch (error) {
+    console.error('Error in onOpen:', error);
+  }
 }
 
 // Function to show the admin interface
@@ -30,26 +49,6 @@ function showAdminInterface() {
   } catch (error) {
     console.error('Error in showAdminInterface:', error);
     SpreadsheetApp.getUi().alert('Error opening admin interface: ' + error.message);
-  }
-}
-
-// Updated onOpen function with proper menu
-function onOpen() {
-  console.log('onOpen called - setting up menu');
-  
-  try {
-    SpreadsheetApp.getUi()
-      .createMenu('Booking System')
-      .addItem('Process New Bookings', 'processBookings')
-      .addItem('Set Availability', 'showAvailabilityDialog')
-      .addItem('Refresh Calendar Status', 'syncCalendarToSheet')
-      .addSeparator()
-      .addItem('Admin Interface', 'showAdminInterface')
-      .addToUi();
-    
-    console.log('Menu created successfully');
-  } catch (error) {
-    console.error('Error in onOpen:', error);
   }
 }
 
@@ -211,93 +210,6 @@ function formatDateSafely(dateValue) {
   }
 }
 
-function debugSpreadsheetAccess() {
-  console.log('=== DEBUGGING SPREADSHEET ACCESS ===');
-  
-  try {
-    // Test 1: Can we get the spreadsheet?
-    console.log('Test 1: Getting spreadsheet...');
-    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-    console.log('✅ Spreadsheet:', spreadsheet.getName());
-    
-    // Test 2: Can we get the sheet?
-    console.log('Test 2: Getting Bookings sheet...');
-    const sheet = spreadsheet.getSheetByName("Bookings");
-    if (!sheet) {
-      console.log('❌ No Bookings sheet found');
-      console.log('Available sheets:', spreadsheet.getSheets().map(s => s.getName()));
-      return 'No Bookings sheet found';
-    }
-    console.log('✅ Bookings sheet found');
-    
-    // Test 3: Can we get basic info?
-    console.log('Test 3: Getting sheet info...');
-    const lastRow = sheet.getLastRow();
-    const lastCol = sheet.getLastColumn();
-    console.log('✅ Sheet info - Rows:', lastRow, 'Columns:', lastCol);
-    
-    // Test 4: Can we read headers?
-    console.log('Test 4: Reading headers...');
-    if (lastRow > 0 && lastCol > 0) {
-      const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-      console.log('✅ Headers:', headers);
-    } else {
-      console.log('❌ No data in sheet');
-      return 'Sheet is empty';
-    }
-    
-    // Test 5: Can we read first data row?
-    console.log('Test 5: Reading first data row...');
-    if (lastRow > 1) {
-      const firstRow = sheet.getRange(2, 1, 1, lastCol).getValues()[0];
-      console.log('✅ First data row:', firstRow);
-    } else {
-      console.log('❌ No data rows found');
-      return 'No data rows';
-    }
-    
-    console.log('✅ All tests passed!');
-    return 'All spreadsheet tests passed';
-    
-  } catch (error) {
-    console.error('❌ Debug test failed:', error);
-    return 'Debug failed: ' + error.message;
-  }
-}
-
-function getTestBookings() {
-  console.log('getTestBookings called - returning test data');
-  
-  return [
-    {
-      name: "Test User 1",
-      email: "test1@example.com",
-      phone: "555-0001",
-      service: "Test Service 1",
-      date: "2025-06-04",
-      time: "10:00",
-      duration: 60,
-      status: "Confirmed",
-      eventId: "test_event_1",
-      price: 100,
-      rowIndex: 2
-    },
-    {
-      name: "Test User 2",
-      email: "test2@example.com",
-      phone: "555-0002",
-      service: "Test Service 2",
-      date: "2025-06-05",
-      time: "14:00",
-      duration: 90,
-      status: "Confirmed",
-      eventId: "test_event_2",
-      price: 150,
-      rowIndex: 3
-    }
-  ];
-}
-
 function getValue(array, index, defaultValue) {
   try {
     if (array && array.length > index && array[index] !== null && array[index] !== undefined) {
@@ -388,6 +300,7 @@ function processBookings() {
           const date = values[i][4]; // Date object
           const timeStr = values[i][5]; // Time as string "HH:MM"
           const duration = values[i][6] || 60; // Duration in minutes, default 60
+          const price = values[i][9] || 0; // Price in dollars
           
           console.log('Booking details:', {
             name,
@@ -428,26 +341,42 @@ function processBookings() {
             endTime: Utilities.formatDate(endTime, "America/New_York", "yyyy-MM-dd HH:mm:ss")
           });
           
-          // Create the event first with explicit timezone
+          // Build the event description (without cancel link yet)
+          var description = 
+            `${service}\n\n` +
+            `Client: ${name}\n` +
+            `Email: ${email}\n` +
+            `Phone: ${phone}\n` +
+            `Duration: ${duration} minutes\n` +
+            `Price: $${parseFloat(price).toFixed(2)}\n\n` +
+            `Booked via website\n` +
+            `Timezone: Eastern Time (America/New_York)`;
+          
+          // Create the event first
           const event = calendar.createEvent(
             `Booked - ${name} (${service})`,
             startTime,
             endTime,
             {
-              description: `${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website`,
+              description: description,
               guests: email,
               sendInvites: true,
               location: "Eric's House of Harmony",
               color: CalendarApp.EventColor.BLUE,
-              timeZone: "America/New_York"  // Explicitly set Eastern Time
+              timeZone: "America/New_York"
             }
           );
           
           const eventId = event.getId();
           console.log('Calendar event created successfully:', eventId);
           
-          // Update the event description to include the ID and timezone
-          event.setDescription(`${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website\nEvent ID: ${eventId}\nTimezone: Eastern Time (America/New_York)`);
+          // Now build the cancellation link with the real eventId
+          var cancelLink = 'https://script.google.com/macros/s/AKfycbxRvb6jdbBR4yYrmg6NImhIoP3Z2QgZj0VV8urR1l82NBG_1PqMYp6oK_cR8_ScQDtiHw/exec?action=cancel&eventId=' + eventId;
+          
+          // Update the event description to include the cancel link and event ID
+          event.setDescription(
+            `${description}\n\nCancel this booking:\n${cancelLink}\nEvent ID: ${eventId}\nTimezone: Eastern Time (America/New_York)`
+          );
           
           // Update the row with confirmation and event ID
           sheet.getRange(i + 1, 8).setValue("Confirmed");
@@ -472,55 +401,6 @@ function processBookings() {
     console.error('Error in processBookings:', error);
     throw error;
   }
-}
-
-// Check if a time slot is available
-function isTimeAvailable(startTime, endTime, calendar) {
-  console.log('Checking availability for:', {
-    startTime: startTime.toString(),
-    endTime: endTime.toString()
-  });
-  
-  // Get all events in this time period
-  const events = calendar.getEvents(startTime, endTime);
-  console.log('Found events in time period:', events.length);
-  
-  // Check if there's an "Open" availability slot that covers this time
-  let hasAvailability = false;
-  for (let i = 0; i < events.length; i++) {
-    const event = events[i];
-    console.log('Checking event:', {
-      title: event.getTitle(),
-      start: event.getStartTime().toString(),
-      end: event.getEndTime().toString()
-    });
-    
-    if (event.getTitle() === "Open") {
-      // Make sure the open slot completely covers our requested time
-      if (event.getStartTime() <= startTime && event.getEndTime() >= endTime) {
-        hasAvailability = true;
-        console.log('Found matching availability slot');
-        break;
-      }
-    }
-  }
-  
-  if (!hasAvailability) {
-    console.log('No availability found for this time slot');
-    return false;
-  }
-  
-  // Check if there are any existing bookings (events starting with "Booked")
-  for (let i = 0; i < events.length; i++) {
-    const event = events[i];
-    if (event.getTitle().startsWith("Booked")) {
-      console.log('Found existing booking in this time slot');
-      return false;
-    }
-  }
-  
-  console.log('Time slot is available');
-  return true;
 }
 
 // Show dialog for setting availability
@@ -642,39 +522,6 @@ function setAvailabilitySlots(data) {
   return `Created ${slotsCreated} availability slots for ${data.day}s from ${data.startTime} to ${data.endTime} for the next ${weeksToSchedule} weeks.`;
 }
 
-// Sync calendar status back to sheet (for cancelled events, etc.)
-function syncCalendarToSheet() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Bookings");
-  const dataRange = sheet.getDataRange();
-  const values = dataRange.getValues();
-  const calendar = CalendarApp.getCalendarById(AVAILABILITY_CALENDAR_ID);
-  
-  let updatedCount = 0;
-  
-  // Start from row 2 to skip headers
-  for (let i = 1; i < values.length; i++) {
-    const eventId = values[i][8]; // Column I with event ID
-    
-    if (eventId && values[i][7] === "Confirmed") {
-      try {
-        const event = calendar.getEventById(eventId);
-        
-        // If event doesn't exist, it was deleted
-        if (!event) {
-          sheet.getRange(i + 1, 8).setValue("Canceled");
-          updatedCount++;
-        }
-      } catch (e) {
-        // Event not found
-        sheet.getRange(i + 1, 8).setValue("Canceled");
-        updatedCount++;
-      }
-    }
-  }
-  
-  SpreadsheetApp.getActiveSpreadsheet().toast(`Updated ${updatedCount} entries`);
-}
-
 // Process a booking submission from the web form
 function submitBooking(formData) {
   try {
@@ -693,12 +540,12 @@ function submitBooking(formData) {
       sheet = spreadsheet.insertSheet("Bookings");
       
       // Add headers
-      sheet.getRange(1, 1, 1, 9).setValues([[
-        "Name", "Email", "Phone", "Service", "Date", "Time", "Duration", "Status", "Event ID"
+      sheet.getRange(1, 1, 1, 10).setValues([[
+        "Name", "Email", "Phone", "Service", "Date", "Time", "Duration", "Status", "Event ID", "Price"
       ]]);
       
       // Format headers
-      sheet.getRange(1, 1, 1, 9).setFontWeight("bold");
+      sheet.getRange(1, 1, 1, 10).setFontWeight("bold");
       console.log('Bookings sheet created with headers');
     }
     
@@ -730,8 +577,8 @@ function submitBooking(formData) {
       formData.time || '',
       parseInt(formData.duration) || 60,
       "Booked",
-      "", // Empty event ID for now,
-      formData.price || 'n/a'
+      "", // Empty event ID for now
+      formData.price || 0
     ];
     
     console.log('Adding row data:', rowData);
@@ -842,7 +689,7 @@ function sendConfirmationEmail(formData, bookingDate) {
             </tr>
             <tr>
               <td style="padding: 12px 0; font-weight: bold; color: #555;">Investment:</td>
-              <td style="padding: 12px 0; color: #333; font-weight: bold;">${parseFloat(formData.price).toFixed(2)}</td>
+              <td style="padding: 12px 0; color: #333; font-weight: bold;">$${parseFloat(formData.price).toFixed(2)}</td>
             </tr>
           </table>
         </div>
@@ -1357,13 +1204,4 @@ function parseCSVLine(line) {
   
   result.push(current);
   return result.map(item => item.replace(/^"|"$/g, '').trim());
-}
-
-function showAdminInterface() {
-  const template = HtmlService.createTemplateFromFile('AdminInterface');
-  const html = template.evaluate()
-    .setTitle('Booking Management - Admin')
-    .setWidth(1200)
-    .setHeight(800);
-  SpreadsheetApp.getUi().showModalDialog(html, 'Booking Management');
 }
