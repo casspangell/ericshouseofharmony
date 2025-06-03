@@ -721,10 +721,11 @@
             // Empty cells after the last day
             calendarHTML += '<td></td>';
           } else {
-            // Get availability for this date
             const currentDate = new Date(year, month, day);
             const dateString = formatDate(currentDate);
-            const availableTimes = getAvailabilityForDate(dateString);
+            const slotData = getAvailabilityForDate(dateString);
+            const availableTimes = slotData.available;
+            const bookedTimes = slotData.booked;
             
             // Check if this is today
             const today = new Date();
@@ -744,17 +745,25 @@
             calendarHTML += `<td class="${cellClass}" data-date="${dateString}">`;
             calendarHTML += `<div class="date-number">${day}</div>`;
             
-            // Only show time slots if date has availability
-            if (availableTimes.length > 0) {
+            // Show time slots if date has any
+            if (availableTimes.length > 0 || bookedTimes.length > 0) {
               calendarHTML += '<div class="time-slots">';
+              // Render available slots (clickable)
               for (let k = 0; k < availableTimes.length; k++) {
                 const time = availableTimes[k].time;
                 const duration = availableTimes[k].duration;
                 const isTimeSelected = selectedDate === dateString && selectedTime === time;
                 const timeClass = isTimeSelected ? 'time-slot selected' : 'time-slot';
-                
                 calendarHTML += `<div class="${timeClass}" data-time="${time}" data-duration="${duration}">`;
                 calendarHTML += `${formatTimeDisplay(time)}`;
+                calendarHTML += '</div>';
+              }
+              // Render booked slots (unclickable)
+              for (let k = 0; k < bookedTimes.length; k++) {
+                const time = bookedTimes[k].time;
+                const duration = bookedTimes[k].duration;
+                calendarHTML += `<div class="time-slot booked" data-time="${time}" data-duration="${duration}" style="pointer-events:none;opacity:0.6;cursor:not-allowed;background:#f7c5c5;color:#888;">`;
+                calendarHTML += `${formatTimeDisplay(time)} (Booked)`;
                 calendarHTML += '</div>';
               }
               calendarHTML += '</div>';
@@ -778,8 +787,8 @@
       // Update the calendar container
       document.getElementById('calendarContainer').innerHTML = calendarHTML;
       
-      // Add event listeners to time slots
-      const timeSlots = document.querySelectorAll('.time-slot');
+      // Add event listeners to time slots (only available slots)
+      const timeSlots = document.querySelectorAll('.time-slot:not(.booked)');
       timeSlots.forEach(slot => {
         slot.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -796,10 +805,14 @@
       // Find availability for the specified date
       for (let i = 0; i < availabilityData.length; i++) {
         if (availabilityData[i].date === dateString) {
-          return availabilityData[i].times;
+          // Return both available and booked arrays
+          return {
+            available: availabilityData[i].available || [],
+            booked: availabilityData[i].booked || []
+          };
         }
       }
-      return [];
+      return { available: [], booked: [] };
     }
     
     function selectTimeSlot(date, time, duration) {

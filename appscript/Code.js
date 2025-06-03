@@ -110,19 +110,26 @@ function processBookings() {
           const startTime = new Date(date);
           if (typeof timeStr === 'string') {
             const timeParts = timeStr.split(":");
+            // Set the time in Eastern Time
             startTime.setHours(parseInt(timeParts[0], 10), parseInt(timeParts[1], 10), 0);
+            // Adjust for timezone
+            const easternTime = Utilities.formatDate(startTime, "America/New_York", "yyyy-MM-dd HH:mm:ss");
+            startTime.setTime(new Date(easternTime).getTime());
           } else if (timeStr instanceof Date) {
             startTime.setHours(timeStr.getHours(), timeStr.getMinutes(), 0);
+            // Adjust for timezone
+            const easternTime = Utilities.formatDate(startTime, "America/New_York", "yyyy-MM-dd HH:mm:ss");
+            startTime.setTime(new Date(easternTime).getTime());
           }
           
           const endTime = new Date(startTime.getTime() + duration * 60 * 1000);
           
-          console.log('Calculated times:', {
-            startTime: startTime.toString(),
-            endTime: endTime.toString()
+          console.log('Calculated times (Eastern Time):', {
+            startTime: Utilities.formatDate(startTime, "America/New_York", "yyyy-MM-dd HH:mm:ss"),
+            endTime: Utilities.formatDate(endTime, "America/New_York", "yyyy-MM-dd HH:mm:ss")
           });
           
-          // Create the event first
+          // Create the event first with explicit timezone
           const event = calendar.createEvent(
             `Booked - ${name} (${service})`,
             startTime,
@@ -132,15 +139,16 @@ function processBookings() {
               guests: email,
               sendInvites: true,
               location: "Eric's House of Harmony",
-              color: CalendarApp.EventColor.BLUE
+              color: CalendarApp.EventColor.BLUE,
+              timeZone: "America/New_York"  // Explicitly set Eastern Time
             }
           );
           
           const eventId = event.getId();
           console.log('Calendar event created successfully:', eventId);
           
-          // Update the event description to include the ID
-          event.setDescription(`${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website\nEvent ID: ${eventId}`);
+          // Update the event description to include the ID and timezone
+          event.setDescription(`${service}\n\nClient: ${name}\nEmail: ${email}\nPhone: ${phone}\nDuration: ${duration} minutes\n\nBooked via website\nEvent ID: ${eventId}\nTimezone: Eastern Time (America/New_York)`);
           
           // Update the row with confirmation and event ID
           sheet.getRange(i + 1, 8).setValue("Confirmed");
@@ -780,19 +788,28 @@ This booking has been automatically added to your Google Calendar and the custom
 
 // Fetch availability data for the calendar view
 function getAvailabilityData(serviceDuration) {
+  // Set up dates in Eastern Time
   const today = new Date();
   const currentMonth = today.getMonth();
   const currentYear = today.getFullYear();
   
-  // Set date range for 3 months
+  // Set date range for 3 months in Eastern Time
   const startDate = new Date(currentYear, currentMonth, 1);
   const endDate = new Date(currentYear, currentMonth + 3, 0);
   
-  // Get the availability calendar (now contains both "Open" and "Booked" events)
+  // Convert to Eastern Time strings
+  const startDateET = Utilities.formatDate(startDate, "America/New_York", "yyyy-MM-dd");
+  const endDateET = Utilities.formatDate(endDate, "America/New_York", "yyyy-MM-dd");
+  
+  // Create new Date objects from Eastern Time strings
+  const startDateETObj = new Date(startDateET);
+  const endDateETObj = new Date(endDateET);
+  
+  // Get the availability calendar
   const calendar = CalendarApp.getCalendarById(AVAILABILITY_CALENDAR_ID);
   
   // Get all events in the date range
-  const allEvents = calendar.getEvents(startDate, endDate);
+  const allEvents = calendar.getEvents(startDateETObj, endDateETObj);
   
   // Separate open availability and bookings
   const availabilityEvents = allEvents.filter(event => event.getTitle() === "Open");
@@ -800,84 +817,112 @@ function getAvailabilityData(serviceDuration) {
   
   // Create a structured data object for availability
   const availabilityData = [];
+  const dateMap = {};
   
   // Default to 60 minutes if no service duration specified
   const duration = parseInt(serviceDuration) || 60;
   
-  // Get current time for filtering past slots
+  // Get current time in Eastern Time
   const now = new Date();
+  const nowET = Utilities.formatDate(now, "America/New_York", "yyyy-MM-dd HH:mm:ss");
+  const nowETObj = new Date(nowET);
   
+  // Helper to get or create a date entry
+  function getOrCreateDateEntry(dateString) {
+    if (!dateMap[dateString]) {
+      dateMap[dateString] = { date: dateString, available: [], booked: [] };
+      availabilityData.push(dateMap[dateString]);
+    }
+    return dateMap[dateString];
+  }
+  
+  // First, process all availability slots (Open)
   for (let i = 0; i < availabilityEvents.length; i++) {
     const startTime = availabilityEvents[i].getStartTime();
     const endTime = availabilityEvents[i].getEndTime();
-    const totalMinutes = Math.round((endTime - startTime) / (60 * 1000)); // total minutes available
     
-    // Format date as YYYY-MM-DD
-    const year = startTime.getFullYear();
-    const month = (startTime.getMonth() + 1).toString().padStart(2, '0');
-    const day = startTime.getDate().toString().padStart(2, '0');
-    const dateString = `${year}-${month}-${day}`;
+    // Convert to Eastern Time
+    const startTimeET = Utilities.formatDate(startTime, "America/New_York", "yyyy-MM-dd HH:mm:ss");
+    const endTimeET = Utilities.formatDate(endTime, "America/New_York", "yyyy-MM-dd HH:mm:ss");
     
-    // Find if this date already exists in the data
-    let dateEntry = availabilityData.find(entry => entry.date === dateString);
+    const startTimeETObj = new Date(startTimeET);
+    const endTimeETObj = new Date(endTimeET);
     
-    if (!dateEntry) {
-      dateEntry = {
-        date: dateString,
-        times: []
-      };
-      availabilityData.push(dateEntry);
-    }
+    const totalMinutes = Math.round((endTimeETObj - startTimeETObj) / (60 * 1000)); // total minutes available
     
     // Calculate how many slots we can fit in this availability period
     const numSlots = Math.floor(totalMinutes / duration);
     
     // Generate time slots based on service duration
     for (let slot = 0; slot < numSlots; slot++) {
-      const slotStartTime = new Date(startTime.getTime() + slot * duration * 60 * 1000);
+      const slotStartTime = new Date(startTimeETObj.getTime() + slot * duration * 60 * 1000);
       const slotEndTime = new Date(slotStartTime.getTime() + duration * 60 * 1000);
       
       // Make sure the slot end time doesn't exceed the availability end time
-      if (slotEndTime > endTime) {
+      if (slotEndTime > endTimeETObj) {
         continue;
       }
       
-      // SKIP PAST TIME SLOTS - Don't show times that have already passed
-      if (slotStartTime <= now) {
+      // Skip past time slots
+      if (slotStartTime <= nowETObj) {
         continue;
       }
       
-      // Format time as HH:MM
+      // Format time as HH:MM in Eastern Time
       const hours = slotStartTime.getHours().toString().padStart(2, '0');
       const minutes = slotStartTime.getMinutes().toString().padStart(2, '0');
       const timeString = `${hours}:${minutes}`;
+      const dateString = Utilities.formatDate(slotStartTime, "America/New_York", "yyyy-MM-dd");
       
-      // Check if this slot is already booked
-      let isBooked = false;
+      // Check for conflicts with any existing bookings
+      let hasConflict = false;
       for (let j = 0; j < bookingEvents.length; j++) {
-        const bookingStart = bookingEvents[j].getStartTime();
-        const bookingEnd = bookingEvents[j].getEndTime();
-        
-        // Check if there's any overlap with existing bookings
+        const bookingStart = Utilities.formatDate(bookingEvents[j].getStartTime(), "America/New_York", "yyyy-MM-dd HH:mm:ss");
+        const bookingEnd = Utilities.formatDate(bookingEvents[j].getEndTime(), "America/New_York", "yyyy-MM-dd HH:mm:ss");
+        const bookingStartObj = new Date(bookingStart);
+        const bookingEndObj = new Date(bookingEnd);
         if (
-          (slotStartTime >= bookingStart && slotStartTime < bookingEnd) || 
-          (slotEndTime > bookingStart && slotEndTime <= bookingEnd) ||
-          (slotStartTime <= bookingStart && slotEndTime >= bookingEnd)
+          (slotStartTime >= bookingStartObj && slotStartTime < bookingEndObj) || 
+          (slotEndTime > bookingStartObj && slotEndTime <= bookingEndObj) ||
+          (slotStartTime <= bookingStartObj && slotEndTime >= bookingEndObj)
         ) {
-          isBooked = true;
+          hasConflict = true;
           break;
         }
       }
       
-      // Only add unbooked slots that are in the future
-      if (!isBooked) {
-        dateEntry.times.push({
-          time: timeString,
-          duration: duration
-        });
+      const dateEntry = getOrCreateDateEntry(dateString);
+      if (!hasConflict) {
+        dateEntry.available.push({ time: timeString, duration: duration });
+      } else {
+        dateEntry.booked.push({ time: timeString, duration: duration });
       }
     }
   }
+  
+  // Also add any booked slots that are outside of "Open" slots (edge case)
+  for (let i = 0; i < bookingEvents.length; i++) {
+    const bookingStart = Utilities.formatDate(bookingEvents[i].getStartTime(), "America/New_York", "yyyy-MM-dd HH:mm:ss");
+    const bookingStartObj = new Date(bookingStart);
+    const hours = bookingStartObj.getHours().toString().padStart(2, '0');
+    const minutes = bookingStartObj.getMinutes().toString().padStart(2, '0');
+    const timeString = `${hours}:${minutes}`;
+    const dateString = Utilities.formatDate(bookingStartObj, "America/New_York", "yyyy-MM-dd");
+    const dateEntry = getOrCreateDateEntry(dateString);
+    // Only add if not already present
+    if (!dateEntry.booked.some(slot => slot.time === timeString)) {
+      dateEntry.booked.push({ time: timeString, duration: duration });
+    }
+  }
+  
+  // Sort times within each date
+  availabilityData.forEach(date => {
+    date.available.sort((a, b) => a.time.localeCompare(b.time));
+    date.booked.sort((a, b) => a.time.localeCompare(b.time));
+  });
+  
+  // Sort dates
+  availabilityData.sort((a, b) => a.date.localeCompare(b.date));
   
   return availabilityData;
 }
