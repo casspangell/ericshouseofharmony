@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Management - Admin Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .header {
+      background: linear-gradient(135deg, #4285f4, #00c5d7);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      margin: 5px;
+    }
+    .btn-primary {
+      background-color: #4285f4;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #3367d6;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+    .debug-panel {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      padding: 15px;
+      margin: 10px 0;
+      font-family: monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+    }
+    .booking-item {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: white;
+    }
+    .booking-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📅 Booking Management</h1>
+    <p>Manage appointments for Eric's House of Harmony</p>
+  </div>
+
+  <!-- Debug Panel -->
+  <div class="section">
+    <button class="btn btn-primary" onclick="toggleDebugPanel()">Toggle Debug Console</button>
+    <button class="btn btn-primary" onclick="testConnection()">Test Connection</button>
+    <button class="btn btn-primary" onclick="loadBookingsManually()">Load Bookings</button>
+    <div id="debugPanel" class="debug-panel">
+      <div id="debugLog">Debug console ready...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📊 Quick Stats</h2>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalBookings">0</div>
+        <div>Total Bookings</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="confirmedBookings">0</div>
+        <div>Confirmed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="cancelledBookings">0</div>
+        <div>Cancelled</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="todayBookings">0</div>
+        <div>Today's Bookings</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📋 Current Bookings</h2>
+    <div id="loadingMessage" class="loading">Click "Load Bookings" to start...</div>
+    <div id="bookingsList"></div>
+  </div>
+
+  <script>
+    let allBookings = [];
+    let debugMessages = [];
+
+    // Debug logging function
+    function debugLog(message, data = null) {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEntry = `[${timestamp}] ${message}`;
+      console.log(logEntry, data || '');
+      
+      debugMessages.push({
+        timestamp,
+        message,
+        data: data ? JSON.stringify(data, null, 2) : null
+      });
+      
+      updateDebugPanel();
+    }
+
+    function updateDebugPanel() {
+      const debugPanel = document.getElementById('debugLog');
+      if (debugPanel) {
+        const html = debugMessages.slice(-20).map(entry => {
+          let html = `<div style="margin-bottom: 5px; padding: 5px; border-bottom: 1px solid #eee;">`;
+          html += `<span style="color: #666;">${entry.timestamp}</span> ${entry.message}`;
+          if (entry.data) {
+            html += `<pre style="margin: 3px 0; padding: 5px; background: #fff; border: 1px solid #ddd; border-radius: 3px; font-size: 10px; max-height: 100px; overflow-y: auto;">${entry.data}</pre>`;
+          }
+          html += `</div>`;
+          return html;
+        }).join('');
+        debugPanel.innerHTML = html;
+        debugPanel.scrollTop = debugPanel.scrollHeight;
+      }
+    }
+
+    function toggleDebugPanel() {
+      const panel = document.getElementById('debugPanel');
+      if (panel.style.display === 'none' || panel.style.display === '') {
+        panel.style.display = 'block';
+        debugLog('Debug panel opened');
+      } else {
+        panel.style.display = 'none';
+        debugLog('Debug panel closed');
+      }
+    }
+
+    function testConnection() {
+      debugLog('🧪 Testing Google Apps Script connection...');
+      
+      if (typeof google === 'undefined') {
+        debugLog('❌ ERROR: google object is undefined');
+        debugLog('This means the page is not running in Google Apps Script environment');
+        return;
+      }
+      
+      if (!google.script) {
+        debugLog('❌ ERROR: google.script is undefined');
+        return;
+      }
+      
+      if (!google.script.run) {
+        debugLog('❌ ERROR: google.script.run is undefined');
+        return;
+      }
+      
+      debugLog('✅ Google Apps Script objects are available');
+      debugLog('🔄 Testing getAllBookingsForAdmin function...');
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          debugLog('✅ SUCCESS: getAllBookingsForAdmin returned data');
+          debugLog('Data received', result);
+        })
+        .withFailureHandler(function(error) {
+          debugLog('❌ ERROR: getAllBookingsForAdmin failed');
+          debugLog('Error details', error);
+        })
+        .getAllBookingsForAdmin();
+    }
+
+    function loadBookingsManually() {
+      debugLog('📊 Starting manual booking load...');
+      document.getElementById('loadingMessage').innerHTML = 'Loading bookings...';
+      document.getElementById('bookingsList').innerHTML = '';
+      
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        debugLog('✅ Google Apps Script available, calling getAllBookingsForAdmin...');
+        
+        google.script.run
+          .withSuccessHandler(function(data) {
+            debugLog('✅ Success callback triggered');
+            handleBookingsData(data);
+          })
+          .withFailureHandler(function(error) {
+            debugLog('❌ Failure callback triggered');
+            debugLog('Error details', error);
+            handleBookingsError(error);
+          })
+          .getAllBookingsForAdmin();
+      } else {
+        debugLog('⚠️ Google Apps Script not available, using mock data');
+        setTimeout(() => {
+          handleBookingsData(getMockData());
+        }, 1000);
+      }
+    }
+
+    function handleBookingsData(bookings) {
+      debugLog('📊 handleBookingsData called');
+      debugLog('Raw data received', bookings);
+      
+      allBookings = bookings || [];
+      debugLog('Processed bookings', { 
+        length: allBookings.length,
+        isArray: Array.isArray(allBookings),
+        sample: allBookings[0] || null
+      });
+      
+      updateStats();
+      renderBookings();
+      
+      document.getElementById('loadingMessage').style.display = 'none';
+      debugLog('✅ Booking data processing complete');
+    }
+
+    function handleBookingsError(error) {
+      debugLog('❌ handleBookingsError called');
+      debugLog('Error details', error);
+      document.getElementById('loadingMessage').innerHTML = 
+        '<div style="color: #dc3545;">❌ Error loading bookings: ' + (error.message || error) + '</div>';
+    }
+
+    function updateStats() {
+      debugLog('📈 Updating stats...');
+      
+      const total = allBookings.length;
+      const confirmed = allBookings.filter(b => {
+        const status = (b.status || '').toString().toLowerCase();
+        return status === 'confirmed';
+      }).length;
+      
+      const cancelled = allBookings.filter(b => {
+        const status = (b.status || '').toString().toLowerCase();
+        return status.includes('cancel');
+      }).length;
+      
+      const today = new Date().toISOString().split('T')[0];
+      const todayBookings = allBookings.filter(b => {
+        if (!b.date) return false;
+        try {
+          const bookingDate = new Date(b.date).toISOString().split('T')[0];
+          const status = (b.status || '').toString().toLowerCase();
+          return bookingDate === today && status === 'confirmed';
+        } catch {
+          return false;
+        }
+      }).length;
+
+      document.getElementById('totalBookings').textContent = total;
+      document.getElementById('confirmedBookings').textContent = confirmed;
+      document.getElementById('cancelledBookings').textContent = cancelled;
+      document.getElementById('todayBookings').textContent = todayBookings;
+      
+      debugLog('📈 Stats updated', { total, confirmed, cancelled, todayBookings });
+    }
+
+    function renderBookings() {
+      debugLog('🎨 Rendering bookings...');
+      const container = document.getElementById('bookingsList');
+      
+      if (allBookings.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No bookings found.</div>';
+        return;
+      }
+
+      let html = '';
+      allBookings.forEach((booking, index) => {
+        debugLog(`🎨 Rendering booking ${index}`, booking);
+        
+        html += `
+          <div class="booking-item">
+            <h4 style="margin: 0 0 10px 0; color: #333;">
+              ${booking.name || 'N/A'} - ${booking.service || 'N/A'}
+              <span style="color: #666; font-size: 14px;">(${booking.status || 'Unknown'})</span>
+            </h4>
+            <div class="booking-info">
+              <div><strong>📧 Email:</strong> ${booking.email || 'N/A'}</div>
+              <div><strong>📞 Phone:</strong> ${booking.phone || 'N/A'}</div>
+              <div><strong>📅 Date:</strong> ${formatDate(booking.date)}</div>
+              <div><strong>🕐 Time:</strong> ${booking.time || 'N/A'}</div>
+              <div><strong>⏱️ Duration:</strong> ${booking.duration || 'N/A'} min</div>
+              <div><strong>💰 Price:</strong> $${parseFloat(booking.price || 0).toFixed(2)}</div>
+              <div><strong>📋 Status:</strong> ${booking.status || 'N/A'}</div>
+              <div><strong>🆔 Event ID:</strong> ${booking.eventId || 'None'}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      debugLog('🎨 Bookings rendered successfully');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return 'N/A';
+      try {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { 
+          weekday: 'short', 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      } catch {
+        return dateStr;
+      }
+    }
+
+    function getMockData() {
+      debugLog('🧪 Creating mock data...');
+      return [
+        {
+          name: "John Doe",
+          email: "john@example.com",
+          phone: "555-0123",
+          service: "Sound Healing Session",
+          date: "2025-06-04",
+          time: "14:00",
+          duration: "60",
+          price: "120.00",
+          status: "Confirmed",
+          eventId: "mock_event_1"
+        },
+        {
+          name: "Jane Smith",
+          email: "jane@example.com",
+          phone: "555-0124",
+          service: "Chakra Balancing",
+          date: "2025-06-05",
+          time: "10:00",
+          duration: "90",
+          price: "150.00",
+          status: "Confirmed",
+          eventId: "mock_event_2"
+        }
+      ];
+    }
+
+    // Initialize when page loads
+    window.onload = function() {
+      debugLog('🌐 Admin interface loaded');
+      debugLog('🚀 Starting automatic initialization...');
+      
+      // Automatically load bookings when page loads
+      setTimeout(() => {
+        debugLog('⏱️ Auto-loading bookings after 1 second delay...');
+        loadBookingsManually();
+      }, 1000);
+    };
+  </script>
+</body>
+</html>

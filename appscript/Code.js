@@ -8,7 +8,306 @@ function onOpen() {
     .addItem('Process New Bookings', 'processBookings')
     .addItem('Set Availability', 'showAvailabilityDialog')
     .addItem('Refresh Calendar Status', 'syncCalendarToSheet')
+    .addItem('Show Admin Interface', 'showAdminInterface')
     .addToUi();
+}
+
+// Function to show the admin interface
+function showAdminInterface() {
+  console.log('showAdminInterface called');
+  
+  try {
+    const template = HtmlService.createTemplateFromFile('AdminInterface');
+    
+    const html = template.evaluate()
+      .setTitle('Booking Management - Admin')
+      .setWidth(1200)
+      .setHeight(800);
+    
+    SpreadsheetApp.getUi().showModalDialog(html, 'Booking Management');
+    console.log('Admin interface dialog shown successfully');
+    
+  } catch (error) {
+    console.error('Error in showAdminInterface:', error);
+    SpreadsheetApp.getUi().alert('Error opening admin interface: ' + error.message);
+  }
+}
+
+// Updated onOpen function with proper menu
+function onOpen() {
+  console.log('onOpen called - setting up menu');
+  
+  try {
+    SpreadsheetApp.getUi()
+      .createMenu('Booking System')
+      .addItem('Process New Bookings', 'processBookings')
+      .addItem('Set Availability', 'showAvailabilityDialog')
+      .addItem('Refresh Calendar Status', 'syncCalendarToSheet')
+      .addSeparator()
+      .addItem('Admin Interface', 'showAdminInterface')
+      .addToUi();
+    
+    console.log('Menu created successfully');
+  } catch (error) {
+    console.error('Error in onOpen:', error);
+  }
+}
+
+// Enhanced getAllBookingsForAdmin function with debug logging
+function getAllBookingsForAdmin() {
+  console.log('=== getAllBookingsForAdmin START ===');
+  
+  try {
+    // Step 1: Get the spreadsheet
+    console.log('Step 1: Getting active spreadsheet...');
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    
+    if (!spreadsheet) {
+      console.error('ERROR: Could not get active spreadsheet');
+      return [];
+    }
+    
+    console.log('✅ Spreadsheet accessed:', spreadsheet.getName());
+    
+    // Step 2: Get the Bookings sheet
+    console.log('Step 2: Getting Bookings sheet...');
+    const sheet = spreadsheet.getSheetByName("Bookings");
+    
+    if (!sheet) {
+      console.log('WARNING: No Bookings sheet found');
+      return [];
+    }
+    
+    console.log('✅ Bookings sheet found');
+    
+    // Step 3: Get the data range
+    console.log('Step 3: Getting data range...');
+    const lastRow = sheet.getLastRow();
+    const lastCol = sheet.getLastColumn();
+    
+    console.log('Sheet dimensions - Rows:', lastRow, 'Columns:', lastCol);
+    
+    if (lastRow <= 1) {
+      console.log('WARNING: No data found (only headers or empty sheet)');
+      return [];
+    }
+    
+    // Step 4: Get all values
+    console.log('Step 4: Reading all values...');
+    const dataRange = sheet.getRange(1, 1, lastRow, lastCol);
+    const values = dataRange.getValues();
+    
+    console.log('✅ Data read successfully, rows:', values.length);
+    
+    // Step 5: Log headers to understand structure
+    const headers = values[0];
+    console.log('Headers found:', headers);
+    
+    // Step 6: Process each row
+    console.log('Step 5: Processing rows...');
+    const bookings = [];
+    
+    for (let i = 1; i < values.length; i++) {
+      try {
+        const row = values[i];
+        
+        // Skip completely empty rows
+        if (!row[0] && !row[1] && !row[3]) {
+          console.log(`Skipping empty row ${i + 1}`);
+          continue;
+        }
+        
+        // Create booking object with safe property access
+        const booking = {
+          name: getValue(row, 0, ''),
+          email: getValue(row, 1, ''),
+          phone: getValue(row, 2, ''),
+          service: getValue(row, 3, ''),
+          date: formatDateSafely(getValue(row, 4, '')),
+          time: getValue(row, 5, ''),
+          duration: getNumberValue(row, 6, 60),
+          status: getValue(row, 7, 'Unknown'),
+          eventId: getValue(row, 8, ''),
+          price: getNumberValue(row, 9, 0),
+          rowIndex: i + 1
+        };
+        
+        console.log(`Row ${i + 1} processed:`, {
+          name: booking.name,
+          status: booking.status,
+          date: booking.date,
+          hasEventId: !!booking.eventId
+        });
+        
+        bookings.push(booking);
+        
+      } catch (rowError) {
+        console.error(`Error processing row ${i + 1}:`, rowError);
+        // Continue processing other rows even if one fails
+      }
+    }
+    
+    console.log(`✅ Successfully processed ${bookings.length} bookings`);
+    console.log('=== getAllBookingsForAdmin END ===');
+    
+    return bookings;
+    
+  } catch (error) {
+    console.error('❌ FATAL ERROR in getAllBookingsForAdmin:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    
+    // Return empty array instead of throwing to prevent complete failure
+    return [];
+  }
+}
+
+function getNumberValue(array, index, defaultValue) {
+  try {
+    const value = getValue(array, index, defaultValue);
+    const parsed = parseFloat(value);
+    return isNaN(parsed) ? defaultValue : parsed;
+  } catch (error) {
+    console.error(`Error getting number value at index ${index}:`, error);
+    return defaultValue;
+  }
+}
+
+function formatDateSafely(dateValue) {
+  try {
+    if (!dateValue) return '';
+    
+    // If it's already a string, return as is
+    if (typeof dateValue === 'string') {
+      return dateValue;
+    }
+    
+    // If it's a Date object, format it
+    if (dateValue instanceof Date) {
+      const year = dateValue.getFullYear();
+      const month = (dateValue.getMonth() + 1).toString().padStart(2, '0');
+      const day = dateValue.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    
+    // Try to parse as date if it's something else
+    const parsed = new Date(dateValue);
+    if (!isNaN(parsed.getTime())) {
+      const year = parsed.getFullYear();
+      const month = (parsed.getMonth() + 1).toString().padStart(2, '0');
+      const day = parsed.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    
+    // If all else fails, return as string
+    return dateValue.toString();
+    
+  } catch (error) {
+    console.error('Error formatting date:', error, 'Value:', dateValue);
+    return dateValue ? dateValue.toString() : '';
+  }
+}
+
+function debugSpreadsheetAccess() {
+  console.log('=== DEBUGGING SPREADSHEET ACCESS ===');
+  
+  try {
+    // Test 1: Can we get the spreadsheet?
+    console.log('Test 1: Getting spreadsheet...');
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    console.log('✅ Spreadsheet:', spreadsheet.getName());
+    
+    // Test 2: Can we get the sheet?
+    console.log('Test 2: Getting Bookings sheet...');
+    const sheet = spreadsheet.getSheetByName("Bookings");
+    if (!sheet) {
+      console.log('❌ No Bookings sheet found');
+      console.log('Available sheets:', spreadsheet.getSheets().map(s => s.getName()));
+      return 'No Bookings sheet found';
+    }
+    console.log('✅ Bookings sheet found');
+    
+    // Test 3: Can we get basic info?
+    console.log('Test 3: Getting sheet info...');
+    const lastRow = sheet.getLastRow();
+    const lastCol = sheet.getLastColumn();
+    console.log('✅ Sheet info - Rows:', lastRow, 'Columns:', lastCol);
+    
+    // Test 4: Can we read headers?
+    console.log('Test 4: Reading headers...');
+    if (lastRow > 0 && lastCol > 0) {
+      const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+      console.log('✅ Headers:', headers);
+    } else {
+      console.log('❌ No data in sheet');
+      return 'Sheet is empty';
+    }
+    
+    // Test 5: Can we read first data row?
+    console.log('Test 5: Reading first data row...');
+    if (lastRow > 1) {
+      const firstRow = sheet.getRange(2, 1, 1, lastCol).getValues()[0];
+      console.log('✅ First data row:', firstRow);
+    } else {
+      console.log('❌ No data rows found');
+      return 'No data rows';
+    }
+    
+    console.log('✅ All tests passed!');
+    return 'All spreadsheet tests passed';
+    
+  } catch (error) {
+    console.error('❌ Debug test failed:', error);
+    return 'Debug failed: ' + error.message;
+  }
+}
+
+function getTestBookings() {
+  console.log('getTestBookings called - returning test data');
+  
+  return [
+    {
+      name: "Test User 1",
+      email: "test1@example.com",
+      phone: "555-0001",
+      service: "Test Service 1",
+      date: "2025-06-04",
+      time: "10:00",
+      duration: 60,
+      status: "Confirmed",
+      eventId: "test_event_1",
+      price: 100,
+      rowIndex: 2
+    },
+    {
+      name: "Test User 2",
+      email: "test2@example.com",
+      phone: "555-0002",
+      service: "Test Service 2",
+      date: "2025-06-05",
+      time: "14:00",
+      duration: 90,
+      status: "Confirmed",
+      eventId: "test_event_2",
+      price: 150,
+      rowIndex: 3
+    }
+  ];
+}
+
+function getValue(array, index, defaultValue) {
+  try {
+    if (array && array.length > index && array[index] !== null && array[index] !== undefined) {
+      return array[index].toString().trim();
+    }
+    return defaultValue;
+  } catch (error) {
+    console.error(`Error getting value at index ${index}:`, error);
+    return defaultValue;
+  }
 }
 
 // FIXED: Handle web app GET requests with proper parameter passing
@@ -1058,4 +1357,13 @@ function parseCSVLine(line) {
   
   result.push(current);
   return result.map(item => item.replace(/^"|"$/g, '').trim());
+}
+
+function showAdminInterface() {
+  const template = HtmlService.createTemplateFromFile('AdminInterface');
+  const html = template.evaluate()
+    .setTitle('Booking Management - Admin')
+    .setWidth(1200)
+    .setHeight(800);
+  SpreadsheetApp.getUi().showModalDialog(html, 'Booking Management');
 }
