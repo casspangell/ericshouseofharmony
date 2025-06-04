@@ -1,5 +1,5 @@
 // Configuration - Single calendar approach
-const AVAILABILITY_CALENDAR_ID = '34854a8095df3ec33ae6b136617b62ac9c2d48a6679c492881cd78098e6b4844@group.calendar.google.com'; // Your main calendar with both availability and bookings
+const AVAILABILITY_CALENDAR_ID = '806e9d580086e5089be65c3b142d15b2faa56fb0abd527352fb2a5cefb51c228@group.calendar.google.com'; // Your main calendar with both availability and bookings
 
 // Creates a menu item for easy access
 function onOpen() {
