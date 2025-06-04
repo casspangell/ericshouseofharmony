@@ -224,35 +224,81 @@ function getValue(array, index, defaultValue) {
 
 // FIXED: Handle web app GET requests with proper parameter passing
 function doGet(e) {
-  console.log('doGet called with parameters:', e.parameter);
-  
-  // Get the service parameters from the URL
-  const params = e.parameter || {};
-  
-  // Extract service data from parameters
-  const serviceData = {
-    serviceId: params.id || null,
-    serviceName: params.name || null,
-    serviceDuration: params.duration || null,
-    servicePrice: params.price || null
-  };
-  
-  console.log('Extracted service data:', serviceData);
-  
-  // Get the HTML template
-  const template = HtmlService.createTemplateFromFile('BookingForm');
-  
-  // IMPORTANT: Pass the service data to the template as a global variable
-  template.serviceData = serviceData;
-  
-  console.log('Template data being passed:', template.serviceData);
-  
-  // Build and return the HTML with banner removal settings
-  return template.evaluate()
-    .setTitle('Book an Appointment with Eric')
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-    .setSandboxMode(HtmlService.SandboxMode.IFRAME); // This helps remove some banners
+  try {
+    // Check if this is a cancellation request
+    if (e.parameter.action && e.parameter.action === 'cancel') {
+      return handleCancellation(e.parameter);
+    }
+    // Extract service data from URL parameters (if present)
+    const params = e.parameter || {};
+    const serviceData = {
+      serviceId: params.id || null,
+      serviceName: params.name || null,
+      serviceDuration: params.duration || null,
+      servicePrice: params.price || null
+    };
+    const template = HtmlService.createTemplateFromFile('BookingForm');
+    template.serviceData = serviceData;
+    return template.evaluate()
+      .setTitle('Book a Session')
+      .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  } catch (error) {
+    console.error('Error in doGet:', error);
+    return HtmlService.createHtmlOutput(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Error</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+          }
+          .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+          }
+          h1 {
+            color: #4285f4;
+          }
+          .btn {
+            display: inline-block;
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Error</h1>
+        
+        <div class="error">
+          <h2>There was a problem loading the booking form</h2>
+          <p>${error.message}</p>
+        </div>
+        
+        <p>Please try again later or contact us directly:</p>
+        <p><a href="mailto:info@ericshouseofharmony.com">info@ericshouseofharmony.com</a></p>
+        <p>or call <a href="tel:305-767-3370">305-767-3370</a></p>
+        
+        <a href="https://www.ericshouseofharmony.com/soundhealing" class="btn">Return to Services</a>
+      </body>
+      </html>
+    `)
+    .setTitle('Error')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  }
 }
 
 // Process pending bookings from the sheet

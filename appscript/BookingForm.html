@@ -402,15 +402,13 @@
     // This is how Google Apps Script passes data to the HTML template
     let serviceData;
     try {
-      // The data comes as a JSON string, so we need to parse it
-      const rawServiceData = <?= JSON.stringify(serviceData) ?>;
-      console.log('Raw service data from template:', rawServiceData);
+      // The data comes directly from the template
+      serviceData = <?!= JSON.stringify(serviceData) ?>;
+      console.log('Raw service data from template:', serviceData);
       
       // If it's already a string, parse it. If it's an object, use it directly.
-      if (typeof rawServiceData === 'string') {
-        serviceData = JSON.parse(rawServiceData);
-      } else {
-        serviceData = rawServiceData;
+      if (typeof serviceData === 'string') {
+        serviceData = JSON.parse(serviceData);
       }
       
       console.log('Parsed service data:', serviceData);
